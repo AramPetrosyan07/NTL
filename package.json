@@ -1,0 +1,81 @@
+{
+  "name": "awesome",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@hookform/resolvers": "^3.1.1",
+    "@popmotion/popcorn": "^0.4.4",
+    "@react-google-maps/api": "^2.19.2",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.36",
+    "@types/react": "^18.2.13",
+    "@types/react-dom": "^18.2.6",
+    "axios": "^1.4.0",
+    "classnames": "^2.3.2",
+    "emailjs": "^4.0.2",
+    "emailjs-com": "^3.2.0",
+    "framer-motion": "^10.12.16",
+    "google-map-react": "^2.2.1",
+    "i18next": "^22.4.9",
+    "js-cookie": "^3.0.5",
+    "react": "^18.2.0",
+    "react-datepicker": "^4.15.0",
+    "react-dom": "^18.2.0",
+    "react-headless-accordion": "^1.0.2",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.45.1",
+    "react-i18next": "^12.1.5",
+    "react-icons": "^4.9.0",
+    "react-places-autocomplete": "^7.3.0",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.14.1",
+    "react-scripts": "5.0.1",
+    "recharts": "^2.7.2",
+    "redux": "^4.2.1",
+    "sass": "^1.64.1",
+    "scss": "^0.2.4",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/google-map-react": "^2.1.7",
+    "@types/js-cookie": "^3.0.3",
+    "@types/react-datepicker": "^4.11.2",
+    "@types/react-helmet": "^6.1.6",
+    "@types/react-places-autocomplete": "^7.2.9",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2"
+  }
+}

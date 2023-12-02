@@ -1,0 +1,146 @@
+
+body {
+  background: #eeeef7;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.some-opacity {
+  opacity: 0.7;
+}
+.zzz {
+  z-index: 1200;
+}
+
+.zuzu {
+  z-index: 1500;
+}
+.active-link {
+  width: 100%;
+  background-image: linear-gradient(to left, #c7e5ff, #46a6fa);
+  /* border-left: 6px solid #023d70; */
+}
+.banner {
+  width: 100%;
+  background-image: linear-gradient(to top, #c7e5ff, #7abcf5);
+}
+.shadow {
+  box-shadow: 0px 0px 25px 5px rgba(198, 197, 197, 0.64);
+}
+.background {
+  background-image: url("./assets/background-top.svg");
+  background-size: cover;
+}
+.background-bottom {
+  background-image: url("./assets/background-bottom.svg");
+  background-size: cover;
+}
+.main-color {
+  color: #1c90f3;
+  letter-spacing: 0.5px;
+}
+.secondary-color {
+  color: rgba(23, 39, 85, 1);
+}
+.heading-color {
+  color: rgba(23, 39, 85, 1);
+  letter-spacing: 0.8px;
+}
+.text-color {
+  color: #8794ba;
+  letter-spacing: 0.5px;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.login {
+  position: relative;
+  background-image: url(https://images.pexels.com/photos/4481532/pexels-photo-4481532.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+  width: 50%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 10;
+  --mask: radial-gradient(172.18px at 231px 50%, #000 99%, #0000 101%) 0
+      calc(50% - 154px) / 100% 308px,
+    radial-gradient(172.18px at -154px 50%, #0000 99%, #000 101%) 77px 50%/100%
+      308px repeat-y;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
+.register {
+  position: relative;
+  background-image: url(https://images.pexels.com/photos/16167848/pexels-photo-16167848/free-photo-of-crane-and-ship-in-port.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
+  width: 50%;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 10;
+  --mask: radial-gradient(172.18px at 231px 50%, #000 99%, #0000 101%) 0
+      calc(50% - 154px) / 100% 308px,
+    radial-gradient(172.18px at -154px 50%, #0000 99%, #000 101%) 77px 50%/100%
+      308px repeat-y;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1c90f3;
+  border-radius: 6px;
+}
+
+@media (orientation: landscape) and (max-width: 950px) {
+  .border {
+    border-radius: 0;
+    gap: 0;
+  }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.logo {
+  filter: drop-shadow(1.5px 1.5px 2px #1c8ff3b2);
+}
+
+.active {
+  color: #1c90f3;
+}
+
+@keyframes rotateAnim {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.animate-rotate {
+  animation: rotateAnim 2s linear infinite;
+}
