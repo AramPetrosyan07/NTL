@@ -38,6 +38,7 @@ export const registerSubUserThunk = createAsyncThunk<any, any>(
     return res.data;
   }
 );
+
 export const loginThunk = createAsyncThunk<any, any>(
   "customerSlice/loginThunk",
   async (data) => {
@@ -114,6 +115,7 @@ export const recoverPassRecovery = createAsyncThunk<any>(
     return res.data;
   }
 );
+
 
 export const addNewItemThunk = createAsyncThunk<any, any>(
   "itemSlice/addNewItemThunk",

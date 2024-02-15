@@ -19,7 +19,9 @@ export default function Header({ isDarkMode }: any) {
           alt="logo"
           className="w-[90px] logo"
         />
-        <span className="absolute text-[8px] font-bold top-2 left-20 dark:text-white">DEMO</span>
+        <span className="absolute text-[8px] font-bold top-2 left-20 dark:text-white">
+          DEMO
+        </span>
       </div>
       <div className="title md:w-full w-0 flex justify-center items-center">
         <p className="text-xl font-bold text-gray-600 md:block hidden dark:text-white">
