@@ -21,18 +21,20 @@ import ToInput from "../autocompleteInput/ToInput";
 
 export default function AddItems() {
   const [isVisible, setIsVisible] = useState(false);
-  const [fromInfo,setFromInfo] = useState<any>({})
-  const [toInfo,setToInfo] = useState<any>({})
+  const [fromInfo, setFromInfo] = useState<any>({});
+  const [toInfo, setToInfo] = useState<any>({});
   const { user } = useTypedSelector((state) => state.user);
   const dispatch = useTypedDispatch();
   const currentUserType = DetectCurrentUserType();
 
+  console.log(fromInfo);
+
   const getFromInfo = (address: string, location: Coords) => {
-    setFromInfo({ location, description: address }) 
-  }
+    setFromInfo({ location, description: address });
+  };
   const getToInfo = (address: string, location: Coords) => {
-    setToInfo({ location, description: address }) 
-  }
+    setToInfo({ location, description: address });
+  };
 
   const {
     register,
@@ -45,12 +47,12 @@ export default function AddItems() {
   });
 
   const onSubmit = async (data: any) => {
-  
     if (isValid) {
       const { userType, parent } = user;
       if (currentUserType === "customer") {
-        
-        dispatch(addNewItemThunk({ ...data, userType, parent,toInfo,fromInfo }));
+        dispatch(
+          addNewItemThunk({ ...data, userType, parent, toInfo, fromInfo })
+        );
         dispatch(getLoadThunk());
         setIsVisible(true);
         setTimeout(() => {
@@ -59,7 +61,15 @@ export default function AddItems() {
           reset();
         }, 3000);
       } else if (currentUserType === "carrier") {
-        dispatch(addNewTruckThunk({ ...data, userType, parent, delivery:toInfo?.description,pickup:fromInfo?.description  }));
+        dispatch(
+          addNewTruckThunk({
+            ...data,
+            userType,
+            parent,
+            delivery: toInfo?.description,
+            pickup: fromInfo?.description,
+          })
+        );
         dispatch(getTruckThunk());
         setIsVisible(true);
         setTimeout(() => {
@@ -97,7 +107,7 @@ export default function AddItems() {
                     className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900  ring-0 focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
                     {...register("pickup")}
                   /> */}
-                  <FromInput cbSuccess={getFromInfo}/>
+                  <FromInput cbSuccess={getFromInfo} />
 
                   {/* {errors.pickup && (
                     <p className="text-red-600   pt-1 pl-2  text-[12px] tracking-wide">
@@ -124,7 +134,7 @@ export default function AddItems() {
                     className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900 ring-0 focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
                     {...register("delivery")}
                   /> */}
-                  <ToInput cbSuccess={getToInfo}/>
+                  <ToInput cbSuccess={getToInfo} />
                   {/* {errors.delivery && (
                     <p className="text-red-600   pt-1 pl-2  text-[12px] tracking-wide">
                       {errors.delivery.message}
@@ -315,7 +325,9 @@ export default function AddItems() {
       </form>
       <Toast
         type="success"
-        message={`Ձեր ${currentUserType === 'customer' ? 'բեռը' : 'բեռնատարը'} հաջողությամբ ավելացվել է`}
+        message={`Ձեր ${
+          currentUserType === "customer" ? "բեռը" : "բեռնատարը"
+        } հաջողությամբ ավելացվել է`}
         isVisible={isVisible}
         setIsVisible={setIsVisible}
       />

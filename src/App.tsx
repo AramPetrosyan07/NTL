@@ -45,6 +45,7 @@ function App() {
         <Route path="/" index element={<Dashboard />} />
         <Route path="/trucks" element={<TrucksBoard />} />
         <Route path="/testInput" element={<TestInput />} />
+
         <Route
           path="/admin"
           element={

@@ -33,9 +33,9 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
         <DashboardFilter open={open} />
-        <LoadItemTitle boardType='load' />
-        <LoadItemDesktop boardType='load'/>
-        <LoadMobile boardType='load'/>
+        <LoadItemTitle boardType="load" />
+        <LoadItemDesktop boardType="load" />
+        <LoadMobile boardType="load" />
       </section>
     </>
   );

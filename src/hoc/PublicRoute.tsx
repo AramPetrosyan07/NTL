@@ -7,18 +7,18 @@ const PublicRoute: React.FC<{ children: ReactNode }> = ({ children }) => {
   //   const { user } = useTypedSelector((state) => state.user);
   const navigate = useNavigate();
 
-  const getToken = () => {
-    const token = isLogged();
+  // const getToken = () => {
+  //   const token = isLogged();
 
-    if (token) {
-      navigate("/");
-      return;
-    }
-  };
+  //   if (token) {
+  //     navigate("/");
+  //     return;
+  //   }
+  // };
 
-  useEffect(() => {
-    getToken();
-  }, []);
+  // useEffect(() => {
+  //   getToken();
+  // }, []);
 
   return <>{children}</>;
 };

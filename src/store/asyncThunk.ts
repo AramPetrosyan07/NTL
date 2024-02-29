@@ -59,7 +59,7 @@ export const authMe = createAsyncThunk<any>(
     const currentUserType = getUserType();
     const res = await axios.post(`auth/me`, { userType: currentUserType });
 
-    const token = await res.data.token;
+    const token = res.data.token;
 
     if (token) {
       saveToken(token);
@@ -116,11 +116,13 @@ export const recoverPassRecovery = createAsyncThunk<any>(
   }
 );
 
-
 export const addNewItemThunk = createAsyncThunk<any, any>(
   "itemSlice/addNewItemThunk",
   async (data: any) => {
+    console.log(data);
+
     const res = await axios.post(`load/add`, data);
+    console.log(res.data);
 
     return res.data;
   }
@@ -193,7 +195,7 @@ export const deleteTruckThunk = createAsyncThunk<any, any>(
   "truckSlice/deleteTruckThunk",
   async (data) => {
     const res = await axios.post(`truck/deleteTruck`, data);
-    console.log(res)
+    console.log(res);
     return res.data;
   }
 );
@@ -202,7 +204,7 @@ export const getPreviewItem = createAsyncThunk<any, any>(
   "itemsSlice/getPreviewItem",
   async (data) => {
     const res = await axios.post(`load/getDetail`, data);
-    console.log(res)
+    console.log(res);
     return res.data;
   }
 );
