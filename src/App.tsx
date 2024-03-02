@@ -78,7 +78,9 @@ function App() {
             </PublicRoute>
           }
         />
+
         <Route path="/dashboard/preview/:id" element={<Preview />} />
+
         <Route
           path="/admin"
           element={

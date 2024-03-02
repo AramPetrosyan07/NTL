@@ -19,7 +19,6 @@ const LoadMobile = ({ boardType }: any) => {
     (state) => state.truck
   );
 
-  
   const { pathname } = useLocation();
 
   const detectBoardType = async () => {
@@ -43,6 +42,7 @@ const LoadMobile = ({ boardType }: any) => {
   const handleMoreLoads = () => {
     setNext(next + 50);
   };
+
   return (
     <div>
       {isLoading ? (
@@ -57,13 +57,13 @@ const LoadMobile = ({ boardType }: any) => {
         <>
           {pathname === "/" ? (
             load.slice(0, next)?.map((el: any) => (
-              <div key={el.age}>
+              <div key={el._id}>
                 <LoadItemMobile {...el} boardType={boardType} />
               </div>
             ))
           ) : pathname.includes("/trucks") ? (
             truck.slice(0, next)?.map((el: any) => (
-              <div key={el.age}>
+              <div key={el._id}>
                 <LoadItemMobile {...el} boardType={boardType} />
               </div>
             ))

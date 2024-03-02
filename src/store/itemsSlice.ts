@@ -51,19 +51,19 @@ let initialState: any = {
   ],
   isLoading: true,
   isEmpty: false,
-  previewItem : {}
+  previewItem: {},
 };
 
 const itemSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    openItemPreview : (state,action) => {
-    const previewItem =  state.load.find((item:any)=> item._id === action.payload)
-    console.log(state.load);
-    console.log(action.payload);
-    
-    
+    openItemPreview: (state, action) => {
+      const previewItem = state.load.find(
+        (item: any) => item._id === action.payload
+      );
+      console.log(state.load);
+      console.log(action.payload);
     },
     removeLoads: (state) => {
       state.load = [
@@ -110,16 +110,16 @@ const itemSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getLoadThunk.fulfilled, (state, { payload }) => {
-      state.load = payload.data;
-      if (payload.request.status === 200) {
-        if (!payload.data?.length) {
-          state.isEmpty = true;
-        }
-        state.isLoading = false;
-      } else {
-        state.isLoading = true;
+      state.load = payload;
+      if (!payload?.length) {
+        state.isEmpty = true;
       }
+      state.isLoading = false;
     });
+    builder.addCase(getLoadThunk.pending, (state, { payload }) => {
+      state.isLoading = true;
+    });
+
     builder.addCase(getUserLoadsThunk.fulfilled, (state, { payload }) => {
       state.userLoads = payload.data;
     });
@@ -127,28 +127,26 @@ const itemSlice = createSlice({
       state.userLoads.push(payload);
     });
     builder.addCase(updateNewItemThunk.fulfilled, (state, { payload }) => {
-      state.userLoads = state.userLoads.map(
-        (el: any) =>{
-          if(el._id === payload._id){
-            return payload
-          }else{
-            return el
-          }
+      state.userLoads = state.userLoads.map((el: any) => {
+        if (el._id === payload._id) {
+          return payload;
+        } else {
+          return el;
         }
-      );
+      });
     });
     builder.addCase(deleteItemThunk.fulfilled, (state, { payload }) => {
       const deletedItemId = payload.id;
       state.userLoads = state.userLoads.filter(
         (el: any) => el._id !== deletedItemId
       );
-    }); 
+    });
     builder.addCase(getPreviewItem.fulfilled, (state, { payload }) => {
       state.previewItem = payload;
     });
   },
 });
 
-export const { removeLoads,openItemPreview } = itemSlice.actions;
+export const { removeLoads, openItemPreview } = itemSlice.actions;
 
 export default itemSlice.reducer;

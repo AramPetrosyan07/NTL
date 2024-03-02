@@ -12,44 +12,44 @@ import {
 
 let initialState: any = {
   truck: [
-    // {
-    //   id: "",
-    //   age: "",
-    //   date: "",
-    //   truckType: "",
-    //   loadType: "",
-    //   pickup: "",
-    //   delivery: "",
-    //   distance: null,
-    //   customerInfo: { companyName: "", email: "", phoneNumber: "" },
-    //   subCustomerInfo: { email: "", phoneNumber: "" },
-    //   length: null,
-    //   weight: null,
-    //   rate: null,
-    //   status: "",
-    //   commodity: "",
-    //   comment: "",
-    // },
+    {
+      id: "",
+      age: "",
+      date: "",
+      truckType: "",
+      loadType: "",
+      pickup: "",
+      delivery: "",
+      distance: null,
+      customerInfo: { companyName: "", email: "", phoneNumber: "" },
+      subCustomerInfo: { email: "", phoneNumber: "" },
+      length: null,
+      weight: null,
+      rate: null,
+      status: "",
+      commodity: "",
+      comment: "",
+    },
   ],
   userTrucks: [
-    // {
-    //   id: "",
-    //   age: "",
-    //   date: "",
-    //   truckType: "",
-    //   loadType: "",
-    //   pickup: "",
-    //   delivery: "",
-    //   distance: null,
-    //   customerInfo: { companyName: "", email: "", phoneNumber: "" },
-    //   subCustomerInfo: { email: "", phoneNumber: "" },
-    //   length: null,
-    //   weight: null,
-    //   rate: null,
-    //   status: "",
-    //   commodity: "",
-    //   comment: "",
-    // },
+    {
+      id: "",
+      age: "",
+      date: "",
+      truckType: "",
+      loadType: "",
+      pickup: "",
+      delivery: "",
+      distance: null,
+      customerInfo: { companyName: "", email: "", phoneNumber: "" },
+      subCustomerInfo: { email: "", phoneNumber: "" },
+      length: null,
+      weight: null,
+      rate: null,
+      status: "",
+      commodity: "",
+      comment: "",
+    },
   ],
   isLoadingTruck: true,
   isEmptyTruck: false,
@@ -102,16 +102,13 @@ const truckSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getTruckThunk.fulfilled, (state, { payload }) => {
-      state.truck = payload.data;
-      if (payload.request.status === 200) {
-        if (!payload.data?.length) {
-          state.isEmptyTruck = true;
-        }
-        state.isLoadingTruck = false;
-      } else {
-        state.isLoadingTruck = true;
+      state.truck = payload;
+      if (!payload?.length) {
+        state.isEmptyTruck = true;
       }
+      // state.isLoadingTruck = false;
     });
+
     builder.addCase(getUserTrucksThunk.fulfilled, (state, { payload }) => {
       state.userTrucks = payload.data;
     });

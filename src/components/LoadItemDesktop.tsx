@@ -14,7 +14,9 @@ export default function LoadItemDesktop({ boardType }: any) {
   const [loadData, setLoadData] = useState<LoadProps[] | TruckProps[]>([]);
   const dispatch = useTypedDispatch();
   const { load, isLoading, isEmpty } = useTypedSelector((state) => state.load);
-  const { truck,isLoadingTruck, isEmptyTruck} = useTypedSelector((state) => state.truck);
+  const { truck, isLoadingTruck, isEmptyTruck } = useTypedSelector(
+    (state) => state.truck
+  );
   const { pathname } = useLocation();
 
   const detectBoardType = async () => {
@@ -28,7 +30,7 @@ export default function LoadItemDesktop({ boardType }: any) {
 
   useEffect(() => {
     detectBoardType();
-  }, [load,truck]);
+  }, [load, truck]);
 
   useEffect(() => {
     dispatch(getLoadThunk());

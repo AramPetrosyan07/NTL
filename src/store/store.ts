@@ -1,14 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { mapSLice } from "./mapSlice";
 import customerSlice from "./customerSlice";
-import loadSlice from './itemsSlice'
+import loadSlice from "./itemsSlice";
 import truckSlice from "./truckSlice";
+
 export const store = configureStore({
   reducer: {
     map: mapSLice.reducer,
     user: customerSlice,
-    load : loadSlice,
-    truck:truckSlice
+    load: loadSlice,
+    truck: truckSlice,
   },
 });
 

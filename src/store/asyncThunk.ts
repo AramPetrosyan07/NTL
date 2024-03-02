@@ -155,8 +155,14 @@ export const deleteItemThunk = createAsyncThunk<any, any>(
 export const getLoadThunk = createAsyncThunk<any>(
   "itemSlice/getLoadThunk",
   async () => {
-    const res = await axios.get(`load/get`);
-    return res;
+    try {
+      const res = await axios.get(`load/get`);
+      const data = res.data;
+      return data;
+    } catch (error) {
+      console.error("Error fetching truck data:", error);
+      throw error;
+    }
   }
 );
 export const getUserLoadsThunk = createAsyncThunk<any, any>(
@@ -166,11 +172,18 @@ export const getUserLoadsThunk = createAsyncThunk<any, any>(
     return res;
   }
 );
+
 export const getTruckThunk = createAsyncThunk<any>(
   "truckSlice/getTruckThunk",
   async () => {
-    const res = await axios.get(`truck/get`);
-    return res;
+    try {
+      const response = await axios.get(`truck/get`);
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error("Error fetching truck data:", error);
+      throw error;
+    }
   }
 );
 
