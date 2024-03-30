@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { GiPathDistance } from "react-icons/gi";
 import DetectCurrentUserType from "../utils/detectUserType";
+import { useTypedDispatch } from "../hooks/useTypedSelector";
+import { updatePreviewItem } from "../store/itemsSlice";
 
 function calculateFormattedPostAge(postTimestamp: number): string {
   const now = Date.now();
@@ -24,29 +26,31 @@ function calculateFormattedPostAge(postTimestamp: number): string {
     .padStart(2, "0")}`;
 }
 const AccordionItemDesktop = ({
-  _id,
-  age,
-  date,
-  truckType,
+  comment,
+  commodity,
+  contactInfo,
+  delivery,
+  length,
   loadType,
   pickup,
-  delivery,
+  rate,
+  truckType,
+  updatedAt,
+  weight,
+  _id,
+
+  age,
+  date,
   distance,
   customerInfo,
-  contactInfo,
   subContactInfo,
-  length,
-  weight,
-  rate,
-  commodity,
-  comment,
   boardType,
-  updatedAt,
 }: any) => {
   const mydate = new Date(updatedAt).getTime();
   const [formattedAge, setFormattedAge] = useState("");
   const [clicked, setClicked] = useState(false);
   const userType = DetectCurrentUserType();
+
   const handleClick = () => {
     setClicked(true);
   };
@@ -64,17 +68,19 @@ const AccordionItemDesktop = ({
     };
   }, [mydate]);
 
-  const renderContactInformation = (main: any, sub: any):any => {
-
-    if( sub?.phoneNumber || main?.phoneNumber){
-      return  <CallOptions contact={sub ? sub?.phoneNumber : main?.phoneNumber} />
-    }else{
-      return ( <a href={`mailto:${sub ? sub?.email : main?.email}`}>
-      {sub ? sub?.email : main?.email}
-    </a>)
+  const renderContactInformation = (main: any, sub: any): any => {
+    if (sub?.phoneNumber || main?.phoneNumber) {
+      return (
+        <CallOptions contact={sub ? sub?.phoneNumber : main?.phoneNumber} />
+      );
+    } else {
+      return (
+        <a href={`mailto:${sub ? sub?.email : main?.email}`}>
+          {sub ? sub?.email : main?.email}
+        </a>
+      );
     }
   };
-
 
   return (
     <>
@@ -158,9 +164,7 @@ const AccordionItemDesktop = ({
                       e.stopPropagation();
                     }}
                   >
-                    {
-                      renderContactInformation(contactInfo,subContactInfo)
-                    }
+                    {renderContactInformation(contactInfo, subContactInfo)}
                   </div>
                 </div>
                 <div className=" flex justify-start items-center  w-[50px]">
@@ -192,9 +196,15 @@ const AccordionItemDesktop = ({
                         e.stopPropagation();
                       }}
                     >
+                      {/* <div
+                      onClick={() => {
+                        console.log(delivery, pickup);
+                      }}
+                    > */}
                       <span className="font-extrabold text-slate-600 hover:text-[#1C90F3] transition-all duration-200">
                         <GiPathDistance fontSize={20} />
                       </span>
+                      {/* </div> */}
                     </Link>
                   </div>
                 )}

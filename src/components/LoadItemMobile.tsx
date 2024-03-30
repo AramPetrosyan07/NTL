@@ -44,8 +44,7 @@ const LoadItemMobile = ({
   const handeOpenComment = () => {
     setShowComment(!showComment);
   };
-  console.log(customerInfo);
-  
+
   const mydate = new Date(updatedAt).getTime();
   const [formattedAge, setFormattedAge] = useState("");
   useEffect(() => {
@@ -150,7 +149,10 @@ const LoadItemMobile = ({
             <div className="distance">{distance}2300 կմ</div>
           </div>
           <div className="flex w-full h-[40px] justify-between items-center">
-            <div className="company text-[#1C90F3]" title={contactInfo?.companyName}>
+            <div
+              className="company text-[#1C90F3]"
+              title={contactInfo?.companyName}
+            >
               {contactInfo?.companyName}
             </div>
             <div className="rate">{checkLengthOfValue(rate, "$")}</div>

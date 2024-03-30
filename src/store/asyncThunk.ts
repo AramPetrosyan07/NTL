@@ -24,6 +24,7 @@ export const registerThunk = createAsyncThunk<any, any>(
     return res.data;
   }
 );
+
 export const registerSubUserThunk = createAsyncThunk<any, any>(
   "customerSlice/registerSubUserThunk",
   async (data) => {
@@ -33,8 +34,11 @@ export const registerSubUserThunk = createAsyncThunk<any, any>(
       ...data,
       currentUserType: getCurrentUserTypeViaCookie,
     };
+    console.log(mixedData);
 
     const res = await axios.post(`auth/registerSub`, mixedData);
+    console.log(res);
+
     return res.data;
   }
 );
@@ -127,6 +131,7 @@ export const addNewItemThunk = createAsyncThunk<any, any>(
     return res.data;
   }
 );
+
 export const addNewTruckThunk = createAsyncThunk<any, any>(
   "truckSlice/addNewTruckThunk",
   async (data: any) => {
@@ -135,6 +140,7 @@ export const addNewTruckThunk = createAsyncThunk<any, any>(
     return res.data;
   }
 );
+
 export const updateNewItemThunk = createAsyncThunk<any, any>(
   "itemSlice/updateNewItemThunk",
   async (data) => {
@@ -143,6 +149,7 @@ export const updateNewItemThunk = createAsyncThunk<any, any>(
     return res.data;
   }
 );
+
 export const deleteItemThunk = createAsyncThunk<any, any>(
   "itemSlice/deleteItemThunk",
   async (data) => {
@@ -165,6 +172,7 @@ export const getLoadThunk = createAsyncThunk<any>(
     }
   }
 );
+
 export const getUserLoadsThunk = createAsyncThunk<any, any>(
   "itemSlice/getUserLoadsThunk",
   async (data) => {
@@ -218,6 +226,14 @@ export const getPreviewItem = createAsyncThunk<any, any>(
   async (data) => {
     const res = await axios.post(`load/getDetail`, data);
     console.log(res);
+    return res.data;
+  }
+);
+
+export const getCustomerSubs = createAsyncThunk<any>(
+  "itemsSlice/getCustomerSubs",
+  async () => {
+    const res = await axios.post(`customersInfo/CustomersSubs`);
     return res.data;
   }
 );

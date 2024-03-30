@@ -11,35 +11,47 @@ import { useLocation } from "react-router-dom";
 export default function LoadItemDesktop({ boardType }: any) {
   const itemsPerRow = 50;
   const [next, setNext] = useState<number>(itemsPerRow);
-  const [loadData, setLoadData] = useState<LoadProps[] | TruckProps[]>([]);
+  // const [loadData, setLoadData] = useState<LoadProps[] | TruckProps[]>([]);
   const dispatch = useTypedDispatch();
-  const { load, isLoading, isEmpty } = useTypedSelector((state) => state.load);
+  const { load, filteredLoads, isLoading, isEmpty } = useTypedSelector(
+    (state) => state.load
+  );
   const { truck, isLoadingTruck, isEmptyTruck } = useTypedSelector(
     (state) => state.truck
   );
   const { pathname } = useLocation();
 
-  const detectBoardType = async () => {
-    if (boardType === "load") {
-      setLoadData(load);
-      return;
+  console.log(load);
+
+  // const detectBoardType = async () => {
+  //   if (boardType === "load") {
+  //     setLoadData(load);
+  //     return;
+  //   } else {
+  //     setLoadData(truck);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   detectBoardType();
+  // }, [load, truck]);
+
+  const chechFilteredLoads = () => {
+    if (filteredLoads.length != 0) {
+      return filteredLoads;
     } else {
-      setLoadData(truck);
+      return load;
     }
   };
 
-  useEffect(() => {
-    detectBoardType();
-  }, [load, truck]);
+  const handleMoreLoads = () => {
+    setNext(next + 50);
+  };
 
   useEffect(() => {
     dispatch(getLoadThunk());
     dispatch(getTruckThunk());
   }, []);
-
-  const handleMoreLoads = () => {
-    setNext(next + 50);
-  };
 
   return (
     <>
@@ -55,11 +67,19 @@ export default function LoadItemDesktop({ boardType }: any) {
         ) : (
           <>
             {pathname === "/" ? (
-              load?.slice(0, next)?.map((el: any, i: any) => (
-                <div key={i} className="pb-[2px]">
-                  <AccordionItemDesktop {...el} i={i} boardType={boardType} />
-                </div>
-              ))
+              chechFilteredLoads()
+                ?.slice(0, next)
+                ?.map((el: any, i: any) => {
+                  return (
+                    <div key={i} className="pb-[2px]">
+                      <AccordionItemDesktop
+                        {...el}
+                        i={i}
+                        boardType={boardType}
+                      />
+                    </div>
+                  );
+                })
             ) : pathname.includes("/trucks") ? (
               truck.slice(0, next)?.map((el: any, i: any) => (
                 <div key={i} className="pb-[2px]">
@@ -71,7 +91,8 @@ export default function LoadItemDesktop({ boardType }: any) {
             )}
           </>
         )}
-        {next < loadData?.length && (
+        {next <
+          (boardType === "load" ? chechFilteredLoads() : truck)?.length && (
           <div className="w-full flex justify-center py-4 ">
             <button
               onClick={handleMoreLoads}

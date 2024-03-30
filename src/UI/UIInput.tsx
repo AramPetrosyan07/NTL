@@ -1,19 +1,20 @@
 import React, { ChangeEventHandler } from "react";
 
-type InputProps = {
-  label?: string;
-  text: string;
-  type?: "text" | "number" | 'date';
-  value: string | number;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-};
+// type InputProps = {
+//   label?: string;
+//   text: string;
+//   type?: "text" | "number" | 'date';
+//   value: string | number;
+//   onChange: ChangeEventHandler<HTMLInputElement>;
+// };
 
-const UIInput: React.FC<InputProps> = ({
+const UIInput: React.FC<any> = ({
   label,
   text,
   type = "text",
   value,
-  onChange,
+  inputName,
+  register,
 }) => {
   return (
     <div className="flex w-full sm:w-[48%] lg:w-full flex-col justify-between  text-sm font-medium  text-gray-900 lg:gap-0 gap-2">
@@ -22,7 +23,7 @@ const UIInput: React.FC<InputProps> = ({
         type={type}
         id={text}
         value={value}
-        onChange={onChange}
+        {...register(inputName)}
         placeholder={text}
         className="px-4 py-[7px] border-x-[1px] border-y-[1px] dark:bg-[#1e3053] dark:text-white  border-slate-300 dark:border-[#1e3053]  rounded-md focus:outline-none w-full text-black"
       />

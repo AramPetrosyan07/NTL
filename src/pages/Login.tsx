@@ -32,7 +32,6 @@ export default function LogIn() {
     register,
     handleSubmit,
     formState: { errors, isValid },
-   
   } = useForm<LoginFormProps>({
     mode: "onChange",
     resolver: yupResolver(loginSchema),
@@ -47,7 +46,7 @@ export default function LogIn() {
       }
     }
     setValid(false);
-    setIsVisible(true)
+    setIsVisible(true);
     const timer = setTimeout(() => {
       setIsVisible(false);
     }, 4000);
@@ -192,7 +191,12 @@ export default function LogIn() {
         </div>
       </div>
       <div className="w-full md:w-1/2 h-screen  hidden lg:block login"></div>
-      <Toast type="error" message="Օգտատեր չի գտնվել" isVisible={isVisible} setIsVisible={setIsVisible}/>
+      <Toast
+        type="error"
+        message="Օգտատեր չի գտնվել"
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
     </section>
   );
 }

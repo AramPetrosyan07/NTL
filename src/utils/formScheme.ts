@@ -65,11 +65,10 @@ export const addLoadsSchema = yup.object().shape({
       ["տենտ", "ռեֆ", "կոնտեյներ", "ավիա"],
       "Խնդրում ենք նշել բեռնատարի տեսակը"
     ),
-  loadType: yup.string().required("Խնդրում ենք նշել բեռի տեսակը")
-   .oneOf(
-    ["ամբողջական", "հավաքական"],
-    "Խնդրում ենք նշել բեռի տեսակը"
-  ),
+  loadType: yup
+    .string()
+    .required("Խնդրում ենք նշել բեռի տեսակը")
+    .oneOf(["ամբողջական", "հավաքական"], "Խնդրում ենք նշել բեռի տեսակը"),
   // pickup: yup.string().required("Խնդրում ենք նշել բարձման վայրը"),
   // delivery: yup.string().required("Խնդրում ենք նշել դատարկման վայրը"),
   length: yup.number(),
@@ -104,13 +103,21 @@ export const recoverPasswordScheme = yup.object().shape({
 });
 
 export const addTeamMemberSchema = yup.object().shape({
-  firstName: yup.string().required("Խնդրում ենք նշել Ձեր անունը"),
-  lastName: yup.string().required("Խնդրում ենք նշել Ձեր ազգանունը"),
+  firstName: yup
+    .string()
+    .required("Խնդրում ենք նշել Ձեր անունը")
+    .min(3, "Անունը պետք է պարունակի մինիմում 3 տառ")
+    .max(20, "Անունը պետք է պարունակի մաքսիմում 20 տառ"),
+  lastName: yup
+    .string()
+    .required("Խնդրում ենք նշել Ձեր ազգանունը")
+    .min(4, "Ազգանունը պետք է պարունակի մինիմում 4 տառ")
+    .max(20, "Ազգանունը պետք է պարունակի մաքսիմում 20 տառ"),
   email: yup
     .string()
     .email("Խնդրում ենք նշել ճիշտ  էլ. հասցե")
     .required("Խնդրում ենք նշել Ձեր էլ. հասցեն"),
-  phoneNumber: yup.number(),
+  phoneNumber: yup.string().optional(),
   password: yup
     .string()
     .matches(

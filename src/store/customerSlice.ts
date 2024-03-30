@@ -4,6 +4,7 @@ import {
   loginThunk,
   authMe,
   recoverPassRecovery,
+  getCustomerSubs,
 } from "./asyncThunk";
 import { LogOutUser } from "../utils/helpers";
 
@@ -27,6 +28,7 @@ let initialState: any = {
     failedLoginAttempts: null,
     lockoutUntil: null,
   },
+  userSubs: [],
 };
 
 const customerSlice = createSlice({
@@ -71,6 +73,9 @@ const customerSlice = createSlice({
       })
       .addCase(authMe.fulfilled, (state, { payload }) => {
         state.user = payload;
+      })
+      .addCase(getCustomerSubs.fulfilled, (state, { payload }) => {
+        state.userSubs = payload;
       });
   },
 });

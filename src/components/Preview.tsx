@@ -11,25 +11,24 @@ import { getPreviewItem } from "../store/asyncThunk";
 const Preview = () => {
   const locationId = useParams();
   const dispatch = useTypedDispatch();
-  const findedItem = useTypedSelector(state => state.load.previewItem)
+  const findedItem = useTypedSelector((state) => state.load.previewItem);
 
-  const [distanceAndDur,setDistanceAndDur] = useState({
-    distance : 0,
-    duration : ''
-  })
+  const [distanceAndDur, setDistanceAndDur] = useState({
+    distance: 0,
+    duration: "",
+  });
 
-  
   useEffect(() => {
     dispatch(getPreviewItem(locationId));
   }, []);
 
-  const getDistanceAndDuration = (km:number,dur:number) => {
-      return {
-        distance : km,
-        duration:dur
-      }
-  }
-  
+  const getDistanceAndDuration = (km: number, dur: number) => {
+    return {
+      distance: km,
+      duration: dur,
+    };
+  };
+
   return (
     <>
       <div className="desktop w-full h-screen flex flex-col-reverse relative">
@@ -47,7 +46,9 @@ const Preview = () => {
               </div>
               <div className="w-full h-full flex flex-col justify-center items-center ">
                 <div className="h-[300px] w-full  flex flex-col justify-between items-start text-[14px] py-2">
-                  <h4 className="text-[18px]">{findedItem?.pickup?.description}</h4>
+                  <h4 className="text-[18px]">
+                    {findedItem?.pickup?.description}
+                  </h4>
                   <div>
                     <h4 className="text-gray-600">Հեռավորությունը</h4>
                     <p>{distanceAndDur?.distance} կմ</p>
@@ -56,7 +57,9 @@ const Preview = () => {
                     <h4 className="text-gray-600">Տևողությունը</h4>
                     <p>{distanceAndDur?.duration}</p>
                   </div>
-                  <h4 className="text-[18px]">{findedItem?.delivery?.description}</h4>
+                  <h4 className="text-[18px]">
+                    {findedItem?.delivery?.description}
+                  </h4>
                 </div>
               </div>
             </div>
@@ -69,7 +72,11 @@ const Preview = () => {
           <IoMdArrowBack size={24} color="gray" />
         </Link>
         <div className="map w-full h-full">
-          <Map pickup={findedItem?.pickup} delivery={findedItem?.delivery} setDistanceAndDur={setDistanceAndDur}/>
+          <Map
+            pickup={findedItem?.pickup}
+            delivery={findedItem?.delivery}
+            setDistanceAndDur={setDistanceAndDur}
+          />
         </div>
       </div>
     </>

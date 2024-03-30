@@ -4,13 +4,13 @@ import { addTeamMemberSchema } from "../utils/formScheme";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BiHide, BiShow } from "react-icons/bi";
-import { registerSubUserThunk } from "../store/asyncThunk";
+import { getCustomerSubs, registerSubUserThunk } from "../store/asyncThunk";
 import { useTypedDispatch } from "../hooks/useTypedSelector";
 
 export default function UIModal({ open, setOpen }: any) {
   const cancelButtonRef = useRef(null);
   const ref = useRef<any>(null);
-  const dispatch  = useTypedDispatch()
+  const dispatch = useTypedDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const handleShow = () => setShowPassword(!showPassword);
 
@@ -24,16 +24,21 @@ export default function UIModal({ open, setOpen }: any) {
     resolver: yupResolver(addTeamMemberSchema),
   });
 
+  function printError() {
+    return Object.values(errors)?.[0]?.message;
+  }
+  // console.log(printError());
+
   const onSubmit = async (data: any) => {
-    if(isValid && (data.password === data.repetPassword)){
+    if (isValid && data.password === data.repetPassword) {
       let user = await dispatch(registerSubUserThunk(data));
       if (user?.payload?.email) {
-       console.log(user)
+        console.log(user);
+        dispatch(getCustomerSubs());
       }
-    }else{
-      console.log('all fields are required')
+    } else {
+      console.log("all fields are required");
     }
-    
   };
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -166,22 +171,25 @@ export default function UIModal({ open, setOpen }: any) {
                     </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-[#1c90f3] hover:bg-[#1c8ff3cd]  px-3 py-2 text-sm  text-white shadow-sm  sm:ml-3 sm:w-auto transition-all duration-200"
-                    onClick={handleSubmit(onSubmit)}
-                  >
-                    Ավելացնել
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white hover:bg-gray-400 hover:text-white px-3 py-2 text-sm  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400  sm:mt-0 sm:w-auto transition-all duration-200"
-                    onClick={() => setOpen(false)}
-                    ref={cancelButtonRef}
-                  >
-                    Չեղարկել
-                  </button>
+                <div className="bg-gray-50 px-4 py-3 sm:flex justify-between items-center sm:px-6">
+                  <p className="text-red-500 font-semibold">{printError()}</p>
+                  <div className="flex gap-2 flex-row-reverse">
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md bg-[#1c90f3] hover:bg-[#1c8ff3cd]  px-3 py-2 text-sm  text-white shadow-sm  sm:ml-3 sm:w-auto transition-all duration-200"
+                      onClick={handleSubmit(onSubmit)}
+                    >
+                      Ավելացնել
+                    </button>
+                    <button
+                      type="button"
+                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white hover:bg-gray-400 hover:text-white px-3 py-2 text-sm  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400  sm:mt-0 sm:w-auto transition-all duration-200"
+                      onClick={() => setOpen(false)}
+                      ref={cancelButtonRef}
+                    >
+                      Չեղարկել
+                    </button>
+                  </div>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

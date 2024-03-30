@@ -12,14 +12,17 @@ const Profile = () => {
     " Lorem ipsum dolor sit amet consectetur adipisicing elit. In iste aspernatur, adipisci eius rem reiciendis sed sequi, officiis placeat provident numquam quisquam iusto, quam accusamus nostrum accusantium ab quas. Quas delectus quis dicta amet praesentium deserunt sit ratione optio pariatur nemo. Explicabo autem quidem amet repellendus sequi nisi. Nemo rem obcaecati provident ipsa officia expedita dolores exercitationem atque minus, odio voluptatem consequuntur cupiditate fuga, iste quos quis possimus hic corporis! Rem doloribus eaque vitae enim reiciendis? Commodi quae nulla repudiandae. Iusto repudiandae saepe quas quo, ad, pariatur nobis architecto magni ab dolore placeat corporis enim commodi vel dicta delectus voluptatum."
   );
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
   const handleEdit = () => {
     setIsDisabled(true);
   };
+
   const handleSave = () => {
     setIsDisabled(false);
   };
+
   return (
-    <div className="md:px-10 px-2 flex flex-col gap-6">
+    <div className="h-full md:px-10 px-2 pb-3 flex flex-col gap-6 ">
       <div className="avatar relative">
         <div className="w-full h-36 border-2 border-slate-300 rounded-xl flex flex-col justify-evenly items-center banner">
           <div className="z-1 pointer-events-none">
@@ -76,12 +79,8 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <Edit
-          handleEdit={handleEdit}
-          handleSave={handleSave}
-          isDisabled={isDisabled}
-        />
       </div>
+
       {userType === "customer" && (
         <div className="payment relative">
           <div className="w-full border-2 border-slate-300 rounded-xl">
@@ -99,11 +98,6 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <Edit
-            handleEdit={handleEdit}
-            handleSave={handleSave}
-            isDisabled={isDisabled}
-          />
         </div>
       )}
 
@@ -123,12 +117,15 @@ const Profile = () => {
               <p className="text-gray-500 text-justify pb-2">{bio}</p>
             )}
           </div>
-          <Edit
-            handleEdit={handleEdit}
-            handleSave={handleSave}
-            isDisabled={isDisabled}
-          />
         </div>
+      </div>
+
+      <div className="w-full  flex justify-end ">
+        <Edit
+          handleEdit={handleEdit}
+          handleSave={handleSave}
+          isDisabled={isDisabled}
+        />
       </div>
     </div>
   );
