@@ -16,8 +16,6 @@ const Teams = () => {
     setOpen(true);
   };
 
-  console.log(userSubs.subCustomers);
-
   useEffect(() => {
     dispatch(getCustomerSubs());
   }, []);

@@ -110,7 +110,7 @@ const truckSlice = createSlice({
     });
 
     builder.addCase(getUserTrucksThunk.fulfilled, (state, { payload }) => {
-      state.userTrucks = payload.data;
+      state.userTrucks = payload;
     });
     builder.addCase(addNewTruckThunk.fulfilled, (state, { payload }) => {
       state.userTrucks.push(payload);

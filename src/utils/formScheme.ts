@@ -15,6 +15,7 @@ export const schema = yup.object().shape({
     .max(3000, "Հաղորդագրությունը պետք է պարունակի մաքսմիում 3000 տառ")
     .required("Խնդրում ենք նշել Ձեր հաղորդագրությունը"),
 });
+
 export const registerSchema = yup.object().shape({
   firstName: yup.string().required("Խնդրում ենք նշել Ձեր անունը"),
   lastName: yup.string().required("Խնդրում ենք նշել Ձեր ազգանունը"),

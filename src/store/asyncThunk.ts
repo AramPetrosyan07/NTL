@@ -28,18 +28,12 @@ export const registerThunk = createAsyncThunk<any, any>(
 export const registerSubUserThunk = createAsyncThunk<any, any>(
   "customerSlice/registerSubUserThunk",
   async (data) => {
-    const getCurrentUserTypeViaCookie = getUserType();
-
-    const mixedData = {
-      ...data,
-      currentUserType: getCurrentUserTypeViaCookie,
-    };
-    console.log(mixedData);
-
-    const res = await axios.post(`auth/registerSub`, mixedData);
-    console.log(res);
-
-    return res.data;
+    try {
+      const res = await axios.post(`auth/registerSub`, data);
+      return res.data;
+    } catch (error: any) {
+      return error?.response?.data?.message;
+    }
   }
 );
 
@@ -62,12 +56,10 @@ export const authMe = createAsyncThunk<any>(
   async () => {
     const currentUserType = getUserType();
     const res = await axios.post(`auth/me`, { userType: currentUserType });
-
     const token = res.data.token;
-
     if (token) {
       saveToken(token);
-      saveUserType(currentUserType);
+      saveUserType(res.data.userType);
     }
     return res.data;
   }
@@ -177,7 +169,7 @@ export const getUserLoadsThunk = createAsyncThunk<any, any>(
   "itemSlice/getUserLoadsThunk",
   async (data) => {
     const res = await axios.post(`load/getUserLoads`, data);
-    return res;
+    return res.data;
   }
 );
 
@@ -199,7 +191,7 @@ export const getUserTrucksThunk = createAsyncThunk<any, any>(
   "truckSlice/getUserTrucksThunk",
   async (data) => {
     const res = await axios.post(`truck/getUserTrucks`, data);
-    return res;
+    return res.data;
   }
 );
 
@@ -233,7 +225,26 @@ export const getPreviewItem = createAsyncThunk<any, any>(
 export const getCustomerSubs = createAsyncThunk<any>(
   "itemsSlice/getCustomerSubs",
   async () => {
-    const res = await axios.post(`customersInfo/CustomersSubs`);
+    const res = await axios.get(`customersInfo/CustomerSubs`);
     return res.data;
+  }
+);
+
+export const removeCustomerSubs = createAsyncThunk<string, any>(
+  "itemsSlice/removeCustomerSubs",
+  async ({ _id, userType }) => {
+    try {
+      console.log(_id, userType);
+
+      const res = await axios.post(`customersInfo/removeCustomerSub`, {
+        userId: _id,
+        userType,
+      });
+      console.log(res.data);
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 );

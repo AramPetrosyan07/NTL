@@ -1,18 +1,25 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { addTeamMemberSchema } from "../utils/formScheme";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BiHide, BiShow } from "react-icons/bi";
 import { getCustomerSubs, registerSubUserThunk } from "../store/asyncThunk";
-import { useTypedDispatch } from "../hooks/useTypedSelector";
+import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
 
 export default function UIModal({ open, setOpen }: any) {
   const cancelButtonRef = useRef(null);
   const ref = useRef<any>(null);
   const dispatch = useTypedDispatch();
+  const { user } = useTypedSelector((state) => state.user);
+  const inputsDivParent = useRef<HTMLDivElement>(null);
+  const [backErr, serBackErr] = useState("");
+
   const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+
   const handleShow = () => setShowPassword(!showPassword);
+  const handleShowRepeat = () => setShowRepeatPassword(!showRepeatPassword);
 
   const {
     register,
@@ -25,21 +32,47 @@ export default function UIModal({ open, setOpen }: any) {
   });
 
   function printError() {
-    return Object.values(errors)?.[0]?.message;
+    let validError = Object.values(errors)?.[0]?.message;
+    return validError ? validError : backErr;
   }
   // console.log(printError());
 
   const onSubmit = async (data: any) => {
     if (isValid && data.password === data.repetPassword) {
-      let user = await dispatch(registerSubUserThunk(data));
-      if (user?.payload?.email) {
-        console.log(user);
+      let subUser = await dispatch(
+        registerSubUserThunk({ ...data, currentUserType: user?.userType })
+      );
+      if (typeof subUser.payload === "string") {
+        serBackErr(subUser.payload);
+      }
+
+      if (subUser?.payload?.email) {
+        console.log(subUser);
         dispatch(getCustomerSubs());
       }
     } else {
       console.log("all fields are required");
     }
   };
+
+  function handleClick() {
+    serBackErr("");
+  }
+
+  useEffect(() => {
+    const divElement = inputsDivParent.current as HTMLDivElement;
+    if (divElement) {
+      divElement.addEventListener("click", handleClick);
+    }
+
+    // Cleanup function to remove the event listener when component unmounts
+    return () => {
+      if (divElement) {
+        divElement.removeEventListener("click", handleClick);
+      }
+    };
+  }, [inputsDivParent.current]);
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -78,7 +111,10 @@ export default function UIModal({ open, setOpen }: any) {
                 <h4 className="w-full text-center md:text-[18px] text-[16px] font-semibold">
                   Ավելացնել թիմի նոր անդամ
                 </h4>
-                <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 flex flex-wrap justify-between items-center gap-y-4">
+                <div
+                  ref={inputsDivParent}
+                  className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 flex flex-wrap justify-between items-center gap-y-4"
+                >
                   <div className="w-full md:w-[48%] h-12 overflow-hidden">
                     <input
                       type="text"
@@ -152,22 +188,18 @@ export default function UIModal({ open, setOpen }: any) {
                   </div>
                   <div className="w-full md:w-[48%] h-12 overflow-hidden relative">
                     <input
-                      type={showPassword ? "text" : "password"}
+                      type={showRepeatPassword ? "text" : "password"}
                       id="repetPassword"
                       placeholder="կրկնել գաղտնաբառը"
                       className="w-full h-full rounded-xl border-[1px] border-gray-400 pl-4"
                       {...register("repetPassword")}
                     />
-                    {errors.repetPassword && (
-                      <p className="text-red-600  pl-2 pt-1 text-[12px] tracking-wide">
-                        {errors.repetPassword.message}
-                      </p>
-                    )}
+                    <p className="text-red-600  pl-2 pt-1 text-[12px] tracking-wide"></p>
                     <div
                       className="absolute top-[0.8rem] right-6 text-2xl cursor-pointer text-slate-500"
-                      onClick={handleShow}
+                      onClick={handleShowRepeat}
                     >
-                      {showPassword ? <BiShow /> : <BiHide />}
+                      {showRepeatPassword ? <BiShow /> : <BiHide />}
                     </div>
                   </div>
                 </div>

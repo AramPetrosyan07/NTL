@@ -187,7 +187,7 @@ const itemSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getUserLoadsThunk.fulfilled, (state, { payload }) => {
-      state.userLoads = payload.data;
+      state.userLoads = payload;
     });
     builder.addCase(addNewItemThunk.fulfilled, (state, { payload }) => {
       state.userLoads.push(payload);
