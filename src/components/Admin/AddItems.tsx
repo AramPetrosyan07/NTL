@@ -47,6 +47,9 @@ export default function AddItems() {
   });
 
   const onSubmit = async (data: any) => {
+    console.log(data);
+    console.log(isValid);
+
     if (isValid) {
       const { userType, parent } = user;
       if (currentUserType === "customer") {

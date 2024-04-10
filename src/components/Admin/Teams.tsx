@@ -8,12 +8,12 @@ import {
 import { getCustomerSubs } from "../../store/asyncThunk";
 
 const Teams = () => {
-  const [open, setOpen] = useState(false);
+  const [openAddUser, setOpenAddUser] = useState(false); //
   const dispatch = useTypedDispatch();
   const { userSubs } = useTypedSelector((state) => state.user);
 
   const handleAddNewTeamMember = () => {
-    setOpen(true);
+    setOpenAddUser(true);
   };
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Teams = () => {
   }, []);
   return (
     <div>
-      <UIModal open={open} setOpen={setOpen} />
+      <UIModal openAddUser={openAddUser} setOpenAddUser={setOpenAddUser} />
       <div className="w-full h-20 border-2 rounded-xl flex justify-between items-center px-2 md:px-4">
         <div className="flex flex-col md:flex-row h-full md:items-center items-start justify-center">
           <h4 className="text-[12px] md:text-[15px]">Թիմի անդամների քանակը</h4>

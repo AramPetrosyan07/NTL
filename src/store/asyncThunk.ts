@@ -51,6 +51,20 @@ export const loginThunk = createAsyncThunk<any, any>(
   }
 );
 
+export const updateUserInfo = createAsyncThunk<any, any>(
+  "customerSlice/updateUserInfo",
+  async (data) => {
+    const res = await axios.post(`auth/login`, data);
+    const token = await res.data.token;
+    const userType = await res.data.userType;
+    if (token) {
+      saveToken(token);
+      saveUserType(userType);
+    }
+    return res.data;
+  }
+);
+
 export const authMe = createAsyncThunk<any>(
   "customerSlice/authMe",
   async () => {
@@ -136,9 +150,16 @@ export const addNewTruckThunk = createAsyncThunk<any, any>(
 export const updateNewItemThunk = createAsyncThunk<any, any>(
   "itemSlice/updateNewItemThunk",
   async (data) => {
-    const res = await axios.post(`load/updateLoad`, data);
+    try {
+      console.log(data);
 
-    return res.data;
+      const res = await axios.post(`load/updateLoad`, data);
+      console.log(res);
+
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
@@ -225,12 +246,16 @@ export const getPreviewItem = createAsyncThunk<any, any>(
 export const getCustomerSubs = createAsyncThunk<any>(
   "itemsSlice/getCustomerSubs",
   async () => {
-    const res = await axios.get(`customersInfo/CustomerSubs`);
-    return res.data;
+    try {
+      const res = await axios.get(`customersInfo/CustomerSubs`);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 
-export const removeCustomerSubs = createAsyncThunk<string, any>(
+export const removeCustomerSubs = createAsyncThunk<any, any>(
   "itemsSlice/removeCustomerSubs",
   async ({ _id, userType }) => {
     try {
@@ -240,7 +265,7 @@ export const removeCustomerSubs = createAsyncThunk<string, any>(
         userId: _id,
         userType,
       });
-      console.log(res.data);
+      console.log(res);
 
       return res.data;
     } catch (error) {

@@ -5,6 +5,7 @@ import {
   authMe,
   recoverPassRecovery,
   getCustomerSubs,
+  removeCustomerSubs,
 } from "./asyncThunk";
 import { LogOutUser } from "../utils/helpers";
 
@@ -76,6 +77,11 @@ const customerSlice = createSlice({
       })
       .addCase(getCustomerSubs.fulfilled, (state, { payload }) => {
         state.userSubs = payload;
+      })
+      .addCase(removeCustomerSubs.fulfilled, (state, { payload }) => {
+        state.userSubs.subCustomers = state.userSubs.subCustomers.filter(
+          (item: any) => item._id !== payload
+        );
       });
   },
 });

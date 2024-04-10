@@ -7,7 +7,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTypedDispatch } from "../../hooks/useTypedSelector";
 import Toast from "../../UI/UIToast";
-import { deleteItemThunk, deleteTruckThunk, updateNewItemThunk, updateNewTruckThunk } from "../../store/asyncThunk";
+import {
+  deleteItemThunk,
+  deleteTruckThunk,
+  updateNewItemThunk,
+  updateNewTruckThunk,
+} from "../../store/asyncThunk";
 import DetectCurrentUserType from "../../utils/detectUserType";
 import FromInput from "../autocompleteInput/FromInput";
 import { Coords } from "google-map-react";
@@ -29,23 +34,23 @@ const ChangeItems = ({
 }: any) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  const [isDeleted,setIsDeleted] = useState(false)
-  const [isUpdated,setIsUpdated] = useState(false)
-  const [fromInfo,setFromInfo] = useState<any>({})
-  const [toInfo,setToInfo] = useState<any>({})
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [fromInfo, setFromInfo] = useState<any>({});
+  const [toInfo, setToInfo] = useState<any>({});
   const userType = DetectCurrentUserType();
   const dispatch = useTypedDispatch();
-  const {pathname} = useLocation()
+  const { pathname } = useLocation();
   const ref = useRef<any>(null);
 
-console.log(pickup,delivery);
+  // console.log(pickup, delivery);
 
   const getFromInfo = (address: string, location: Coords) => {
-    setFromInfo({ location, description: address }) 
-  }
+    setFromInfo({ location, description: address });
+  };
   const getToInfo = (address: string, location: Coords) => {
-    setToInfo({ location, description: address }) 
-  }
+    setToInfo({ location, description: address });
+  };
 
   const makeDisabled = () => {
     setIsDisabled(false);
@@ -62,29 +67,29 @@ console.log(pickup,delivery);
   });
 
   const onSubmit = async (data: any) => {
-    if(userType === 'customer' && data.status === "delete"){
+    if (userType === "customer" && data.status === "delete") {
       dispatch(deleteItemThunk({ id: _id }));
-    }else if(userType === 'carrier' && data.status === "delete"){
+    } else if (userType === "carrier" && data.status === "delete") {
       dispatch(deleteTruckThunk({ id: _id }));
-    }else if(userType === 'customer' && data.status !== "delete"){
+    } else if (userType === "customer" && data.status !== "delete") {
       dispatch(updateNewItemThunk({ ...data, id: _id }));
       setIsDisabled(true);
-      setIsVisible(true)
-      setTimeout(()=>{
-        setIsVisible(false)
-      },3000)
-    }else if(userType === 'carrier' && data.status !== "delete") {
+      setIsVisible(true);
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 3000);
+    } else if (userType === "carrier" && data.status !== "delete") {
       dispatch(updateNewTruckThunk({ ...data, id: _id }));
       setIsDisabled(true);
-      setIsVisible(true)
-      setTimeout(()=>{
-        setIsVisible(false)
-      },3000)
+      setIsVisible(true);
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 3000);
     }
   };
 
-  console.log(isDisabled && pathname.includes('changeitems'));
-  
+  console.log(isDisabled && pathname.includes("changeitems"));
+
   return (
     <>
       <div
@@ -135,26 +140,18 @@ console.log(pickup,delivery);
           </div>
         </div>
         <div className="pickup w-full sm:w-[48%] lg:w-[350px]  h-[40px]">
-          {/* <input
-            type="text"
-            defaultValue={pickup?.description}
-            id="change-pickup"
-            className="w-full h-full px-2 rounded-md border-none focus:outline-none focus:bg-blue-100"
-            disabled={isDisabled}
-            {...register("pickup")}
-          /> */}
-           <FromInput cbSuccess={getFromInfo} disabled={isDisabled && pathname.includes('changeitems')} defaultLocation = {pickup?.description}/>
+          <FromInput
+            cbSuccess={getFromInfo}
+            disabled={isDisabled && pathname.includes("changeitems")}
+            defaultLocation={pickup?.description}
+          />
         </div>
         <div className="delivery w-full sm:w-[48%] lg:w-[350px]  h-[40px] ">
-          {/* <input
-            type="text"
-            defaultValue={delivery?.description}
-            id="change-delivery"
-            className="px-2 w-full   h-[40px] rounded-md border-none focus:outline-none focus:bg-blue-100"
-            disabled={isDisabled}
-            {...register("delivery")}
-          /> */}
-          <ToInput cbSuccess={getToInfo} disabled={isDisabled && pathname.includes('changeitems')} defaultLocation = {delivery?.description}/>
+          <ToInput
+            cbSuccess={getToInfo}
+            disabled={isDisabled && pathname.includes("changeitems")}
+            defaultLocation={delivery?.description}
+          />
         </div>
         <div className="length w-[49%] sm:w-[48%] lg:w-[100px]  h-[40px] relative overflow-hidden">
           <input
@@ -246,30 +243,32 @@ console.log(pickup,delivery);
             className={`text-[25px] text-red-600 hover:text-red-800 transition-all ${
               isDisabled ? "hidden" : "lg:block hidden"
             } cursor-pointer`}
-            onClick={()=>setIsDisabled(true)}
+            onClick={() => setIsDisabled(true)}
           >
             <FiX />
           </div>
         </div>
       </div>
       {!isDisabled && (
-        <div className="w-full lg:h-24 h-[90px] bg-slate-300 flex flex-col md:flex-row px-4 md:px-0 gap-y-2">
-          <div className="md:w-1/2 w-full h-full  md:p-4 p-0">
+        <div className="w-full lg:h-24 h-[120px] bg-slate-300 flex flex-col md:flex-row px-4 md:px-0 gap-y-2">
+          <div className="md:w-1/2 w-full h-full  md:p-4 md:pt-0 p-0">
+            <p>մեկնաբանել</p>
             <input
               type="text"
               defaultValue={comment}
               id="change-comment"
-              className="px-2 w-full border-2 border-black h-full rounded-md border-none focus:outline-none focus:bg-blue-100"
+              className="px-2 w-full border-2 border-black h-[50px] rounded-md border-none focus:outline-none focus:bg-blue-100"
               disabled={isDisabled}
               {...register("comment")}
             />
           </div>
-          <div className="md:w-1/2 w-full h-full   md:p-4 p-0 lg:pr-24 md:pr-4 pr-0">
+          <div className="md:w-1/2 w-full h-full   md:p-4 md:pt-0 lg:pr-24 md:pr-4 pr-0">
+            <p>ապրանք</p>
             <input
               type="text"
               defaultValue={commodity}
               id="change-commodity"
-              className="px-2  w-full border-2 border-black h-full rounded-md border-none focus:outline-none focus:bg-blue-100"
+              className="px-2  w-full border-2 border-black h-[50px] rounded-md border-none focus:outline-none focus:bg-blue-100"
               disabled={isDisabled}
               {...register("commodity")}
             />
@@ -303,14 +302,16 @@ console.log(pickup,delivery);
           className={`px-4 py-2 bg-red-500 text-white rounded-md  ${
             isDisabled ? "hidden" : "block lg:hidden"
           }`}
-          onClick={()=>setIsDisabled(true)}
+          onClick={() => setIsDisabled(true)}
         >
           Չեղարկել
         </div>
       </div>
       <Toast
         type="success"
-        message={`Ձեր ${userType === 'customer' ? 'բեռը' : 'բեռնատարը'}  հաջողությամբ թարմացվել է`}
+        message={`Ձեր ${
+          userType === "customer" ? "բեռը" : "բեռնատարը"
+        }  հաջողությամբ թարմացվել է`}
         isVisible={isVisible}
         setIsVisible={setIsVisible}
       />

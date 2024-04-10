@@ -7,7 +7,7 @@ import { BiHide, BiShow } from "react-icons/bi";
 import { getCustomerSubs, registerSubUserThunk } from "../store/asyncThunk";
 import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
 
-export default function UIModal({ open, setOpen }: any) {
+export default function UIModal({ openAddUser, setOpenAddUser }: any) {
   const cancelButtonRef = useRef(null);
   const ref = useRef<any>(null);
   const dispatch = useTypedDispatch();
@@ -74,12 +74,12 @@ export default function UIModal({ open, setOpen }: any) {
   }, [inputsDivParent.current]);
 
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={openAddUser} as={Fragment}>
       <Dialog
         as="div"
         className="relative z-[60]"
         initialFocus={cancelButtonRef}
-        onClose={setOpen}
+        onClose={setOpenAddUser}
       >
         <Transition.Child
           as={Fragment}
@@ -216,7 +216,7 @@ export default function UIModal({ open, setOpen }: any) {
                     <button
                       type="button"
                       className="mt-3 inline-flex w-full justify-center rounded-md bg-white hover:bg-gray-400 hover:text-white px-3 py-2 text-sm  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400  sm:mt-0 sm:w-auto transition-all duration-200"
-                      onClick={() => setOpen(false)}
+                      onClick={() => setOpenAddUser(false)}
                       ref={cancelButtonRef}
                     >
                       Չեղարկել
