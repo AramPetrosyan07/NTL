@@ -138,11 +138,11 @@ export const addTeamMemberSchema = yup.object().shape({
 });
 
 export const changePasswordScheme = yup.object().shape({
-  email: yup
-    .string()
-    .email("Խնդրում ենք նշել ճիշտ էլ. հասցե")
-    .matches(/[@.]/, "Էլ. հասցեն պարտադիր է")
-    .required("Էլ. հասցեն պարտադիր է"),
+  // email: yup
+  //   .string()
+  //   .email("Խնդրում ենք նշել ճիշտ էլ. հասցե")
+  //   .matches(/[@.]/, "Էլ. հասցեն պարտադիր է")
+  //   .required("Էլ. հասցեն պարտադիր է"),
 
   currentPassword: yup.string().required("Դաշտը պարտադիր է"),
   newPassword: yup.string().required("Դաշտը պարտադիր է"),

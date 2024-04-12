@@ -6,8 +6,33 @@ import {
   recoverPassRecovery,
   getCustomerSubs,
   removeCustomerSubs,
+  updateUser,
 } from "./asyncThunk";
 import { LogOutUser } from "../utils/helpers";
+
+// export interface UserData {
+//   user: {
+//     firstName?: string;
+//     lastName?: string;
+//     email?: string;
+//     phoneNumber?: string;
+//     userType?: string;
+//     companyName?: string;
+//     subCustomers?: string;
+//     address?: string;
+//     website?: string;
+//     paymentType?: string;
+//     paymentDuration?: number | null;
+//     about?: string;
+//     planType?: string;
+//     notification?: any;
+//     isVerified?: boolean;
+//     failedLoginAttempts?: number | null;
+//     lockoutUntil?: Date | null;
+//     parent: string;
+//   };
+//   userSubs: any;
+// }
 
 let initialState: any = {
   user: {
@@ -28,6 +53,7 @@ let initialState: any = {
     isVerified: false,
     failedLoginAttempts: null,
     lockoutUntil: null,
+    parent: "",
   },
   userSubs: [],
 };
@@ -56,6 +82,7 @@ const customerSlice = createSlice({
         isVerified: false,
         failedLoginAttempts: null,
         lockoutUntil: null,
+        parent: "",
       };
     },
   },
@@ -82,6 +109,13 @@ const customerSlice = createSlice({
         state.userSubs.subCustomers = state.userSubs.subCustomers.filter(
           (item: any) => item._id !== payload
         );
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        if (typeof payload !== "string") {
+          for (let key in payload) {
+            state.user[key] = payload[key];
+          }
+        }
       });
   },
 });

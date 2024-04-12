@@ -102,21 +102,7 @@ export default function AddItems() {
                   Բարձում
                 </label>
                 <div className="mt-2">
-                  {/* <input
-                    type="text"
-                    id="pickup"
-                    autoComplete="given-name"
-                    placeholder="օր. Երևան"
-                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900  ring-0 focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
-                    {...register("pickup")}
-                  /> */}
                   <FromInput cbSuccess={getFromInfo} />
-
-                  {/* {errors.pickup && (
-                    <p className="text-red-600   pt-1 pl-2  text-[12px] tracking-wide">
-                      {errors.pickup.message}
-                    </p>
-                  )} */}
                 </div>
               </div>
 
@@ -128,21 +114,7 @@ export default function AddItems() {
                     : "Նախընտրելի ուղղություն"}
                 </label>
                 <div className="mt-2">
-                  {/* <input
-                    type="text"
-                    id="delivery"
-                    autoComplete="given-name"
-                    placeholder="օր. Սամարա
-                  "
-                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900 ring-0 focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
-                    {...register("delivery")}
-                  /> */}
                   <ToInput cbSuccess={getToInfo} />
-                  {/* {errors.delivery && (
-                    <p className="text-red-600   pt-1 pl-2  text-[12px] tracking-wide">
-                      {errors.delivery.message}
-                    </p>
-                  )} */}
                 </div>
               </div>
 

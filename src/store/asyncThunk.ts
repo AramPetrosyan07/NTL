@@ -37,17 +37,38 @@ export const registerSubUserThunk = createAsyncThunk<any, any>(
   }
 );
 
+export const updateUser = createAsyncThunk<any, any>(
+  "customerSlice/updateUser",
+  async (data) => {
+    try {
+      console.log(data);
+
+      const res = await axios.post(`load/updateUser`, data);
+      console.log(res);
+
+      return res.data;
+    } catch (error: any) {
+      console.log(error?.response?.data?.message);
+      return error?.response?.data?.message;
+    }
+  }
+);
+
 export const loginThunk = createAsyncThunk<any, any>(
   "customerSlice/loginThunk",
   async (data) => {
-    const res = await axios.post(`auth/login`, data);
-    const token = await res.data.token;
-    const userType = await res.data.userType;
-    if (token) {
-      saveToken(token);
-      saveUserType(userType);
+    try {
+      const res = await axios.post(`auth/login`, data);
+      const token = await res.data.token;
+      const userType = await res.data.userType;
+      if (token) {
+        saveToken(token);
+        saveUserType(userType);
+      }
+      return res.data;
+    } catch (error) {
+      console.log(error);
     }
-    return res.data;
   }
 );
 
@@ -270,6 +291,21 @@ export const removeCustomerSubs = createAsyncThunk<any, any>(
       return res.data;
     } catch (error) {
       console.log(error);
+    }
+  }
+);
+
+export const changePassword = createAsyncThunk<string, any>(
+  "itemsSlice/changePassword",
+  async (data) => {
+    try {
+      const res = await axios.post(`/changePassword`, data);
+
+      console.log(res.data.token);
+      return res.data;
+    } catch (error: any) {
+      console.log(error?.response?.data?.message);
+      return error?.response?.data?.message;
     }
   }
 );
