@@ -3,10 +3,10 @@ import {
   registerThunk,
   loginThunk,
   authMe,
-  recoverPassRecovery,
   getCustomerSubs,
   removeCustomerSubs,
   updateUser,
+  passRecovery,
 } from "./asyncThunk";
 import { LogOutUser } from "../utils/helpers";
 
@@ -91,7 +91,7 @@ const customerSlice = createSlice({
       .addCase(registerThunk.fulfilled, (state, { payload }) => {
         state.user = payload;
       })
-      .addCase(recoverPassRecovery.fulfilled, (state, { payload }) => {
+      .addCase(passRecovery.fulfilled, (state, { payload }) => {
         state.user = payload;
       })
       .addCase(loginThunk.fulfilled, (state, { payload }) => {

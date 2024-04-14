@@ -9,7 +9,6 @@ import {
 } from "../../hooks/useTypedSelector";
 import { changePassword, registerThunk } from "../../store/asyncThunk";
 import { useNavigate } from "react-router-dom";
-import UICodePopUp from "../../UI/UICodePopUp";
 import Toast from "../../UI/UIToast";
 import { saveToken } from "../../utils/helpers";
 const Security = () => {

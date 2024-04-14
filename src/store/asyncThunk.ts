@@ -4,8 +4,9 @@ import axios from "../axios";
 import {
   getTokens,
   getUserType,
-  recoverToken,
+  // recoverToken,
   recoverVerifyToken,
+  removeToken,
   saveToken,
   saveUserType,
 } from "../utils/helpers";
@@ -103,47 +104,57 @@ export const authMe = createAsyncThunk<any>(
 export const recoverSend = createAsyncThunk<any, any>(
   "customerSlice/recoverSend",
   async (data, { rejectWithValue }) => {
-    const res = await axios.post(`recover/send`, data);
-    const token = await res.data.token;
-
-    if (token) {
-      recoverToken(token);
-    } else {
-      return res;
+    try {
+      const res = await axios.post(`recover/send`, data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
     }
   }
 );
 
-export const recoverResponse = createAsyncThunk<any>(
+export const recoverResponse = createAsyncThunk<any, any>(
   "customerSlice/recoverResponse",
   async (data) => {
-    const res = await axios.post(`recover/response`, data);
-    const verifyToken = await res.data.verifyToken;
+    try {
+      const res = await axios.post(`recover/response`, data);
+      const verifyToken = await res.data.verifyToken;
+      console.log(res);
 
-    if (verifyToken) {
-      recoverVerifyToken(verifyToken);
+      if (verifyToken) {
+        recoverVerifyToken(verifyToken);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 );
 
-export const recoverPassRecovery = createAsyncThunk<any>(
-  "customerSlice/recoverPassRecovery",
+export const passRecovery = createAsyncThunk<any, any>(
+  "customerSlice/passRecovery",
   async (data: any) => {
-    let tokens = getTokens();
-    if (!tokens) {
-      return;
+    try {
+      let verifyToken = getTokens();
+      if (!verifyToken) {
+        return;
+      }
+      let newData = {
+        verifyToken: verifyToken,
+        ...data,
+      };
+      console.log("send data");
+      console.log(newData);
+
+      const res = await axios.post(`recover/PassRecovery`, newData);
+      const token = await res.data.token;
+      if (token) {
+        saveToken(token);
+        removeToken();
+      }
+      return res.data;
+    } catch (error) {
+      console.log(error);
     }
-    let newData = {
-      token: tokens.token,
-      verifyToken: tokens.verifyToken,
-      ...data,
-    };
-    const res = await axios.post(`recover/PassRecovery`, newData);
-    const token = await res.data.token;
-    if (token) {
-      saveToken(token);
-    }
-    return res.data;
   }
 );
 

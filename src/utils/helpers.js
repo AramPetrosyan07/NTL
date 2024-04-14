@@ -3,7 +3,7 @@ import DetectCurrentUserType from "./detectUserType";
 
 export const saveToken = (token) => {
   try {
-    Cookies.set("Bearer", token,{ expires: 4 });
+    Cookies.set("Bearer", token, { expires: 4 });
   } catch (error) {
     console.log("error saving token", error);
   }
@@ -17,12 +17,11 @@ export const saveUserType = (type) => {
 };
 export const getUserType = () => {
   try {
-   return Cookies.get("userType");
+    return Cookies.get("userType");
   } catch (error) {
     console.log("error getting user type", error);
   }
 };
-
 
 export const isLogged = () => {
   try {
@@ -35,7 +34,6 @@ export const isLogged = () => {
 
 export const hasUser = () => {
   try {
-    
   } catch (error) {
     console.log("error saving token", error);
   }
@@ -44,19 +42,18 @@ export const hasUser = () => {
 export const LogOutUser = (token) => {
   try {
     Cookies.remove("Bearer", token);
-
   } catch (error) {
     console.log("error saving token", error);
   }
 };
 
-export const recoverToken = (token) => {
-  try {
-    Cookies.set("token", token);
-  } catch (error) {
-    console.log("error saving token", error);
-  }
-};
+// export const recoverToken = (token) => {
+//   try {
+//     Cookies.set("token", token);
+//   } catch (error) {
+//     console.log("error saving token", error);
+//   }
+// };
 
 export const recoverVerifyToken = (token) => {
   try {
@@ -68,24 +65,18 @@ export const recoverVerifyToken = (token) => {
 
 export const getTokens = () => {
   try {
-    let token = Cookies.get("token");
     let verifyToken = Cookies.get("verifyToken");
-
-    return {
-      token,
-      verifyToken,
-    };
-  } catch (error) {
-    console.log("error saving token", error);
-  }
+    return verifyToken;
+  } catch (error) {}
 };
 
+export const removeToken = () => {
+  Cookies.remove("verifyToken");
+};
 
 export const renderContactInformation = () => {
   const currentUserType = DetectCurrentUserType();
-  if(currentUserType === 'customer'){
-
-  }else{
-
+  if (currentUserType === "customer") {
+  } else {
   }
-}
+};

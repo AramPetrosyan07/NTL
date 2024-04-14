@@ -6,52 +6,20 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { recoverPasswordScheme } from "../utils/formScheme";
 import { useTypedDispatch } from "../hooks/useTypedSelector";
-import { loginThunk, recoverSend } from "../store/asyncThunk";
+import {
+  loginThunk,
+  passRecovery,
+  recoverResponse,
+  recoverSend,
+} from "../store/asyncThunk";
 import Timer from "../components/Timer";
 
 const Forgot: React.FC = () => {
   const [count, setCount] = useState<number>(1);
   const [showTimer, setShowTimer] = useState<boolean>(false);
   const durationInSeconds: number = 120;
-
-  const handleTimerTimeout = (): void => {
-    setShowTimer(false);
-  };
-
-  const handleResendClick = (): void => {
-    // Handle resend logic here, if needed
-    // For example, dispatch the recoverSend action again
-    setShowTimer(true);
-  };
-  const [resetData, setResetData] = useState<any>([
-    {
-      email: "",
-      code: "",
-      password: "",
-      resetPassword: "",
-    },
-  ]);
   const navigate = useNavigate();
   const dispatch = useTypedDispatch();
-
-  const handleCheckEmail = async () => {
-    const inputValue = watch("email");
-    const res: any = await dispatch(recoverSend({ email: inputValue }));
-    if (res.payload) {
-      //  setCount(prev => prev + 1)
-    } else {
-      console.log("invalid email");
-    }
-  };
-
-  const handleCheckVerifyCode = async () => {
-    const inputValue = watch("code");
-  };
-  const handleCheckNewPassword = async () => {
-    const inputValuePassword = watch("password");
-    const inputValueRepetPassword = watch("repetPassword");
-  };
-  const ref = useRef<any>(null);
 
   const {
     register,
@@ -64,8 +32,48 @@ const Forgot: React.FC = () => {
     resolver: yupResolver(recoverPasswordScheme),
   });
 
-  const onSubmit = async (data: any) => {
-    setResetData(data);
+  const handleTimerTimeout = (): void => {
+    setShowTimer(false);
+  };
+
+  const handleResendClick = (): void => {
+    setShowTimer(true);
+  };
+
+  const ref = useRef<any>(null);
+
+  //-----------------------------------------------------------------------------------------
+  const handleCheckEmail = async () => {
+    const mail = watch("email");
+
+    const res: any = await dispatch(recoverSend({ email: mail }));
+    setCount((prev) => prev + 1);
+  };
+
+  const handleCheckVerifyCode = async () => {
+    const email = watch("email");
+    const code = watch("code");
+    console.log(email, code);
+
+    const res: any = await dispatch(
+      recoverResponse({ email, verificationCode: code })
+    );
+    setCount((prev) => prev + 1);
+  };
+
+  const handleCheckNewPassword = async () => {
+    const email = watch("email");
+    const newPasswordOne = watch("password");
+    const newPasswordTwo = watch("repetPassword");
+    console.log(newPasswordOne, newPasswordTwo);
+    const res: any = await dispatch(
+      passRecovery({ email, newPasswordOne, newPasswordTwo })
+    );
+    console.log(res);
+
+    if (res.payload._id) {
+      navigate("/");
+    }
   };
 
   return (
@@ -145,7 +153,7 @@ const Forgot: React.FC = () => {
               type="submit"
               onClick={() => {
                 handleCheckVerifyCode();
-                handleSubmit(onSubmit);
+                // handleSubmit(onSubmit);
               }}
               className="flex w-full justify-center rounded-2xl bg-[#1c90f3] px-3 py-[10px] text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all"
             >
@@ -185,7 +193,7 @@ const Forgot: React.FC = () => {
             />
 
             <input
-              id="code"
+              id="code2"
               type="password"
               autoComplete="text"
               placeholder="Կրկնել գաղտնաբառը"
@@ -198,7 +206,6 @@ const Forgot: React.FC = () => {
               className="flex w-full justify-center rounded-2xl bg-[#1c90f3] px-3 py-[10px] text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all"
               onClick={() => {
                 handleCheckNewPassword();
-                handleSubmit(onSubmit);
               }}
             >
               Հաստատել
