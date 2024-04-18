@@ -38,7 +38,6 @@ const AccordionItemDesktop = ({
   updatedAt,
   weight,
   _id,
-
   age,
   date,
   distance,

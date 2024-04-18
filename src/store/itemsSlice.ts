@@ -203,9 +203,9 @@ const itemSlice = createSlice({
     });
     builder.addCase(deleteItemThunk.fulfilled, (state, { payload }) => {
       const deletedItemId = payload.id;
-      // state.userLoads = state.userLoads.filter(
-      //   (el: any) => el._id !== deletedItemId
-      // );
+      state.userLoads = state.userLoads.filter(
+        (el: any) => el._id !== deletedItemId
+      );
     });
     builder.addCase(getPreviewItem.fulfilled, (state, { payload }) => {
       state.previewItem = payload;

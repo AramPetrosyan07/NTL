@@ -70,6 +70,7 @@ export default function LoadItemDesktop({ boardType }: any) {
               chechFilteredLoads()
                 ?.slice(0, next)
                 ?.map((el: any, i: any) => {
+                  console.log(el);
                   return (
                     <div key={i} className="pb-[2px]">
                       <AccordionItemDesktop

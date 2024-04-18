@@ -44,7 +44,7 @@ export const updateUser = createAsyncThunk<any, any>(
     try {
       console.log(data);
 
-      const res = await axios.post(`load/updateUser`, data);
+      const res = await axios.post(`user/updateUser`, data);
       console.log(res);
 
       return res.data;
@@ -101,9 +101,10 @@ export const authMe = createAsyncThunk<any>(
   }
 );
 
+//change pass
 export const recoverSend = createAsyncThunk<any, any>(
   "customerSlice/recoverSend",
-  async (data, { rejectWithValue }) => {
+  async (data) => {
     try {
       const res = await axios.post(`recover/send`, data);
       console.log(res.data);
@@ -157,6 +158,71 @@ export const passRecovery = createAsyncThunk<any, any>(
     }
   }
 );
+//
+
+//change email
+export const sendEmail = createAsyncThunk<any, any>(
+  "customerSlice/sendEmail",
+  async (data) => {
+    try {
+      console.log(data);
+
+      const res = await axios.post(`email/send`, data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const sendCode = createAsyncThunk<any, any>(
+  "customerSlice/sendCode",
+  async (data) => {
+    try {
+      const res = await axios.post(`email/check`, data);
+      const verifyToken = await res.data.verifyToken;
+      console.log(res);
+      console.log(verifyToken);
+
+      if (verifyToken) {
+        recoverVerifyToken(verifyToken);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const changeEmail = createAsyncThunk<any, any>(
+  "customerSlice/changeEmail",
+  async (data: any) => {
+    try {
+      let verifyToken = getTokens();
+      if (!verifyToken) {
+        return;
+      }
+
+      let newData = {
+        verifyToken: verifyToken,
+        ...data,
+      };
+      console.log("send data");
+      console.log(newData);
+
+      const res = await axios.post(`email/change`, newData);
+      let { tokenAuth, ...resData } = await res.data;
+      if (tokenAuth) {
+        saveToken(tokenAuth);
+        removeToken();
+      }
+
+      return resData;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+//
 
 export const addNewItemThunk = createAsyncThunk<any, any>(
   "itemSlice/addNewItemThunk",
@@ -293,7 +359,7 @@ export const removeCustomerSubs = createAsyncThunk<any, any>(
     try {
       console.log(_id, userType);
 
-      const res = await axios.post(`customersInfo/removeCustomerSub`, {
+      const res = await axios.post(`customersInfo/removeSub`, {
         userId: _id,
         userType,
       });
@@ -313,6 +379,23 @@ export const changePassword = createAsyncThunk<string, any>(
       const res = await axios.post(`/changePassword`, data);
 
       console.log(res.data.token);
+      return res.data;
+    } catch (error: any) {
+      console.log(error?.response?.data?.message);
+      return error?.response?.data?.message;
+    }
+  }
+);
+
+export const changeMail = createAsyncThunk<any, any>(
+  "customerSlice/changeMail",
+  async (data) => {
+    try {
+      console.log(data);
+
+      const res = await axios.post(`load/updateUser`, data);
+      console.log(res);
+
       return res.data;
     } catch (error: any) {
       console.log(error?.response?.data?.message);

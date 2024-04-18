@@ -32,6 +32,7 @@ export default function Register() {
     handleSubmit,
     formState: { errors, isValid },
     reset,
+    watch,
   } = useForm<RegsiserFormProps>({
     mode: "onChange",
     resolver: yupResolver(registerSchema),
@@ -125,19 +126,25 @@ export default function Register() {
               <div>
                 <div className=" relative">
                   <select
-                    className="bg-[#f2f5fc] rounded-xl block w-full pl-[20px] py-[14px] text-gray-400  placeholder:text-gray-900   focus:ring-[#1c90f3] sm:text-sm sm:leading-6 border-[1px] border-slate-400 appearance-none	"
+                    className={`bg-[#f2f5fc] rounded-xl block w-full pl-[20px] py-[14px]  placeholder:text-gray-900 focus:ring-[#1c90f3] sm:text-sm sm:leading-6 border-[1px] border-slate-400 appearance-none ${
+                      watch("userType") ? "text-black" : "text-gray-400"
+                    }`}
                     {...register("userType")}
                   >
                     <option
                       value=""
                       disabled
                       selected
-                      className="text-gray-200"
+                      className="text-gray-400"
                     >
                       Գործունեության տեսակ
                     </option>
-                    <option value="customer">Պատվիրատու</option>
-                    <option value="carrier">Փոխադրող</option>
+                    <option value="customer" className="text-black">
+                      Պատվիրատու
+                    </option>
+                    <option value="carrier" className="text-black">
+                      Փոխադրող
+                    </option>
                   </select>
                   {errors.userType && (
                     <p className="text-red-600   pt-1 pl-2 text-[12px] tracking-wide">
@@ -156,7 +163,9 @@ export default function Register() {
                   autoComplete="company"
                   required
                   placeholder="Ընկերության անվանումը"
-                  className={`${ valid ? "border-slate-400" : "border-red-400"} bg-[#f2f5fc] rounded-xl block w-full pl-[20px] py-[14px] text-gray-900    placeholder:text-gray-400   focus:ring-[#1c90f3] sm:text-sm sm:leading-6 border-[1px]  pr-[54px]`}
+                  className={`${
+                    valid ? "border-slate-400" : "border-red-400"
+                  } bg-[#f2f5fc] rounded-xl block w-full pl-[20px] py-[14px] text-gray-900    placeholder:text-gray-400   focus:ring-[#1c90f3] sm:text-sm sm:leading-6 border-[1px]  pr-[54px]`}
                   {...register("companyName")}
                 />
                 {errors.companyName && (
@@ -176,7 +185,9 @@ export default function Register() {
                     autoComplete="email"
                     placeholder="Էլ-հասցե"
                     required
-                    className={`${ valid ? "border-slate-400" : "border-red-400"} bg-[#f2f5fc] rounded-xl block w-full pl-[20px] py-[14px] text-gray-900    placeholder:text-gray-400   focus:ring-[#1c90f3] sm:text-sm sm:leading-6 border-[1px] pr-[54px]`}
+                    className={`${
+                      valid ? "border-slate-400" : "border-red-400"
+                    } bg-[#f2f5fc] rounded-xl block w-full pl-[20px] py-[14px] text-gray-900    placeholder:text-gray-400   focus:ring-[#1c90f3] sm:text-sm sm:leading-6 border-[1px] pr-[54px]`}
                     {...register("email")}
                   />
                   {errors.email && (

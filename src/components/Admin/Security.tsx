@@ -72,7 +72,6 @@ const Security = () => {
 
   return (
     <>
-      {/* <UICodePopUp setIsOpenPopUp={setIsOpenPopUp} isOpenPopUp={isOpenPopUp} /> */}
       <Toast
         type={
           toastVisible === "Գաղտնաբառը հաջողությամբ փոխվել է"

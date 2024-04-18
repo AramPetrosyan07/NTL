@@ -24,6 +24,11 @@ export default function ModalDelete({
     setIsOpen(false);
   }
 
+  function deleteSubUser() {
+    dispatch(removeCustomerSubs({ _id: id, userType }));
+    closeModal();
+  }
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -69,10 +74,7 @@ export default function ModalDelete({
                     <button
                       type="button"
                       className="w-[150px] inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                      onClick={() => {
-                        dispatch(removeCustomerSubs({ _id: id, userType }));
-                        closeModal();
-                      }}
+                      onClick={deleteSubUser}
                     >
                       Ջնջել
                     </button>

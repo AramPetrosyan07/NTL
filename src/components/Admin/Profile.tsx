@@ -9,8 +9,14 @@ import {
 import DetectCurrentUserType from "../../utils/detectUserType";
 import UiSimpleInput from "../../UI/UiSimpleInput";
 import { useForm } from "react-hook-form";
-import { updateUser } from "../../store/asyncThunk";
+import {
+  changeEmail,
+  sendCode,
+  sendEmail,
+  updateUser,
+} from "../../store/asyncThunk";
 import Toast from "../../UI/UIToast";
+import UICodePopUp from "../../UI/UICodePopUp";
 
 const Profile = () => {
   const dispatch = useTypedDispatch();
@@ -18,15 +24,22 @@ const Profile = () => {
   const userType = DetectCurrentUserType();
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string>();
+  const [isOpenPopUpCode, setIsOpenPopUpCode] = useState<boolean>(false);
+  const [isOpenPopUpEmail, setIsOpenPopUpEmail] = useState<boolean>(false);
+  let isSub = user.userType === "subCustomer";
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    watch,
     reset,
+    setValue,
   } = useForm({
     mode: "onChange",
-    // resolver: yupResolver(addLoadsSchema),
+    // defaultValues: {
+    //   // companyName: user?.companyName,
+    // },
   });
 
   const filterObject = async (data: any) => {
@@ -74,6 +87,32 @@ const Profile = () => {
   const cancel = () => {
     setIsDisabled(false);
   };
+
+  const changeEmailEvents = () => {
+    setIsOpenPopUpCode(true);
+    dispatch(sendEmail({ email: user.email, userType: user.userType }));
+  };
+
+  const getCode = () => {
+    const code = watch("code");
+    console.log(code);
+    setIsOpenPopUpCode(false);
+    setIsOpenPopUpEmail(true);
+
+    dispatch(sendCode({ email: user.email, verificationCode: code }));
+  };
+
+  const setEmail = () => {
+    const email = watch("email");
+    console.log(email);
+    dispatch(changeEmail({ newEmail: email }));
+    setIsOpenPopUpEmail(false);
+    setValue("email", "");
+    setValue("code", "");
+  };
+
+  console.log(user);
+
   return (
     <>
       <form
@@ -83,6 +122,26 @@ const Profile = () => {
           e.preventDefault();
         }}
       >
+        {/* for send code */}
+        <UICodePopUp
+          setIsOpenPopUp={setIsOpenPopUpCode}
+          isOpenPopUp={isOpenPopUpCode}
+          register={register}
+          type={"code"}
+          codeEvent={getCode}
+          title={`Մուտքագրեք հաստատման ծածկագիր`}
+          text={`Մուտքագրեք ձեր ${user.email} էլ. փոստին եկած ծածկագիրը`}
+        />
+        {/* for send code */}
+        <UICodePopUp
+          setIsOpenPopUp={setIsOpenPopUpEmail}
+          isOpenPopUp={isOpenPopUpEmail}
+          register={register}
+          type={"email"}
+          codeEvent={setEmail}
+          title={`Մուտքագրեք նոր էլ. հասցեն`}
+        />
+
         <div className="h-full md:px-10 px-2 pb-3 flex flex-col gap-6 ">
           <div className="avatar relative">
             <div className="w-full h-36 border-2 border-slate-300 rounded-xl flex flex-col justify-evenly items-center banner">
@@ -91,7 +150,7 @@ const Profile = () => {
               </div>
 
               <p className="md:text-[30px] text-[24px] font-bold">
-                {user?.companyName}
+                {isSub ? user?.parent?.companyName : user?.companyName}
               </p>
               <div className="absolute right-4 top-4">
                 <img
@@ -109,14 +168,16 @@ const Profile = () => {
               <div className="w-full  ">
                 <div className="w-full h-14 border-b-2 flex flex-col justify-center md:items-center items-start">
                   <h4 className="text-gray-500">Ընկերության անվանումը</h4>
-                  {isDisabled ? (
+                  {isDisabled && !isSub ? (
                     <UiSimpleInput
                       value={user?.companyName}
                       register={register}
                       type={"companyName"}
                     />
                   ) : (
-                    <p> {user?.companyName}</p>
+                    <p>
+                      {isSub ? user?.parent?.companyName : user?.companyName}
+                    </p>
                   )}
                 </div>
 
@@ -124,11 +185,12 @@ const Profile = () => {
                   <h4 className="text-gray-500">Էլ-հասցե</h4>
 
                   {isDisabled ? (
-                    <UiSimpleInput
-                      value={user?.email}
-                      register={register}
-                      type={"email"}
-                    />
+                    <div
+                      className="w-[190px] bg-blue-200 px-1 py-[2px] border-2 hover:border-blue-400 border-transparent rounded-md cursor-pointer"
+                      onClick={changeEmailEvents}
+                    >
+                      <p className="text-center">փոխել էլ. հասցեն</p>
+                    </div>
                   ) : (
                     <p> {user?.email}</p>
                   )}

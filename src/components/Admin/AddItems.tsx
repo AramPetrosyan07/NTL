@@ -41,6 +41,7 @@ export default function AddItems() {
     handleSubmit,
     formState: { errors, isValid },
     reset,
+    watch,
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(addLoadsSchema),
@@ -53,6 +54,8 @@ export default function AddItems() {
     if (isValid) {
       const { userType, parent } = user;
       if (currentUserType === "customer") {
+        console.log("customer");
+
         dispatch(
           addNewItemThunk({ ...data, userType, parent, toInfo, fromInfo })
         );
@@ -85,6 +88,9 @@ export default function AddItems() {
       alert("some error was accured during adding");
     }
   };
+
+  console.log(watch("date"));
+
   return (
     <>
       <form

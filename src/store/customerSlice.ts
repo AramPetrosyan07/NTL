@@ -7,6 +7,7 @@ import {
   removeCustomerSubs,
   updateUser,
   passRecovery,
+  changeEmail,
 } from "./asyncThunk";
 import { LogOutUser } from "../utils/helpers";
 
@@ -116,6 +117,9 @@ const customerSlice = createSlice({
             state.user[key] = payload[key];
           }
         }
+      })
+      .addCase(changeEmail.fulfilled, (state, { payload }) => {
+        state.user = payload;
       });
   },
 });
