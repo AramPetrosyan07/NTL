@@ -18,6 +18,7 @@ import {
 import DetectCurrentUserType from "../../utils/detectUserType";
 import { Coords } from "google-map-react";
 import ToInput from "../autocompleteInput/ToInput";
+import { Map } from "../Map";
 
 export default function AddItems() {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,6 +27,7 @@ export default function AddItems() {
   const { user } = useTypedSelector((state) => state.user);
   const dispatch = useTypedDispatch();
   const currentUserType = DetectCurrentUserType();
+  const [distance, setDistance] = useState({ distance: "" });
 
   console.log(fromInfo);
 
@@ -57,7 +59,14 @@ export default function AddItems() {
         console.log("customer");
 
         dispatch(
-          addNewItemThunk({ ...data, userType, parent, toInfo, fromInfo })
+          addNewItemThunk({
+            ...data,
+            userType,
+            parent,
+            distance: distance.distance.slice(0, -2),
+            toInfo,
+            fromInfo,
+          })
         );
         dispatch(getLoadThunk());
         setIsVisible(true);
@@ -89,10 +98,16 @@ export default function AddItems() {
     }
   };
 
-  console.log(watch("date"));
+  console.log(distance);
 
   return (
     <>
+      <Map
+        pickup={fromInfo}
+        delivery={toInfo}
+        setDistanceAndDur={setDistance}
+        className="w-0 h-0 hidden"
+      />
       <form
         className="px-4 md:px-10 pb-4 "
         onSubmit={(e) => {

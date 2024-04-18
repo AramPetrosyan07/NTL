@@ -144,7 +144,7 @@ const AccordionItemDesktop = ({
                   <div className="w-full flex justify-start items-center">
                     <p className="flex justify-start items-center w-full">
                       {" "}
-                      {distance}2300կմ
+                      {distance} {distance && "կմ"}
                     </p>
                   </div>
                 </div>

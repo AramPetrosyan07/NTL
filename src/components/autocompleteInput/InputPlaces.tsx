@@ -22,7 +22,7 @@ const InputPlaces: React.FC<IInputPlaces> = ({
   defaultLocation = null,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [address, setAddress] = useState<string>();
+  const [address, setAddress] = useState<string>("");
   useEffect(() => {
     if (defaultLocation) {
       setAddress(defaultLocation);

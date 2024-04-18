@@ -6,17 +6,12 @@ interface IMAP {
   map: google.maps.Map;
   maps: any;
 }
-interface MapProps {
-  pickup: any;
-  delivery: any;
-  setDistanceAndDur:any
-}
-export const Map = ({pickup,delivery,setDistanceAndDur}:MapProps) => {
+
+export const Map = ({ pickup, delivery, setDistanceAndDur }: any) => {
   const [MAP, setMAP] = useState<IMAP>({} as IMAP);
   const [isExistRoute, setIsExistRoute] = useState(false);
   const { setTravelTime, setSelectedOption } = useMapActions();
 
-  
   const renderWay = () => {
     const { map, maps } = MAP;
 
@@ -40,11 +35,9 @@ export const Map = ({pickup,delivery,setDistanceAndDur}:MapProps) => {
           const km = res.routes[0].legs[0].distance?.text;
 
           setDistanceAndDur({
-            duration:durationSec,
-            distance : km
-          })
-
-          
+            duration: durationSec,
+            distance: km,
+          });
         })
         .catch((err) => alert(err));
 
@@ -66,9 +59,7 @@ export const Map = ({pickup,delivery,setDistanceAndDur}:MapProps) => {
       !isExistRoute
     ) {
       renderWay();
-      
     }
-
   }, [pickup, delivery, MAP?.map, MAP?.maps, isExistRoute]);
 
   return (
