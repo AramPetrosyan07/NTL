@@ -26,10 +26,25 @@ export const registerThunk = createAsyncThunk<any, any>(
   }
 );
 
-export const registerSubUserThunk = createAsyncThunk<any, any>(
-  "customerSlice/registerSubUserThunk",
+export const registerSubCustomerThunk = createAsyncThunk<any, any>(
+  "customerSlice/registerSubCustomerThunk",
   async (data) => {
     try {
+      console.log(data);
+
+      const res = await axios.post(`auth/registerSub`, data);
+      return res.data;
+    } catch (error: any) {
+      return error?.response?.data?.message;
+    }
+  }
+);
+export const registerSubCarrierThunk = createAsyncThunk<any, any>(
+  "customerSlice/registerSubCarrierThunk",
+  async (data) => {
+    try {
+      console.log(data);
+
       const res = await axios.post(`auth/registerSub`, data);
       return res.data;
     } catch (error: any) {
@@ -239,7 +254,10 @@ export const addNewItemThunk = createAsyncThunk<any, any>(
 export const addNewTruckThunk = createAsyncThunk<any, any>(
   "truckSlice/addNewTruckThunk",
   async (data: any) => {
+    console.log(data);
+
     const res = await axios.post(`truck/add`, data);
+    console.log(res.data);
 
     return res.data;
   }
@@ -341,17 +359,32 @@ export const getPreviewItem = createAsyncThunk<any, any>(
   }
 );
 
-export const getCustomerSubs = createAsyncThunk<any>(
+export const getCustomerSubs = createAsyncThunk<any, any>(
   "itemsSlice/getCustomerSubs",
-  async () => {
+  async (data) => {
     try {
-      const res = await axios.get(`customersInfo/CustomerSubs`);
+      console.log(data);
+      const res = await axios.post(`user/UserSubs`, data);
+      console.log(res.data);
+
       return res.data;
     } catch (error) {
       console.log(error);
     }
   }
 );
+
+// export const getCarrierSubs = createAsyncThunk<any>(
+//   "itemsSlice/getCarrierSubs",
+//   async () => {
+//     try {
+//       const res = await axios.get(`customersInfo/CarrierSubs`);
+//       return res.data;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
 
 export const removeCustomerSubs = createAsyncThunk<any, any>(
   "itemsSlice/removeCustomerSubs",

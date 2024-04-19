@@ -13,25 +13,31 @@ const AdminPannel = () => {
   const { user } = useTypedSelector((state) => state.user);
   const dispatch = useTypedDispatch();
 
-  const currentUserType = getUserType()
-  const userType= DetectCurrentUserType();
+  const currentUserType = getUserType();
+  const userType = DetectCurrentUserType();
 
   useEffect(() => {
-    if(userType == 'customer'){
-      dispatch(getUserLoadsThunk({ userType: user.userType ? user.userType : currentUserType }));
-    }else{
-      dispatch(getUserTrucksThunk({ userType: user.userType ? user.userType : currentUserType }));
+    if (userType == "customer") {
+      dispatch(
+        getUserLoadsThunk({
+          userType: user.userType ? user.userType : currentUserType,
+        })
+      );
+    } else {
+      dispatch(
+        getUserTrucksThunk({
+          userType: user.userType ? user.userType : currentUserType,
+        })
+      );
     }
-   
   }, [userType]);
 
-
   return (
-    <section className="w-full bg-red-600">
+    <section className="w-full bg-[#f1f5f9]">
       <Helmet>
         <title>Իմ էջը</title>
       </Helmet>
-      <div className=" mx-auto max-w-[2000px] bg-slate-100 dark:bg-slate-100 min-h-screen">  
+      <div className=" mx-auto max-w-[2000px] bg-slate-100 dark:bg-slate-100 min-h-screen">
         <AdminHeader />
         {!pathname.includes("/admin/settings") && <StatisticsTop />}
         <Outlet />

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { BsCheck2All } from "react-icons/bs";
 import { FiX } from "react-icons/fi";
@@ -22,8 +22,8 @@ import ToInput from "../autocompleteInput/ToInput";
 const ChangeItems = ({
   _id,
   pickup,
-  truckType,
   delivery,
+  truckType,
   date,
   weight,
   length,
@@ -72,14 +72,14 @@ const ChangeItems = ({
     } else if (userType === "carrier" && data.status === "delete") {
       dispatch(deleteTruckThunk({ id: _id }));
     } else if (userType === "customer" && data.status !== "delete") {
-      dispatch(updateNewItemThunk({ ...data, id: _id }));
+      dispatch(updateNewItemThunk({ ...data, fromInfo, toInfo, id: _id }));
       setIsDisabled(true);
       setIsVisible(true);
       setTimeout(() => {
         setIsVisible(false);
       }, 3000);
     } else if (userType === "carrier" && data.status !== "delete") {
-      dispatch(updateNewTruckThunk({ ...data, id: _id }));
+      dispatch(updateNewTruckThunk({ ...data, fromInfo, toInfo, id: _id }));
       setIsDisabled(true);
       setIsVisible(true);
       setTimeout(() => {
@@ -88,7 +88,17 @@ const ChangeItems = ({
     }
   };
 
-  console.log(isDisabled && pathname.includes("changeitems"));
+  console.log(fromInfo, toInfo);
+
+  useEffect(() => {
+    // console.log(pickup, delivery);
+    if (pickup?.description) {
+      getFromInfo(pickup.description as string, pickup.location as Coords);
+    }
+    if (delivery?.description) {
+      getToInfo(delivery.description as string, delivery.location as Coords);
+    }
+  }, [isDisabled]);
 
   return (
     <>

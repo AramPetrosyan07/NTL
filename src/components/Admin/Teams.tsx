@@ -6,26 +6,41 @@ import {
   useTypedSelector,
 } from "../../hooks/useTypedSelector";
 import { getCustomerSubs } from "../../store/asyncThunk";
+import DetectCurrentUserType from "../../utils/detectUserType";
+import { CheckTypes } from "../../utils/CheckTypes";
 
 const Teams = () => {
   const [openAddUser, setOpenAddUser] = useState(false); //
   const dispatch = useTypedDispatch();
-  const { userSubs } = useTypedSelector((state) => state.user);
+  const userType = DetectCurrentUserType();
+  const { userSubs, user } = useTypedSelector((state) => state.user);
+  console.log(userSubs.subCarrier);
 
   const handleAddNewTeamMember = () => {
     setOpenAddUser(true);
   };
 
   useEffect(() => {
-    dispatch(getCustomerSubs());
-  }, []);
+    if (user.userType) {
+      dispatch(getCustomerSubs({ userType: user.userType }));
+      console.log("getCustomerSubs");
+    }
+  }, [user.userType]);
   return (
     <div>
       <UIModal openAddUser={openAddUser} setOpenAddUser={setOpenAddUser} />
       <div className="w-full h-20 border-2 rounded-xl flex justify-between items-center px-2 md:px-4">
         <div className="flex flex-col md:flex-row h-full md:items-center items-start justify-center">
           <h4 className="text-[12px] md:text-[15px]">Թիմի անդամների քանակը</h4>
-          <p>({userSubs?.subCustomers?.length || 0})</p>
+          <p>
+            {"  "}(
+            {CheckTypes({
+              type: user.userType,
+              customer: userSubs?.subCustomers?.length || 0,
+              carrier: userSubs?.subCarrier?.length || 0,
+            })}
+            ){" "}
+          </p>
         </div>
         <div className="add-team">
           <button
@@ -63,7 +78,11 @@ const Teams = () => {
                     </th>
                   </tr>
                 </thead>
-                {userSubs?.subCustomers?.map((el: any, i: number) => (
+                {CheckTypes({
+                  type: user.userType,
+                  customer: userSubs?.subCustomers,
+                  carrier: userSubs?.subCarrier,
+                })?.map((el: any, i: number) => (
                   <TeamMember {...el} key={i} />
                 ))}
               </table>

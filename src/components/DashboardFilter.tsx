@@ -26,42 +26,9 @@ const DashboardFilter: React.FC<{ open: boolean }> = ({ open }) => {
   });
   const dispatch = useTypedDispatch();
 
-  // const changeDateFormat = (date: string): string => {
-  //   if (date === "") {
-  //     return "";
-  //   }
-  //   let inputDate = new Date(date);
-  //   inputDate.setMinutes(
-  //     inputDate.getMinutes() - inputDate.getTimezoneOffset()
-  //   );
-  //   return inputDate.toISOString().split("T")[0];
-  // };
-
   const onSubmit: SubmitHandler<any> = (data): void => {
     console.log(data);
     console.log(loads);
-
-    // let filter = loads.filter((item: any, el: number) => {
-    //   if (
-    //     (data.date === "" || item.date === changeDateFormat(data.date)) &&
-    //     (data.delivery === "" ||
-    //       item.delivery.description
-    //         .toLowerCase()
-    //         ?.includes(data.delivery.toLowerCase())) &&
-    //     (!data.truckType || item.truckType === data.truckType.name) && // Modified line
-    //     (data.pickUp === "" ||
-    //       item.pickup.description
-    //         .toLowerCase()
-    //         ?.includes(data.pickUp.toLowerCase())) &&
-    //     (!data.loadType || item.loadType === data.loadType.name) && // Modified line
-    //     (data.length === "" || item.length === data.length) &&
-    //     (data.weight === "" || item.weight === +data.weight) &&
-    //     (data.rate === "" || item.rate === +data.rate)
-    //   ) {
-    //     return item;
-    //   }
-    // });
-
     dispatch(filterLoad(data));
   };
 

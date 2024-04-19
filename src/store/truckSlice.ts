@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  addNewItemThunk,
   addNewTruckThunk,
-  deleteItemThunk,
   deleteTruckThunk,
+  // getCarrierSubs,
   getTruckThunk,
   getUserTrucksThunk,
-  updateNewItemThunk,
   updateNewTruckThunk,
 } from "./asyncThunk";
 
@@ -112,6 +110,9 @@ const truckSlice = createSlice({
     builder.addCase(getUserTrucksThunk.fulfilled, (state, { payload }) => {
       state.userTrucks = payload;
     });
+    // builder.addCase(getCarrierSubs.fulfilled, (state, { payload }) => {
+    //   state.userTrucks = payload;
+    // });
     builder.addCase(addNewTruckThunk.fulfilled, (state, { payload }) => {
       state.userTrucks.push(payload);
     });

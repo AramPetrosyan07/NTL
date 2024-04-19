@@ -1,4 +1,4 @@
-import { addLoadsSchema } from "../../utils/formScheme";
+import { addLoadsSchema, addTruckSchema } from "../../utils/formScheme";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FromInput from "../autocompleteInput/FromInput";
@@ -46,7 +46,9 @@ export default function AddItems() {
     watch,
   } = useForm({
     mode: "onChange",
-    resolver: yupResolver(addLoadsSchema),
+    resolver: yupResolver(
+      currentUserType === "customer" ? addLoadsSchema : addTruckSchema
+    ),
   });
 
   const onSubmit = async (data: any) => {
@@ -81,8 +83,9 @@ export default function AddItems() {
             ...data,
             userType,
             parent,
-            delivery: toInfo?.description,
-            pickup: fromInfo?.description,
+            distance: distance.distance.slice(0, -2),
+            toInfo,
+            fromInfo,
           })
         );
         dispatch(getTruckThunk());

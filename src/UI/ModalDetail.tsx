@@ -4,7 +4,7 @@ import { addTeamMemberSchema } from "../utils/formScheme";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BiHide, BiShow } from "react-icons/bi";
-import { getCustomerSubs, registerSubUserThunk } from "../store/asyncThunk";
+import { getCustomerSubs, registerSubCustomerThunk } from "../store/asyncThunk";
 import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
 
 export default function UIModal({ openAddUser, setOpenAddUser }: any) {
@@ -40,7 +40,7 @@ export default function UIModal({ openAddUser, setOpenAddUser }: any) {
   const onSubmit = async (data: any) => {
     if (isValid && data.password === data.repetPassword) {
       let subUser = await dispatch(
-        registerSubUserThunk({ ...data, currentUserType: user?.userType })
+        registerSubCustomerThunk({ ...data, currentUserType: user?.userType })
       );
       if (typeof subUser.payload === "string") {
         serBackErr(subUser.payload);
@@ -48,7 +48,7 @@ export default function UIModal({ openAddUser, setOpenAddUser }: any) {
 
       if (subUser?.payload?.email) {
         console.log(subUser);
-        dispatch(getCustomerSubs());
+        dispatch(getCustomerSubs(user.userType));
       }
     } else {
       console.log("all fields are required");

@@ -70,6 +70,28 @@ export const addLoadsSchema = yup.object().shape({
     .string()
     .required("Խնդրում ենք նշել բեռի տեսակը")
     .oneOf(["ամբողջական", "հավաքական"], "Խնդրում ենք նշել բեռի տեսակը"),
+  pickup: yup.string().required("Խնդրում ենք նշել բարձման վայրը"),
+  delivery: yup.string().required("Խնդրում ենք նշել դատարկման վայրը"),
+  length: yup.number(),
+  weight: yup.number(),
+  rate: yup.number(),
+  commodity: yup.string(),
+  comment: yup.string(),
+});
+
+export const addTruckSchema = yup.object().shape({
+  date: yup.string(),
+  truckType: yup
+    .string()
+    .required("Խնդրում ենք նշել բեռնատարի տեսակը")
+    .oneOf(
+      ["տենտ", "ռեֆ", "կոնտեյներ", "ավիա"],
+      "Խնդրում ենք նշել բեռնատարի տեսակը"
+    ),
+  loadType: yup
+    .string()
+    .required("Խնդրում ենք նշել բեռի տեսակը")
+    .oneOf(["ամբողջական", "հավաքական"], "Խնդրում ենք նշել բեռի տեսակը"),
   // pickup: yup.string().required("Խնդրում ենք նշել բարձման վայրը"),
   // delivery: yup.string().required("Խնդրում ենք նշել դատարկման վայրը"),
   length: yup.number(),
@@ -78,6 +100,7 @@ export const addLoadsSchema = yup.object().shape({
   commodity: yup.string(),
   comment: yup.string(),
 });
+
 export const updateLoadsSchema = yup.object().shape({
   date: yup.string(),
   truckType: yup.string(),

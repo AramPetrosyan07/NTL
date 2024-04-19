@@ -40,8 +40,14 @@ const Search = () => {
   }, [open]);
   return (
     <div ref={ref} onClick={handleOpen}>
-      <div className="relative dark:text-white font-light lg:w-[120px] w-[60px] lg:text-[14px] text-[12px] px-1 lg:h-[40px] h-[30px] cursor-pointer border-slate-400  border-[0.7px] rounded-[20px] flex justify-around items-center hover:shadow hover:border-[0.3px]">
-        <p className="hidden lg:block">Փնտրել</p>
+      <div className="relative dark:text-white font-light lg:w-[140px] w-[60px] lg:text-[14px] text-[12px] px-1 lg:h-[40px] h-[30px] cursor-pointer border-slate-400  border-[0.7px] rounded-[20px] flex justify-around items-center hover:shadow hover:border-[0.3px]">
+        <p className="hidden lg:block">
+          {pathname === "/"
+            ? "Բեռներ"
+            : pathname === "/trucks"
+            ? "Բեռնատարներ"
+            : ""}
+        </p>
         <span className="flex lg:hidden">
           <BsFilter size={"20"} />
         </span>
