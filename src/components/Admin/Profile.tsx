@@ -49,12 +49,15 @@ const Profile = () => {
         data[key] !== user[key] &&
         !(key === "phoneNumber" && data[key] === "-") &&
         !(key === "address" && data[key] === "-") &&
-        !(key === "website" && data[key] === "-")
+        !(key === "website" && data[key] === "-") &&
+        !(key === "about" && data[key] === "")
       ) {
         changedData[key] = data[key];
       }
     }
     if (Object.keys(changedData).length > 0) {
+      console.log("req working");
+
       let res = await dispatch(
         updateUser({ data: changedData, userType: user.userType })
       );
@@ -110,8 +113,6 @@ const Profile = () => {
     setValue("email", "");
     setValue("code", "");
   };
-
-  console.log(user);
 
   return (
     <>

@@ -39,6 +39,7 @@ export const registerSubCustomerThunk = createAsyncThunk<any, any>(
     }
   }
 );
+
 export const registerSubCarrierThunk = createAsyncThunk<any, any>(
   "customerSlice/registerSubCarrierThunk",
   async (data) => {
@@ -373,18 +374,6 @@ export const getCustomerSubs = createAsyncThunk<any, any>(
     }
   }
 );
-
-// export const getCarrierSubs = createAsyncThunk<any>(
-//   "itemsSlice/getCarrierSubs",
-//   async () => {
-//     try {
-//       const res = await axios.get(`customersInfo/CarrierSubs`);
-//       return res.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// );
 
 export const removeCustomerSubs = createAsyncThunk<any, any>(
   "itemsSlice/removeCustomerSubs",

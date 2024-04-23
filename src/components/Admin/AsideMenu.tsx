@@ -40,8 +40,6 @@ const AsideMenu = () => {
   const { pathname } = useLocation();
   const { user } = useTypedSelector((state) => state.user);
 
-  console.log(user);
-
   return (
     <div className="md:w-[300px] w-[60px] py-6">
       <nav className="w-full h-full md:border-r-2 border-r-0">
