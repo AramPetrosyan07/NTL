@@ -29,8 +29,6 @@ export default function AddItems() {
   const currentUserType = DetectCurrentUserType();
   const [distance, setDistance] = useState({ distance: "" });
 
-  console.log(fromInfo);
-
   const getFromInfo = (address: string, location: Coords) => {
     setFromInfo({ location, description: address });
   };
@@ -52,8 +50,7 @@ export default function AddItems() {
   });
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-    console.log(isValid);
+    console.log("submit");
 
     if (isValid) {
       const { userType, parent } = user;
@@ -100,8 +97,6 @@ export default function AddItems() {
       alert("some error was accured during adding");
     }
   };
-
-  console.log(distance);
 
   return (
     <>

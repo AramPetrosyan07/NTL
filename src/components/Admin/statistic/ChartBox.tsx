@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../../styles/chartBox.scss";
+import "../../../styles/chartBox.scss";
 import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
 
 type Props = {

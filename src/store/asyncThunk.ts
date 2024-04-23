@@ -366,7 +366,7 @@ export const getCustomerSubs = createAsyncThunk<any, any>(
     try {
       console.log(data);
       const res = await axios.post(`user/UserSubs`, data);
-      console.log(res.data);
+      console.log(res?.data);
 
       return res.data;
     } catch (error) {

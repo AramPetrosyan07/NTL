@@ -100,13 +100,27 @@ const ChangeItems = ({
     }
   }, [isDisabled]);
 
+  const checkStatus = (status: string) => {
+    switch (status) {
+      case "open":
+        return "bg-slate-300";
+      case "onRoad":
+        return "bg-green-200";
+      case "delivered":
+        return "bg-blue-300";
+      case "paid":
+        return "bg-green-400";
+    }
+  };
+
   return (
     <>
       <div
         ref={ref}
-        className={`w-full min-h-[50px] bg-slate-300 dark:bg-slate-300 px-4 flex py-2 lg:py-4 flex-wrap lg:flex-nowrap justify-between items-center lg:gap-4 gap-y-[8px] 
-          
-        }  text-sm`}
+        className={`w-full min-h-[50px] ${checkStatus(
+          status
+        )}  px-4 flex py-2 lg:py-4 flex-wrap lg:flex-nowrap justify-between items-center lg:gap-4 gap-y-[8px] 
+            text-sm`}
       >
         <div className="date w-full sm:w-[48%] lg:w-[200px]  h-[40px]  flex items-center mb-[1px] md:mb-0">
           <input
@@ -211,7 +225,7 @@ const ChangeItems = ({
                 autoComplete="country-name"
                 className={`${
                   isDisabled ? "bg-[#D7DDE4]" : "bg-white"
-                } p-4 block w-full rounded-md   py-[8px] text-gray-900  focus:ring-gray-300 placeholder:text-gray-400   sm:text-sm sm:leading-6 appearance-none`}
+                } p-4 block w-full rounded-md   py-[8px] text-black   focus:ring-gray-300 placeholder:text-gray-400   sm:text-sm sm:leading-6 appearance-none`}
                 {...register("status")}
               >
                 <option value={"open"} selected={status === "open"}>
@@ -285,12 +299,12 @@ const ChangeItems = ({
           </div>
         </div>
       )}
-      <Toast
+      {/* <Toast
         type="success"
         message="Ձեր բեռը հաջողությամբ թարմացվել է"
         isVisible={isVisible}
         setIsVisible={setIsVisible}
-      />
+      /> */}
       <div className="btns-mobile  w-full h-full flex items-end justify-end pr-4 gap-6 bg-slate-300 border-b-[5px] border-white lg:py-0 py-4">
         <div
           className={`px-4 py-2 bg-blue-500 text-white rounded-md ${

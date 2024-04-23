@@ -14,7 +14,6 @@ const Teams = () => {
   const dispatch = useTypedDispatch();
   const userType = DetectCurrentUserType();
   const { userSubs, user } = useTypedSelector((state) => state.user);
-  console.log(userSubs.subCarrier);
 
   const handleAddNewTeamMember = () => {
     setOpenAddUser(true);

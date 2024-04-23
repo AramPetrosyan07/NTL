@@ -46,14 +46,14 @@ function App() {
         <Route path="/trucks" element={<TrucksBoard />} />
         <Route path="/testInput" element={<TestInput />} />
 
-        <Route
+        {/* <Route
           path="/admin"
           element={
             <PrivateRoute>
               <AdminPannel />
             </PrivateRoute>
           }
-        />
+        /> */}
         <Route
           path="login"
           element={

@@ -1,15 +1,16 @@
-import "../../styles/topBox.scss"
-import { topDealUsers } from "../../data/data"
+// import "../../styles/topBox.scss";
+import "../../../styles/topBox.scss";
+import { topDealUsers } from "../../../data/data";
 
 const TopBox = () => {
   return (
     <div className="topBox">
       <h1>Աշխատակիցներ</h1>
       <div className="list">
-        {topDealUsers.map(user=>(
+        {topDealUsers.map((user) => (
           <div className="listItem" key={user.id}>
             <div className="user">
-              <img src={user.img} alt="" />
+              {/* <img src={user.img} alt="" /> */}
               <div className="userTexts">
                 <span className="username">{user.username}</span>
                 <span className="email">{user.email}</span>
@@ -20,7 +21,7 @@ const TopBox = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TopBox
+export default TopBox;

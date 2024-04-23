@@ -103,6 +103,7 @@ const truckSlice = createSlice({
       // state.filteredLoads = [];
       state.filteredTrucks = [];
     },
+
     filterTruck: (state, { payload }) => {
       const changeDateFormat = (date: string): string => {
         if (date === "") {

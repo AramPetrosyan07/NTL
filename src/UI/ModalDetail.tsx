@@ -47,8 +47,8 @@ export default function UIModal({ openAddUser, setOpenAddUser }: any) {
       }
 
       if (subUser?.payload?.email) {
-        console.log(subUser);
-        dispatch(getCustomerSubs(user.userType));
+        console.log(user.userType);
+        dispatch(getCustomerSubs({ userType: user.userType }));
       }
     } else {
       console.log("all fields are required");
