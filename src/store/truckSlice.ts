@@ -15,7 +15,7 @@ let initialState: any = {
       age: "",
       date: "",
       truckType: "",
-      loadType: "",
+      type: "",
       pickup: "",
       delivery: "",
       distance: null,
@@ -35,7 +35,7 @@ let initialState: any = {
       age: "",
       date: "",
       truckType: "",
-      loadType: "",
+      type: "",
       pickup: "",
       delivery: "",
       distance: null,
@@ -64,7 +64,7 @@ const truckSlice = createSlice({
           age: "",
           date: "",
           truckType: "",
-          loadType: "",
+          type: "",
           pickup: "",
           delivery: "",
           distance: null,
@@ -83,7 +83,7 @@ const truckSlice = createSlice({
           age: "",
           date: "",
           truckType: "",
-          loadType: "",
+          type: "",
           pickup: "",
           delivery: "",
           distance: null,
@@ -122,7 +122,7 @@ const truckSlice = createSlice({
             item.pickup.description
               .toLowerCase()
               ?.includes(payload.pickUp.toLowerCase())) &&
-          (!payload.loadType || item.loadType === payload.loadType.name) && // Modified line
+          (!payload.type || item.type === payload.type.name) && // Modified line
           (payload.length === "" || item.length === payload.length) &&
           (payload.weight === "" || item.weight === +payload.weight) &&
           (payload.rate === "" || item.rate === +payload.rate)

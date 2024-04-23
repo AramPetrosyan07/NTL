@@ -31,7 +31,7 @@ const AccordionItemDesktop = ({
   contactInfo,
   delivery,
   length,
-  loadType,
+  type,
   pickup,
   rate,
   truckType,
@@ -112,10 +112,10 @@ const AccordionItemDesktop = ({
                 </div>
                 <div className=" flex justify-start items-center  w-[40px]">
                   <div
-                    title={loadType}
+                    title={type}
                     className="w-full flex justify-start items-center"
                   >
-                    {loadType[0]}
+                    {type[0]}
                   </div>
                 </div>
 

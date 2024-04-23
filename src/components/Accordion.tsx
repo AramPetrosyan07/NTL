@@ -12,7 +12,7 @@ const Accordion = ({
   age,
   date,
   truckType,
-  loadType,
+  type,
   pickup,
   delivery,
   distance,
@@ -45,7 +45,7 @@ const Accordion = ({
               <div>{truckType}</div>
             </div>
             <div className=" flex justify-start items-center pl-[6px] w-[40px]">
-              <div title={loadType}>{loadType[0].toUpperCase()}</div>
+              <div title={type}>{type[0].toUpperCase()}</div>
             </div>
 
             <div className="flex justify-start items-center pl-[6px] w-[150px]">
@@ -82,7 +82,9 @@ const Accordion = ({
               <div>{checkLengthOfValue(weight, "կգ")} </div>
             </div>
             <div className="flex justify-start items-center pl-[6px] w-[70px]">
-              <div className="text-[#1C90F3]">{checkLengthOfValue(rate, "$")}</div>
+              <div className="text-[#1C90F3]">
+                {checkLengthOfValue(rate, "$")}
+              </div>
             </div>
             {boardType === "load" && (
               <div className="flex justify-start items-center  w-[70px]">

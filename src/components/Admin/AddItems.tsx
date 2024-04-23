@@ -232,14 +232,14 @@ export default function AddItems() {
                   <select
                     id="type"
                     className=" p-4  block w-full rounded-md border-[1px] border-slate-400 py-[6px] text-gray-900  focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6 appearance-none"
-                    {...register("loadType")}
+                    {...register("type")}
                   >
                     <option value={"ամբողջական"}>ամբողջական</option>
                     <option value={"հավաքական"}>հավաքական</option>
                   </select>
-                  {errors.loadType && (
+                  {errors.type && (
                     <p className="text-red-600   pt-1 pl-2  text-[12px] tracking-wide">
-                      {errors.loadType.message}
+                      {errors.type.message}
                     </p>
                   )}
                   <div className="absolute top-[.5rem] right-4 text-2xl text-slate-500">

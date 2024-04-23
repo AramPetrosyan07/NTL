@@ -20,7 +20,7 @@ const DashboardFilter: React.FC<{ open: boolean }> = ({ open }) => {
   } = useForm<any>({
     defaultValues: {
       truckType: null,
-      loadType: null,
+      type: null,
       date: "",
     },
   });
@@ -76,7 +76,7 @@ const DashboardFilter: React.FC<{ open: boolean }> = ({ open }) => {
         <UISelect
           data={fullOrPartial}
           label="Ա/Հ"
-          inputName="loadType"
+          inputName="type"
           control={control}
           setValue={setValue}
           watch={watch}

@@ -66,7 +66,7 @@ export const addLoadsSchema = yup.object().shape({
       ["տենտ", "ռեֆ", "կոնտեյներ", "ավիա"],
       "Խնդրում ենք նշել բեռնատարի տեսակը"
     ),
-  loadType: yup
+  type: yup
     .string()
     .required("Խնդրում ենք նշել բեռի տեսակը")
     .oneOf(["ամբողջական", "հավաքական"], "Խնդրում ենք նշել բեռի տեսակը"),
@@ -88,7 +88,7 @@ export const addTruckSchema = yup.object().shape({
       ["տենտ", "ռեֆ", "կոնտեյներ", "ավիա"],
       "Խնդրում ենք նշել բեռնատարի տեսակը"
     ),
-  loadType: yup
+  type: yup
     .string()
     .required("Խնդրում ենք նշել բեռի տեսակը")
     .oneOf(["ամբողջական", "հավաքական"], "Խնդրում ենք նշել բեռի տեսակը"),
@@ -104,7 +104,7 @@ export const addTruckSchema = yup.object().shape({
 export const updateLoadsSchema = yup.object().shape({
   date: yup.string(),
   truckType: yup.string(),
-  loadType: yup.string(),
+  type: yup.string(),
   pickup: yup.string().min(2, "Խնդրում ենք նշել բարձման վայրը"),
   delivery: yup.string().min(2, "Խնդրում ենք նշել դատարկման վայրը"),
   length: yup.number(),

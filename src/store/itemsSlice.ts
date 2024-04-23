@@ -13,7 +13,7 @@ interface ILoad {
   age?: string;
   date?: string;
   truckType?: string;
-  loadType?: string;
+  type?: string;
   pickup?: string;
   delivery?: string;
   distance?: number | null;
@@ -41,7 +41,7 @@ let initialState: any = {
     //   age: "",
     //   date: "",
     //   truckType: "",
-    //   loadType: "",
+    //   type: "",
     //   pickup: "",
     //   delivery: "",
     //   distance: null,
@@ -62,7 +62,7 @@ let initialState: any = {
     //   age: "",
     //   date: "",
     //   truckType: "",
-    //   loadType: "",
+    //   type: "",
     //   pickup: "",
     //   delivery: "",
     //   distance: null,
@@ -99,7 +99,7 @@ const itemSlice = createSlice({
           age: "",
           date: "",
           truckType: "",
-          loadType: "",
+          type: "",
           pickup: "",
           delivery: "",
           distance: null,
@@ -119,7 +119,7 @@ const itemSlice = createSlice({
           age: "",
           date: "",
           truckType: "",
-          loadType: "",
+          type: "",
           pickup: "",
           delivery: "",
           distance: null,
@@ -165,7 +165,7 @@ const itemSlice = createSlice({
             item.pickup.description
               .toLowerCase()
               ?.includes(payload.pickUp.toLowerCase())) &&
-          (!payload.loadType || item.loadType === payload.loadType.name) && // Modified line
+          (!payload.type || item.type === payload.type.name) && // Modified line
           (payload.length === "" || item.length === payload.length) &&
           (payload.weight === "" || item.weight === +payload.weight) &&
           (payload.rate === "" || item.rate === +payload.rate)

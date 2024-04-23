@@ -25,7 +25,7 @@ const LoadItemMobile = ({
   _id,
   date,
   truckType,
-  loadType,
+  type,
   pickup,
   delivery,
   distance,
