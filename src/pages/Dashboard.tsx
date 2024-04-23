@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Header from "../components/Header";
-import LoadMobile from "../components/LoadMobile";
-import { testload } from "../data/testload";
 import SortLoads from "../UI/UISort";
 import { LuFilter, LuFilterX } from "react-icons/lu";
 import DashboardFilter from "../components/DashboardFilter";
-import LoadItemTitle from "../components/LoadItemTitle";
-import LoadItemDesktop from "../components/LoadItemDesktop";
 import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
+import ItemTitle from "../components/ItemTitle";
+import ItemDesktop from "../components/ItemDesktop";
+import ItemMobile from "../components/ItemMobile";
 
 const Dashboard: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -33,9 +32,9 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
         <DashboardFilter open={open} />
-        <LoadItemTitle boardType="load" />
-        <LoadItemDesktop boardType="load" />
-        <LoadMobile boardType="load" />
+        <ItemTitle boardType="load" />
+        <ItemDesktop boardType="load" />
+        <ItemMobile boardType="load" />
       </section>
     </>
   );

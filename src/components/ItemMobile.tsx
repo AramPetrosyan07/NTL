@@ -9,7 +9,7 @@ import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
 import { useLocation } from "react-router-dom";
 import { getLoadThunk, getTruckThunk } from "../store/asyncThunk";
 
-const LoadMobile = ({ boardType }: any) => {
+const ItemMobile = ({ boardType }: any) => {
   const itemsPerRow = 50;
   const [next, setNext] = useState<number>(itemsPerRow);
   const [loadData, setLoadData] = useState<LoadProps[] | TruckProps[]>([]);
@@ -88,4 +88,4 @@ const LoadMobile = ({ boardType }: any) => {
   );
 };
 
-export default LoadMobile;
+export default ItemMobile;

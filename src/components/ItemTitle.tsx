@@ -4,7 +4,7 @@ import { getLoadThunk, getTruckThunk } from "../store/asyncThunk";
 import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
 import { useLocation } from "react-router-dom";
 
-const LoadItemTitle = ({ boardType }: any) => {
+const ItemTitle = ({ boardType }: any) => {
   const [isUpdated, setIsUpdated] = useState(false);
   const { pathname } = useLocation();
   const dispatch = useTypedDispatch();
@@ -88,4 +88,4 @@ const LoadItemTitle = ({ boardType }: any) => {
   );
 };
 
-export default LoadItemTitle;
+export default ItemTitle;

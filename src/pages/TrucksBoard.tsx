@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Header from "../components/Header";
-import LoadMobile from "../components/LoadMobile";
+import LoadMobile from "../components/ItemMobile";
 import { testload } from "../data/testload";
 import SortLoads from "../UI/UISort";
 import { LuFilter, LuFilterX } from "react-icons/lu";
 import DashboardFilter from "../components/DashboardFilter";
-import LoadItemTitle from "../components/LoadItemTitle";
-import LoadItemDesktop from "../components/LoadItemDesktop";
+import LoadItemTitle from "../components/ItemTitle";
+import LoadItemDesktop from "../components/ItemDesktop";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 
 const TrucksBoard: React.FC = () => {
@@ -33,9 +33,9 @@ const TrucksBoard: React.FC = () => {
           </div>
         </div>
         <DashboardFilter open={open} />
-        <LoadItemTitle boardType='truck' />
-        <LoadItemDesktop boardType='truck'/>
-        <LoadMobile boardType='truck'/>
+        <LoadItemTitle boardType="truck" />
+        <LoadItemDesktop boardType="truck" />
+        <LoadMobile boardType="truck" />
       </section>
     </>
   );

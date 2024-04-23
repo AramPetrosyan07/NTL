@@ -29,6 +29,7 @@ let initialState: any = {
       comment: "",
     },
   ],
+  filteredTrucks: [],
   userTrucks: [
     {
       id: "",
@@ -77,6 +78,7 @@ const truckSlice = createSlice({
           comment: "",
         },
       ];
+      state.filteredTrucks = [];
       state.userTruck = [
         {
           id: "",
@@ -97,6 +99,10 @@ const truckSlice = createSlice({
         },
       ];
     },
+    truckInitialPosition: (state) => {
+      // state.filteredLoads = [];
+      state.filteredTrucks = [];
+    },
     filterTruck: (state, { payload }) => {
       const changeDateFormat = (date: string): string => {
         if (date === "") {
@@ -109,17 +115,17 @@ const truckSlice = createSlice({
         return inputDate.toISOString().split("T")[0];
       };
 
-      state.filteredLoads = state.load.filter((item: any) => {
+      state.filteredTrucks = state.truck.filter((item: any) => {
         if (
           (payload.date === "" ||
             item.date === changeDateFormat(payload.date)) &&
           (payload.delivery === "" ||
-            item.delivery.description
+            item?.delivery?.description
               .toLowerCase()
               ?.includes(payload.delivery.toLowerCase())) &&
           (!payload.truckType || item.truckType === payload.truckType.name) && // Modified line
           (payload.pickUp === "" ||
-            item.pickup.description
+            item?.pickup?.description
               .toLowerCase()
               ?.includes(payload.pickUp.toLowerCase())) &&
           (!payload.type || item.type === payload.type.name) && // Modified line
@@ -168,6 +174,7 @@ const truckSlice = createSlice({
   },
 });
 
-export const { removeUser } = truckSlice.actions;
+export const { removeUser, filterTruck, truckInitialPosition } =
+  truckSlice.actions;
 
 export default truckSlice.reducer;

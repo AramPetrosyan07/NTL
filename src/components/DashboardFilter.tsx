@@ -6,9 +6,15 @@ import { fullOrPartial, trucks } from "../constants/LoadItems";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
 import { filterLoad, loadInitialPosition } from "../store/itemsSlice";
+import { useLocation } from "react-router-dom";
+import { filterTruck, truckInitialPosition } from "../store/truckSlice";
 
 const DashboardFilter: React.FC<{ open: boolean }> = ({ open }) => {
   const loads = useTypedSelector((state) => state.load.load);
+  const dispatch = useTypedDispatch();
+  const location = useLocation();
+  console.log(location);
+
   const {
     register,
     handleSubmit,
@@ -24,16 +30,23 @@ const DashboardFilter: React.FC<{ open: boolean }> = ({ open }) => {
       date: "",
     },
   });
-  const dispatch = useTypedDispatch();
 
   const onSubmit: SubmitHandler<any> = (data): void => {
     console.log(data);
     console.log(loads);
-    dispatch(filterLoad(data));
+    if (location.pathname === "/") {
+      dispatch(filterLoad(data));
+    } else if (location.pathname === "/trucks") {
+      dispatch(filterTruck(data));
+    }
   };
 
   const cancelFilter = (): void => {
-    dispatch(loadInitialPosition());
+    if (location.pathname === "/") {
+      dispatch(loadInitialPosition());
+    } else if (location.pathname === "/trucks") {
+      dispatch(truckInitialPosition());
+    }
     reset();
   };
 
