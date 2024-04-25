@@ -19,6 +19,7 @@ import DetectCurrentUserType from "../../utils/detectUserType";
 import { Coords } from "google-map-react";
 import ToInput from "../autocompleteInput/ToInput";
 import { Map } from "../Map";
+import { distanceToPrice } from "../../utils/Check";
 
 export default function AddItems() {
   const [isVisible, setIsVisible] = useState(false);
@@ -97,6 +98,11 @@ export default function AddItems() {
       alert("some error was accured during adding");
     }
   };
+
+  let fuelPrice = distanceToPrice(distance?.distance as string);
+
+  console.log(fuelPrice);
+  console.log(watch("truckType"));
 
   return (
     <>
@@ -251,7 +257,11 @@ export default function AddItems() {
                     type="number"
                     id="rate"
                     autoComplete="given-name"
-                    placeholder="օր. 3400"
+                    placeholder={
+                      fuelPrice && watch("truckType") !== "ավիա"
+                        ? `նվազագույն գումարը ${fuelPrice}$`
+                        : "օր. 3400"
+                    }
                     className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900  focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
                     {...register("rate")}
                   />

@@ -425,3 +425,18 @@ export const changeMail = createAsyncThunk<any, any>(
     }
   }
 );
+
+export const workersSalary = createAsyncThunk<any>(
+  "customerSlice/workersSalary",
+  async () => {
+    try {
+      const res = await axios.get(`user/statisticSalary`);
+      console.log(res);
+
+      return res.data;
+    } catch (error: any) {
+      console.log(error?.response?.data?.message);
+      return error?.response?.data?.message;
+    }
+  }
+);

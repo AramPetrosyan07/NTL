@@ -12,8 +12,23 @@ import {
   chartBoxUser,
 } from "../../data/data";
 import "../../styles/home.scss";
+import {
+  useTypedDispatch,
+  useTypedSelector,
+} from "../../hooks/useTypedSelector";
+import { useEffect } from "react";
+import { workersSalary } from "../../store/asyncThunk";
 
 const Home = () => {
+  const { user } = useTypedSelector((state) => state.user);
+  const dispatch = useTypedDispatch();
+
+  useEffect(() => {
+    if (user.userType === "customer" || user.userType === "carrier") {
+      dispatch(workersSalary());
+    }
+  }, []);
+
   return (
     <div className="home ">
       <div className="box box1">

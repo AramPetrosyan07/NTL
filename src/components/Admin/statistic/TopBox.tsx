@@ -1,14 +1,21 @@
 // import "../../styles/topBox.scss";
 import "../../../styles/topBox.scss";
 import { topDealUsers } from "../../../data/data";
+import { useTypedSelector } from "../../../hooks/useTypedSelector";
 
 const TopBox = () => {
+  const { statistic } = useTypedSelector((state) => state.user);
+
   return (
     <div className="topBox">
       <h1>Աշխատակիցներ</h1>
       <div className="list">
-        {topDealUsers.map((user) => (
-          <div className="listItem" key={user.id}>
+        {statistic?.workers?.map((user: any) => (
+          <div
+            className="listItem"
+            key={user.id}
+            title={`ընդհանուր աշխատած գումարը $${user.amount}`}
+          >
             <div className="user">
               {/* <img src={user.img} alt="" /> */}
               <div className="userTexts">
@@ -16,7 +23,7 @@ const TopBox = () => {
                 <span className="email">{user.email}</span>
               </div>
             </div>
-            <span className="amount">${user.amount}</span>
+            <span className="amount">${user.amountPerMonth}</span>
           </div>
         ))}
       </div>

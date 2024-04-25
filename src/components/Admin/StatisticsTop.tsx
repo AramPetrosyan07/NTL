@@ -7,37 +7,35 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { motion as m } from "framer-motion";
 import DetectCurrentUserType from "../../utils/detectUserType";
 import { IoLogoUsd } from "react-icons/io";
+
 const StatisticsTop: React.FC = () => {
   const { user } = useTypedSelector((state) => state.user);
   const userType = DetectCurrentUserType();
   const { pathname } = useLocation();
   const { userLoads } = useTypedSelector((state) => state.load);
-  const { userTrucks} = useTypedSelector((state) => state.truck);
-
+  const { userTrucks } = useTypedSelector((state) => state.truck);
 
   const onRoadLoads = () => {
-    if(userType === 'customer'){
-      return  userLoads.filter ((el:any) => el?.status === 'onRoad').length
-    }else{
-      return userTrucks.filter ((el:any) => el?.status === 'onRoad').length
+    if (userType === "customer") {
+      return userLoads.filter((el: any) => el?.status === "onRoad").length;
+    } else {
+      return userTrucks.filter((el: any) => el?.status === "onRoad").length;
     }
-  }
+  };
   const deliveredLoads = () => {
-    if(userType === 'customer'){
-      return  userLoads.filter ((el:any) => el?.status === 'delivered').length
-    }else{
-      return userTrucks.filter ((el:any) => el?.status === 'delivered').length
+    if (userType === "customer") {
+      return userLoads.filter((el: any) => el?.status === "delivered").length;
+    } else {
+      return userTrucks.filter((el: any) => el?.status === "delivered").length;
     }
-  
-  }
+  };
   const paidLoads = () => {
-    if(userType === 'customer'){
-      return  userLoads.filter ((el:any) => el?.status === 'paid').length
-    }else{
-      return  userTrucks.filter ((el:any) => el?.status === 'paid').length
+    if (userType === "customer") {
+      return userLoads.filter((el: any) => el?.status === "paid").length;
+    } else {
+      return userTrucks.filter((el: any) => el?.status === "paid").length;
     }
- 
-  }
+  };
 
   const dynamicStatisticTitle = useMemo(() => {
     switch (pathname) {
@@ -106,7 +104,6 @@ const StatisticsTop: React.FC = () => {
         >
           {dynamicStatisticTitle.title}
         </m.h4>
-       
       </div>
       <div className="statistics">
         <div className="flex flex-col md:flex-row justify-between md:justify-start md:items-center md:gap-10 gap-2">
@@ -115,7 +112,11 @@ const StatisticsTop: React.FC = () => {
               <BsFillBoxFill />
             </div>
             <div className=" md:block flex items-center gap-2">
-              <h4 className="text-[25px]">{userType === 'customer' ? userLoads?.length : userTrucks?.length}</h4>
+              <h4 className="text-[25px]">
+                {userType === "customer"
+                  ? userLoads?.length
+                  : userTrucks?.length}
+              </h4>
               <p className="text-[14px] text-gray-500">
                 Ընդհանուր{" "}
                 <span>
@@ -152,7 +153,6 @@ const StatisticsTop: React.FC = () => {
               <p className="text-[14px] text-gray-500">Վճարված</p>
             </div>
           </div>
-
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import {
   updateUser,
   passRecovery,
   changeEmail,
+  workersSalary,
 } from "./asyncThunk";
 import { LogOutUser } from "../utils/helpers";
 
@@ -57,6 +58,9 @@ let initialState: any = {
     parent: "",
   },
   userSubs: [],
+  statistic: {
+    workers: [],
+  },
 };
 
 const customerSlice = createSlice({
@@ -120,6 +124,9 @@ const customerSlice = createSlice({
       })
       .addCase(changeEmail.fulfilled, (state, { payload }) => {
         state.user = payload;
+      })
+      .addCase(workersSalary.fulfilled, (state, { payload }) => {
+        state.statistic.workers = payload;
       });
   },
 });

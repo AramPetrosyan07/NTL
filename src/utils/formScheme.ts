@@ -70,8 +70,8 @@ export const addLoadsSchema = yup.object().shape({
     .string()
     .required("Խնդրում ենք նշել բեռի տեսակը")
     .oneOf(["ամբողջական", "հավաքական"], "Խնդրում ենք նշել բեռի տեսակը"),
-  pickup: yup.string().required("Խնդրում ենք նշել բարձման վայրը"),
-  delivery: yup.string().required("Խնդրում ենք նշել դատարկման վայրը"),
+  // pickup: yup.string().required("Խնդրում ենք նշել բարձման վայրը"),
+  // delivery: yup.string().required("Խնդրում ենք նշել դատարկման վայրը"),
   length: yup.number(),
   weight: yup.number(),
   rate: yup.number(),

@@ -1,7 +1,6 @@
 export const topDealUsers = [
   {
     id: 1,
-    img: "https://images.pexels.com/photos/8405873/pexels-photo-8405873.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     username: "Elva McDonald",
     email: "elva@gmail.com",
     amount: "3.668",
@@ -53,18 +52,18 @@ export const topDealUsers = [
 export const chartBoxUser = {
   color: "#8884d8",
   icon: "/userIcon.svg",
-  title: "Total Users",
+  title: "Աշխատակիցներ",
   number: "11.238",
   dataKey: "users",
   percentage: 45,
   chartData: [
-    { name: "Sun", users: 400 },
-    { name: "Mon", users: 600 },
-    { name: "Tue", users: 500 },
-    { name: "Wed", users: 700 },
-    { name: "Thu", users: 400 },
-    { name: "Fri", users: 500 },
-    { name: "Sat", users: 450 },
+    { users: 3 },
+    { users: 4 },
+    { users: 7 },
+    { users: 10 },
+    // { name: "Thu", users: 400 },
+    // { name: "Fri", users: 500 },
+    // { name: "Sat", users: 450 },
   ],
 };
 
