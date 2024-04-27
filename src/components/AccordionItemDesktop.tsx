@@ -1,4 +1,4 @@
-import { CutString, checkLengthOfValue } from "../utils/Check";
+import { CutString, checkLengthOfValue } from "../utils/Tools";
 import {
   Accordion,
   AccordionBody,
@@ -68,11 +68,19 @@ const AccordionItemDesktop = ({
   }, [mydate]);
 
   const renderContactInformation = (main: any, sub: any): any => {
-    if (sub?.phoneNumber || main?.phoneNumber) {
+    if (sub?.phoneNumber) {
+      return <CallOptions contact={sub?.phoneNumber} />;
+    } else if (sub?.email) {
+      return (
+        <a href={`mailto:${sub ? sub?.email : main?.email}`}>
+          {sub ? sub?.email : main?.email}
+        </a>
+      );
+    } else if (main?.phoneNumber) {
       return (
         <CallOptions contact={sub ? sub?.phoneNumber : main?.phoneNumber} />
       );
-    } else {
+    } else if (sub?.email) {
       return (
         <a href={`mailto:${sub ? sub?.email : main?.email}`}>
           {sub ? sub?.email : main?.email}

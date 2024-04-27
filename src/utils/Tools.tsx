@@ -42,14 +42,46 @@ export function distanceToPrice(str: string): any {
   return undefined;
 }
 
-// export function extractNumberFromString(str: string): number | "" {
-//   const regex = /(\d{1,3}(,\d{3})*(\.\d+)?)/;
-//   if (str) {
-//     const match = str.match(regex);
+const chartBoxUser = {
+  color: "#8884d8",
+  icon: "/userIcon.svg",
+  title: "Աշխատակիցներ",
+  number: "11.238",
+  dataKey: "users",
+  percentage: 45,
+  chartData: [
+    { users: 3 },
+    { users: 4 },
+    { users: 7 },
+    { users: 2 },
+    // { name: "Thu", users: 400 },
+    // { name: "Fri", users: 500 },
+    // { name: "Sat", users: 450 },
+  ],
+};
 
-//     if (match) {
-//       return Math.floor(parseFloat(match[0].replace(/,/g, "")));
-//     }
-//   }
-//   return "";
-// }
+interface IchartBox {
+  color: string;
+  title: string;
+  number: string | number;
+  dataKey: string;
+  percentage?: number | string;
+  chartData: object[];
+}
+export const chartBoxGen = ({
+  color,
+  title,
+  number,
+  dataKey,
+  percentage,
+  chartData,
+}: IchartBox) => {
+  return {
+    color: color,
+    title: title,
+    number: number,
+    dataKey: dataKey,
+    percentage: percentage,
+    chartData: chartData,
+  };
+};

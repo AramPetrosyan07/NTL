@@ -3,7 +3,7 @@ import { AiOutlineClockCircle, AiOutlineCalendar } from "react-icons/ai";
 import { BsTruck } from "react-icons/bs";
 import { BsRecordCircle, BsArrowUpRight } from "react-icons/bs";
 import { HiLocationMarker } from "react-icons/hi";
-import { CutString, checkLengthOfValue } from "../utils/Check";
+import { CutString, checkLengthOfValue } from "../utils/Tools";
 import CallOptions from "./CallOptions";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion as m } from "framer-motion";

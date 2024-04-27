@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Notification from "./Notification";
 import { notificationsData } from "../../data/notificationData";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Notifications: React.FC = () => {
   const [data, setData] = useState(notificationsData);
+  const { user } = useTypedSelector((state) => state.user);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { pathname } = location;
+
+  useEffect(() => {
+    if (user.userType.toLowerCase().includes("sub")) {
+      navigate("/admin/settings");
+    }
+  }, [pathname]);
 
   const handleChangeOpenStatus = (id: any) => {
     const currentNotification = notificationsData.filter(

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { CutString, checkLengthOfValue } from "../utils/Check";
+import { CutString, checkLengthOfValue } from "../utils/Tools";
 import { HiArrowRight } from "react-icons/hi";
 import CallOptions from "./CallOptions";
 import { Link } from "react-router-dom";

@@ -19,7 +19,7 @@ import DetectCurrentUserType from "../../utils/detectUserType";
 import { Coords } from "google-map-react";
 import ToInput from "../autocompleteInput/ToInput";
 import { Map } from "../Map";
-import { distanceToPrice } from "../../utils/Check";
+import { distanceToPrice } from "../../utils/Tools";
 
 export default function AddItems() {
   const [isVisible, setIsVisible] = useState(false);

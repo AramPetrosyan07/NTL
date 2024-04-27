@@ -2,15 +2,14 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import "../../../styles/pieChartBox.scss";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 
-const data = [
-  { name: "Բեռներ", value: 13, color: "#0088FE" },
-  { name: "Ճանապարհին", value: 8, color: "#00C49F" },
-  { name: "Դատարկված", value: 3, color: "#FFBB28" },
-  { name: "Չեղարկված", value: 2, color: "#FF8042" },
-];
-
-const PieChartBox = () => {
+const PieChartBox = (props: any) => {
   const { user } = useTypedSelector((state) => state.user);
+  const data = [
+    { name: "Բեռներ", value: props.open, color: "#0088FE" },
+    { name: "Ճանապարհին", value: props.onRoad, color: "#00C49F" },
+    { name: "Դատարկված", value: props.delivered, color: "#FFBB28" },
+    { name: "Վճարված", value: props.paid, color: "#FF8042" },
+  ];
 
   function CutString(inputString: string): string {
     if (inputString.length > 5) {

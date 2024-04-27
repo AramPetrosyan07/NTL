@@ -47,7 +47,7 @@ export const topDealUsers = [
     email: "angel@gmail.com",
     amount: "1.560",
   },
-];
+]; // ok
 
 export const chartBoxUser = {
   color: "#8884d8",
@@ -56,15 +56,7 @@ export const chartBoxUser = {
   number: "11.238",
   dataKey: "users",
   percentage: 45,
-  chartData: [
-    { users: 3 },
-    { users: 4 },
-    { users: 7 },
-    { users: 10 },
-    // { name: "Thu", users: 400 },
-    // { name: "Fri", users: 500 },
-    // { name: "Sat", users: 450 },
-  ],
+  chartData: [{ users: 3 }, { users: 4 }, { users: 7 }, { users: 2 }],
 };
 
 export const chartBoxProduct = {
@@ -84,6 +76,7 @@ export const chartBoxProduct = {
     { name: "Sat", products: 450 },
   ],
 };
+
 export const chartBoxRevenue = {
   color: "teal",
   icon: "/revenueIcon.svg",

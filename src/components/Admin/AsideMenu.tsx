@@ -45,7 +45,11 @@ const AsideMenu = () => {
       <nav className="w-full h-full md:border-r-2 border-r-0">
         <ul className="flex flex-col">
           {navigation.map((el) => {
-            if (user.userType === "subCustomer" && el.id === 3) return null;
+            if (
+              (user.userType === "subCustomer" && el.id === 3) ||
+              (user.userType === "subCustomer" && el.id === 2)
+            )
+              return null;
             return (
               <li
                 className={`  ${pathname == el.fullPath ? "active-link" : ""}`}

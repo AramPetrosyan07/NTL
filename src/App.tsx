@@ -38,6 +38,14 @@ function App() {
     authMeFn();
   }, []);
 
+  //
+  //
+  // sub eri statistic, notification front, i18next, light dark, statistic fix
+  //
+  //
+  //
+  //
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>

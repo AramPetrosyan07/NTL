@@ -57,8 +57,8 @@ const Notification = ({
             className="w-full lg:w-[70%] h-full font-semibold  flex flex-col justify-between items-start pl-4"
             onClick={toggleDetails}
           >
-            <h4>Customer's support team</h4>
-            <h4 className="text-sm">{title}</h4>
+            <h4>{title}</h4>
+            {/* <h4 className="text-sm">{title}</h4> */}
           </div>
           <div className="w-full lg:w-[30%] h-full  flex md:flex-col flex-row md:justify-around justify-between items-end pl-4 md:pr-4 pr-0 font-light">
             <div className="">{getCurrentDateTime()}</div>

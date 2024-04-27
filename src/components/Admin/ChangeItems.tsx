@@ -5,7 +5,10 @@ import { FiX } from "react-icons/fi";
 import { updateLoadsSchema } from "../../utils/formScheme";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useTypedDispatch } from "../../hooks/useTypedSelector";
+import {
+  useTypedDispatch,
+  useTypedSelector,
+} from "../../hooks/useTypedSelector";
 import Toast from "../../UI/UIToast";
 import {
   deleteItemThunk,
@@ -42,6 +45,9 @@ const ChangeItems = ({
   const dispatch = useTypedDispatch();
   const { pathname } = useLocation();
   const ref = useRef<any>(null);
+  const { user } = useTypedSelector((state) => state.user);
+
+  console.log(user);
 
   // console.log(pickup, delivery);
 
@@ -72,14 +78,30 @@ const ChangeItems = ({
     } else if (userType === "carrier" && data.status === "delete") {
       dispatch(deleteTruckThunk({ id: _id }));
     } else if (userType === "customer" && data.status !== "delete") {
-      dispatch(updateNewItemThunk({ ...data, fromInfo, toInfo, id: _id }));
+      dispatch(
+        updateNewItemThunk({
+          ...data,
+          fromInfo,
+          toInfo,
+          id: _id,
+          userType: user.userType,
+        })
+      );
       setIsDisabled(true);
       setIsVisible(true);
       setTimeout(() => {
         setIsVisible(false);
       }, 3000);
     } else if (userType === "carrier" && data.status !== "delete") {
-      dispatch(updateNewTruckThunk({ ...data, fromInfo, toInfo, id: _id }));
+      dispatch(
+        updateNewTruckThunk({
+          ...data,
+          fromInfo,
+          toInfo,
+          id: _id,
+          userType: user.userType,
+        })
+      );
       setIsDisabled(true);
       setIsVisible(true);
       setTimeout(() => {

@@ -3,17 +3,15 @@ import "../../../styles/topBox.scss";
 import { topDealUsers } from "../../../data/data";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 
-const TopBox = () => {
-  const { statistic } = useTypedSelector((state) => state.user);
-
+const TopBox = ({ workers }: any) => {
   return (
     <div className="topBox">
       <h1>Աշխատակիցներ</h1>
       <div className="list">
-        {statistic?.workers?.map((user: any) => (
+        {workers?.map((user: any, i: number) => (
           <div
             className="listItem"
-            key={user.id}
+            key={i}
             title={`ընդհանուր աշխատած գումարը $${user.amount}`}
           >
             <div className="user">
