@@ -426,11 +426,11 @@ export const changeMail = createAsyncThunk<any, any>(
   }
 );
 
-export const allStatistic = createAsyncThunk<any>(
+export const allStatistic = createAsyncThunk<any, any>(
   "customerSlice/workersSalary",
-  async () => {
+  async (data) => {
     try {
-      const res = await axios.get(`user/statistics`);
+      const res = await axios.post(`user/statistics`, data);
       console.log(res);
 
       return res.data;

@@ -124,7 +124,6 @@ const AdminAside: React.FC = () => {
       <button
         className=" text-white outline-none bg-inherit z-50"
         onClick={toggleMenu}
-        ref={menuRef}
       >
         {isMenuOpen ? (
           <AiOutlineClose size={36} />
@@ -138,6 +137,7 @@ const AdminAside: React.FC = () => {
         )}
       </button>
       <aside
+        ref={menuRef}
         className={`admin-mobile-menu fixed top-0  right-0 h-full ${
           userType === "customer" ? "w-[280px]" : "w-[340px]"
         }  bg-[#141F20] shadow-lg transform ${
@@ -157,15 +157,17 @@ const AdminAside: React.FC = () => {
             ) : (
               <>
                 {navItems.map((el) => (
-                  <li
+                  <Link
+                    to={el.to}
+                    onClick={() => toggleMenu()}
                     className={`flex items-center gap-4 h-16 pl-4  ${
                       pathname === el.to ? "active-link" : ""
                     }`}
                     key={el.id}
                   >
                     <div className="text-[24px]">{el.icon}</div>
-                    <Link to={el.to}>{el.title}</Link>
-                  </li>
+                    <div>{el.title}</div>
+                  </Link>
                 ))}
               </>
             )}

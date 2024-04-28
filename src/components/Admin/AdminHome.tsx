@@ -27,10 +27,8 @@ const Home = () => {
   console.log("up useeffect");
 
   useEffect(() => {
-    console.log("inside useeffect");
-    if (user.userType === "customer" || user.userType === "carrier") {
-      console.log("inside if");
-      dispatch(allStatistic());
+    if (user.userType) {
+      dispatch(allStatistic({ userType: user.userType }));
     }
   }, [user.userType]);
 

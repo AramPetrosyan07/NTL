@@ -27,7 +27,7 @@ const TeamMember = ({
   return (
     <>
       <tbody>
-        <tr className="border-b dark:border-neutral-500">
+        <tr className="border-b dark:border-neutral-500 bg-slate-200 dark:bg-slate-700">
           <td className="whitespace-nowrap px-6 py-4">{firstName}</td>
           <td className="whitespace-nowrap px-6 py-4">{lastName}</td>
           <td className="whitespace-nowrap px-6 py-4">{email}</td>

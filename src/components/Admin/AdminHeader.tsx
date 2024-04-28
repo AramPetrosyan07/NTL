@@ -10,19 +10,20 @@ import { carrierNavItems } from "../../constants/NavItems";
 import { motion as m } from "framer-motion";
 import DetectCurrentUserType from "../../utils/detectUserType";
 import UILoader from "../../UI/UILoader";
+import ModeSwitcher from "../ModeSwitcher";
 
 const staggerChildren = 0.5;
 const baseDuration = 0.3;
 
 const calculateDuration = (index: number) => {
-
-  return baseDuration + index * 0.5; 
+  return baseDuration + index * 0.5;
 };
 const AdminHeader = () => {
   const [loading, setLoading] = useState(false);
   const [activeUserNav, setActiveUserNav] = useState<NavItemsProps[]>([]);
   const { pathname } = useLocation();
   const userType = DetectCurrentUserType();
+  const [changedMode, setIsChangedMode] = useState<boolean>(false);
 
   const handleNav = () => {
     if (userType === "customer") {
@@ -105,6 +106,10 @@ const AdminHeader = () => {
         </nav>
 
         <div className="flex items-center  gap-4">
+          <ModeSwitcher
+            setIsChangedMode={setIsChangedMode}
+            colorMoon={"text-white"}
+          />
           <div className=" font-bold text-sm">
             <ul className="flex  gap-2">
               <li className="active cursor-pointer">Հայ</li>

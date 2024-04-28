@@ -4,9 +4,13 @@ import { HiOutlineMoon } from "react-icons/hi";
 
 interface ChangedModsProps {
   setIsChangedMode: (props: boolean) => void;
+  colorMoon?: string;
 }
 
-const ModeSwitcher: React.FC<ChangedModsProps> = ({ setIsChangedMode }) => {
+const ModeSwitcher: React.FC<ChangedModsProps> = ({
+  setIsChangedMode,
+  colorMoon = "text-black",
+}) => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const storedTheme = localStorage.getItem("theme");
     return storedTheme === "dark";
@@ -18,6 +22,7 @@ const ModeSwitcher: React.FC<ChangedModsProps> = ({ setIsChangedMode }) => {
 
   useEffect(() => {
     const element = document.documentElement;
+    console.log(element);
 
     if (isDarkMode) {
       element.classList.add("dark");
@@ -46,13 +51,16 @@ const ModeSwitcher: React.FC<ChangedModsProps> = ({ setIsChangedMode }) => {
   }, []);
 
   return (
-    <div className="text-[20px] flex justify-center items-center h-full" onClick={toggleDarkMode}>
+    <div
+      className="text-[20px] flex justify-center items-center h-full"
+      onClick={toggleDarkMode}
+    >
       {isDarkMode ? (
         <span className="cursor-pointer text-yellow-500">
           <FiSun />
         </span>
       ) : (
-        <span className="cursor-pointer text-black">
+        <span className={`cursor-pointer ${colorMoon}`}>
           <HiOutlineMoon />
         </span>
       )}

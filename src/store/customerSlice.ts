@@ -59,12 +59,76 @@ let initialState: any = {
   },
   userSubs: [],
   statistic: {
-    workers: [],
-    user: [],
-    loadCount: [],
-    loadPrice: [],
-    income: [],
-    loadStatistic: [],
+    workers: [
+      {
+        username: "",
+        email: "",
+        amount: 0,
+        amountPerMonth: 0,
+      },
+    ],
+    user: [
+      {
+        users: 0,
+      },
+      {
+        users: 0,
+      },
+      {
+        users: 0,
+      },
+      {
+        users: 0,
+      },
+    ],
+    loadCount: [
+      {
+        loadCount: 0,
+      },
+      {
+        loadCount: 0,
+      },
+      {
+        loadCount: 0,
+      },
+      {
+        loadCount: 0,
+      },
+    ],
+    loadPrice: [
+      {
+        rate: 0,
+      },
+      {
+        rate: 0,
+      },
+      {
+        rate: 0,
+      },
+      {
+        rate: 0,
+      },
+    ],
+    income: [
+      {
+        rate: 0,
+      },
+      {
+        rate: 0,
+      },
+      {
+        rate: 0,
+      },
+      {
+        rate: 0,
+      },
+    ],
+    loadStatistic: {
+      open: 1,
+      onRoad: 1,
+      delivered: 1,
+      paid: 1,
+    },
   },
   statLoading: true,
 };
