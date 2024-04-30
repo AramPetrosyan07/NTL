@@ -88,7 +88,7 @@ const AccordionItemDesktop = ({
       );
     }
   };
-
+  //
   return (
     <>
       <Accordion className="lg:block hidden" as="div">

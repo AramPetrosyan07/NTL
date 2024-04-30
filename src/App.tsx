@@ -52,7 +52,7 @@ function App() {
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" index element={<Dashboard />} />
         <Route path="/trucks" element={<TrucksBoard />} />
-        <Route path="/testInput" element={<TestInput />} />
+        {/* <Route path="/testInput" element={<TestInput />} /> */}
 
         {/* <Route
           path="/admin"

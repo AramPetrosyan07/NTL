@@ -33,11 +33,11 @@ const AdminPannel = () => {
   }, [userType]);
 
   return (
-    <section className="w-full bg-[#f1f5f9]">
+    <section className="w-full bg-[#f1f5f9] dark:bg-black dark:text-slate-200">
       <Helmet>
         <title>Իմ էջը</title>
       </Helmet>
-      <div className=" mx-auto max-w-[2000px] bg-slate-100 dark:bg-slate-100 min-h-screen">
+      <div className=" mx-auto max-w-[2000px] dark:bg-black dark:text-slate-200 min-h-screen">
         <AdminHeader />
         {!pathname.includes("/admin/settings") && <StatisticsTop />}
         <Outlet />

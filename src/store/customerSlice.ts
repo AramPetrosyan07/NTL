@@ -9,6 +9,8 @@ import {
   passRecovery,
   changeEmail,
   allStatistic,
+  getNotification,
+  openNotification,
 } from "./asyncThunk";
 import { LogOutUser } from "../utils/helpers";
 
@@ -131,6 +133,7 @@ let initialState: any = {
     },
   },
   statLoading: true,
+  notifications: [],
 };
 
 const customerSlice = createSlice({
@@ -159,6 +162,38 @@ const customerSlice = createSlice({
         lockoutUntil: null,
         parent: "",
       };
+    },
+    openNotificationReducer: (state, action) => {
+      const { id, pin } = action.payload;
+      state.notifications = state.notifications.map((notification: any) => {
+        if (notification._id === id) {
+          return { ...notification, opened: true };
+        }
+        return notification;
+      });
+    },
+    pinNotificationReducer: (state, action) => {
+      const { id, pin } = action.payload;
+      let update = state.notifications.map((notification: any) => {
+        if (notification._id === id) {
+          return { ...notification, pin: !pin };
+        }
+        return notification;
+      });
+
+      let pined = update.filter((item: any) => item.pin);
+      let unpin = update.filter((item: any) => !item.pin);
+
+      state.notifications = [...pined, ...unpin];
+    },
+
+    deleteNotificationReducer: (state, action) => {
+      const { id } = action.payload;
+      state.notifications = state.notifications.filter((item: any) => {
+        if (item._id !== id) {
+          return item;
+        }
+      });
     },
   },
   extraReducers: (builder) => {
@@ -198,10 +233,21 @@ const customerSlice = createSlice({
       .addCase(allStatistic.fulfilled, (state, { payload }) => {
         state.statistic = payload;
         state.statLoading = false;
+      })
+      .addCase(getNotification.fulfilled, (state, { payload }) => {
+        let pin = payload.filter((item: any) => item.pin);
+        let unpin = payload.filter((item: any) => !item.pin);
+
+        state.notifications = [...pin, ...unpin];
       });
   },
 });
 
-export const { removeUser } = customerSlice.actions;
+export const {
+  removeUser,
+  openNotificationReducer,
+  pinNotificationReducer,
+  deleteNotificationReducer,
+} = customerSlice.actions;
 
 export default customerSlice.reducer;

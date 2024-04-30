@@ -1,5 +1,8 @@
 @import "./variables.scss";
 @import "./responsive.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .home {
  
@@ -26,7 +29,8 @@
   .box {
     padding: 20px;
     border-radius: 10px;
-    border: 2px solid $soft-bg;
+    // border: 2px solid $soft-bg;
+    @apply border-[2px] border-[#c8cdd5] dark:border-gray-500
   }
 
   .box1 {

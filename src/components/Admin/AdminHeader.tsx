@@ -23,7 +23,7 @@ const AdminHeader = () => {
   const [activeUserNav, setActiveUserNav] = useState<NavItemsProps[]>([]);
   const { pathname } = useLocation();
   const userType = DetectCurrentUserType();
-  const [changedMode, setIsChangedMode] = useState<boolean>(false);
+  // const [changedMode, setIsChangedMode] = useState<boolean>(false);
 
   const handleNav = () => {
     if (userType === "customer") {
@@ -107,7 +107,7 @@ const AdminHeader = () => {
 
         <div className="flex items-center  gap-4">
           <ModeSwitcher
-            setIsChangedMode={setIsChangedMode}
+            // setIsChangedMode={setIsChangedMode}
             colorMoon={"text-white"}
           />
           <div className=" font-bold text-sm">

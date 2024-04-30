@@ -1,12 +1,12 @@
 import ChartBox from "./statistic/ChartBox";
 import PieChartBox from "./statistic/PieChartBox";
 import TopBox from "./statistic/TopBox";
-import {
-  chartBoxConversion,
-  chartBoxProduct,
-  chartBoxRevenue,
-  chartBoxUser,
-} from "../../data/data";
+// import {
+//   chartBoxConversion,
+//   chartBoxProduct,
+//   chartBoxRevenue,
+//   chartBoxUser,
+// } from "../../data/data";
 
 import "../../styles/home.scss";
 import {
@@ -40,29 +40,13 @@ const Home = () => {
     }
   };
 
-  // console.log(
-  //   chartBoxGen({
-  //     color: "#8884d8",
-  //     title: "Աշխատակիցներ",
-  //     number: statistic?.user?.at(-1)?.users,
-  //     dataKey: "users",
-  //     percentage: percent(
-  //       statistic?.user?.at(-1)?.users as number,
-  //       statistic?.user?.at(0)?.users as number
-  //     ),
-  //     chartData: statistic.user,
-  //   })
-  // );
-
-  // console.log(statistic?.user?.at(-1));
-
   return (
     <>
       {statLoading ? (
         <div>loading</div>
       ) : (
-        <div className="home ">
-          <div className="box box1">
+        <div className="home bg-[#f1f5f9] dark:bg-black dark:text-slate-200">
+          <div className="box box1 ">
             <TopBox workers={statistic.workers} />
           </div>
           <div className="box box2">

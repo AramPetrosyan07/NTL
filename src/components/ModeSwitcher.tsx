@@ -3,7 +3,7 @@ import { FiSun } from "react-icons/fi";
 import { HiOutlineMoon } from "react-icons/hi";
 
 interface ChangedModsProps {
-  setIsChangedMode: (props: boolean) => void;
+  setIsChangedMode?: (props: boolean) => void;
   colorMoon?: string;
 }
 
@@ -28,12 +28,16 @@ const ModeSwitcher: React.FC<ChangedModsProps> = ({
       element.classList.add("dark");
       document.body.classList.add("darkMode");
       localStorage.setItem("theme", "dark");
-      setIsChangedMode(true);
+      if (setIsChangedMode) {
+        setIsChangedMode(true);
+      }
     } else {
       element.classList.remove("dark");
       document.body.classList.remove("darkMode");
       localStorage.removeItem("theme");
-      setIsChangedMode(false);
+      if (setIsChangedMode) {
+        setIsChangedMode(false);
+      }
     }
   }, [isDarkMode]);
 

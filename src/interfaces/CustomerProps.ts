@@ -13,7 +13,7 @@ export interface CustomerProps {
   paymentDuration?: number | null;
   about?: string;
   planType?: string;
-  notification?: any; // You can use a specific type for notifications if needed
+  notification?: any;
   isVerified: boolean;
   failedLoginAttempts: number | null;
   lockoutUntil: Date | null;

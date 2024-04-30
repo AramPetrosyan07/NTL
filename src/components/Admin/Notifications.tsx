@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Notification from "./Notification";
 import { notificationsData } from "../../data/notificationData";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
+import {
+  useTypedDispatch,
+  useTypedSelector,
+} from "../../hooks/useTypedSelector";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getNotification } from "../../store/asyncThunk";
 
 const Notifications: React.FC = () => {
-  const [data, setData] = useState(notificationsData);
-  const { user } = useTypedSelector((state) => state.user);
+  const { user, notifications } = useTypedSelector((state) => state.user);
+  const dispatch = useTypedDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const { pathname } = location;
@@ -17,32 +21,19 @@ const Notifications: React.FC = () => {
     }
   }, [pathname]);
 
-  const handleChangeOpenStatus = (id: any) => {
-    const currentNotification = notificationsData.filter(
-      (el: any) => el.id == id
-    );
-    currentNotification.isOpened = true;
-  };
-  const handleDeleteNotification = (id: number) => {
-    const updatedNotifications = data.filter(
-      (notification: any) => notification.id !== id
-    );
-    setData(updatedNotifications);
-  };
+  useEffect(() => {
+    if (!notifications.length) {
+      dispatch(getNotification());
+    }
+  }, []);
+
   return (
     <div className="container mx-auto mt-8">
       <div>
-        {notificationsData.length ? (
+        {notifications.length ? (
           <div className="flex flex-col gap-2">
-            {data.map((notification: string | any, index: string | null) => (
-              <Notification
-                key={index}
-                id={notification.id}
-                title={notification.title}
-                description={notification.description}
-                handleChangeOpenStatus={handleChangeOpenStatus}
-                handleDeleteNotification={handleDeleteNotification}
-              />
+            {notifications.map((notification: any, index: number) => (
+              <Notification key={index} notification={notification} />
             ))}
           </div>
         ) : (

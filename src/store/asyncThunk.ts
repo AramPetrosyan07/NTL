@@ -440,3 +440,62 @@ export const allStatistic = createAsyncThunk<any, any>(
     }
   }
 );
+
+export const getNotification = createAsyncThunk<any>(
+  "customerSlice/getNotification",
+  async () => {
+    try {
+      const res = await axios.get(`notification/getNotification`);
+
+      return res.data;
+    } catch (error: any) {
+      console.log(error?.response?.data?.message);
+      return error?.response?.data?.message;
+    }
+  }
+);
+
+export const openNotification = createAsyncThunk<any, any>(
+  "customerSlice/openNotification",
+  async (data) => {
+    try {
+      const res = await axios.post(`notification/openNotification`, data);
+
+      return res.data;
+    } catch (error: any) {
+      console.log(error?.response?.data?.message);
+      return error?.response?.data?.message;
+    }
+  }
+);
+
+export const pinNotification = createAsyncThunk<any, any>(
+  "customerSlice/openNotification",
+  async (data) => {
+    try {
+      const res = await axios.post(`notification/pinNotification`, data);
+      console.log(res);
+
+      return res.data;
+    } catch (error: any) {
+      console.log(error?.response?.data?.message);
+      return error?.response?.data?.message;
+    }
+  }
+);
+
+export const deleteNotification = createAsyncThunk<any, any>(
+  "customerSlice/deleteNotification",
+  async (data) => {
+    try {
+      console.log(data);
+
+      const res = await axios.post(`notification/deleteNotification`, data);
+
+      return res.data;
+    } catch (error: any) {
+      console.log(error?.response?.data?.message);
+      return error?.response?.data?.message;
+    }
+  }
+);
