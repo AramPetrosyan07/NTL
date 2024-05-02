@@ -52,7 +52,11 @@ const AsideMenu = () => {
               return null;
             return (
               <li
-                className={`  ${pathname == el.fullPath ? "active-link" : ""}`}
+                className={`  ${
+                  pathname == el.fullPath
+                    ? " bg-blue-300 dark:bg-neutral-800"
+                    : ""
+                }`}
                 key={el.id}
               >
                 <Link

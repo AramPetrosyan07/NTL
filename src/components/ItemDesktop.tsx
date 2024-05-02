@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Loader from "./Loader";
 import AccordionItemDesktop from "./AccordionItemDesktop";
 import { getLoadThunk, getTruckThunk } from "../store/asyncThunk";
 import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
@@ -10,11 +9,10 @@ export default function ItemDesktop({ boardType }: any) {
   const [next, setNext] = useState<number>(itemsPerRow);
   // const [loadData, setLoadData] = useState<LoadProps[] | TruckProps[]>([]);
   const dispatch = useTypedDispatch();
-  const { load, filteredLoads, isLoading, isEmpty } = useTypedSelector(
+  const { load, filteredLoads, isLoading, isEmpty, message } = useTypedSelector(
     (state) => state.load
   );
-  const { truck, filteredTrucks, isLoadingTruck, isEmptyTruck } =
-    useTypedSelector((state) => state.truck);
+  const { truck, filteredTrucks } = useTypedSelector((state) => state.truck);
   const { pathname } = useLocation();
 
   console.log(load);
@@ -47,11 +45,7 @@ export default function ItemDesktop({ boardType }: any) {
   return (
     <>
       <div>
-        {isLoading ? (
-          <div className="w-full h-[calc(100vh-110px)]  flex justify-center items-center">
-            <Loader />
-          </div>
-        ) : isEmpty ? (
+        {message ? (
           <p className="w-full h-[calc(100vh-110px)]  flex justify-center items-center">
             Բեռներ չի գտնվել
           </p>

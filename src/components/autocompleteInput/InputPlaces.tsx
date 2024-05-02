@@ -88,7 +88,7 @@ const InputPlaces: React.FC<IInputPlaces> = ({
               return (
                 <div
                   {...getSuggestionItemProps(suggestion, {
-                    className: cn("cursor-pointer p-3", {
+                    className: cn("cursor-pointer p-3 autocomplate", {
                       "bg-gray-100": suggestion.active,
                       "bg-white": !suggestion.active,
                     }),

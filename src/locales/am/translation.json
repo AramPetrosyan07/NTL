@@ -1,5 +1,109 @@
 {
-    "home": {
-        "title":"Monitor your business"
+    "dashboard":{
+        "or":"օր",
+        "tm":"տ/մ",
+        "ah":"ա/հ",
+        "pickup":"բարձում",
+        "delivery":"բեռնաթափում",
+        "distance":"հեռավ.",
+        "company":"պատվիրատու",
+        "contact":"կոնտակտ",
+        "volume":"ծավալ",
+        "weight":"քաշ",
+        "price":"գին",
+
+        "Delivery_day":"Բարձման օր",
+        "TM":"Տ/Մ",
+        "Pickup":"Բարձում",
+        "Delivery":"Բեռնաթափում",
+        "AH":"Ա/Հ",
+        "volumeM":"Ծավալ մ³",
+        "weightKG":"Քաշ կգ",
+        "Prive":"Գին",
+        "burden":"Բեռը",
+        "comment":"Նշում",
+        "Payment":"Վճարում",
+
+        "search":"Որոնել",
+
+        "new":"թարմության",
+
+        "founded_load":"գտնված բեռներ",
+        "founded_trucks":"գտնված բեռնատարներ",
+
+        "predified_direction":"նախընտրելի ուղղ.",
+
+        "my_page":"Իմ էջը",
+        "Feedback":"Հետադարձ կապ",
+        "go_out":"Դուրս գալ"
+    },
+    "admin":{
+        "main":"Գլխավոր",
+        "add_load":"Ավելացնել բեռներ",
+        "change_load":"Փոփոխել բեռները",
+        "settings":"Կարգավորումներ",
+
+        "hello":"Ողջույն",
+        "General_load":"Ընդհանուր բեռներ",
+        "onRoad":"Ճանապարհին",
+        "Empty":"Դատարկված",
+        "paid":"Վճարված",
+        
+        "workers":"Աշխատակիցներ",
+        "Sold_loads":"Վաճառված բեռներ",
+        "Total_cargo_price":"Ընդհանուր բեռներ գինը",
+        "Income:":"Եկամուտ",
+        "Cargo_statistics":"Բեռների վիճակագրություն"
+    },
+    "add_item":{
+        "truck_type":"Բեռնատարի տեսակ",
+        "Pickup":"Բարձում",
+        "Delivery":"Բեռնաթափում",
+        "burden_vloumeM":"Բեռի ծավալ մ³",
+        "burden_weight_kg":"Բեռի քաշ կգ",
+        "Complete_collective":"Ամբողջական/հավաքական",
+        "burden_type":"Ապրանքի տեսակ",
+        "Additional_information":"Հավելյալ ինֆումացիա",
+
+        "cancel":"Չեղարկել",
+        "add":"Ավելացնել"
+    },
+    "settings":{
+        "my_page":"Իմ էջը",
+        "notification":"Ծանուցումներ",
+        "workers":"Աշխատակիցներ",
+        "security":"Անվտանգություն",
+        "company_name":"Ընկերության անվանումը",
+        "email":"Էլ-հասցե",
+        "address":"Հասցե",
+        "user_type":"Գործունեության տեսակը",
+        "web_site":"Վեբ կայք",
+        "phone":"Հեռախուսահամար",
+        
+        "payment_system":"Վճարային համակարգ",
+        "payment_way":"Վճարման եղանակ",
+        "delay":"Տևողություն",
+
+        "about_company":"Կարճ ընկերության մասին",
+
+        "pay_load":"Բեռնափոխադրումը վճարված է",
+        "worker":"Աշխատակից",
+        "Direction":"ՈՒղղություն",
+        "burden_type":"Ապրանքի տեսակ",
+        "Shipping_price":"Բեռնափոխադրման գինը",
+
+        "team_member_count":"Թիմի անդամների քանակը",
+        "name":"անուն",
+        "surname":"ազգանուն",
+        "delete":"ջնջել",
+
+        "change_pass":"Փոփոխել գաղտնաբառը",
+        "current_pass":"Ընթացիկ գաղտնաբառ",
+        "new_pass":"Նոր գաղտնաբառ",
+        "repeat_pass":"Կրկնել գաղտնաբառը",
+
+        "cancel":"Չեղարկել",
+        "save":"Պահպանել"
     }
+
 }

@@ -55,22 +55,12 @@ const ChangeItem: React.FC = ({}) => {
         </div>
         <div className="w-full sm:w-[48%] lg:w-[80px]"></div>
       </div>
-      {currentUserType === "customer" ? (
-        <>
-          {sortItems(userLoads).map((el: any) => (
-            <div key={el._id}>
-              <ChangeLoadItem {...el} />
-            </div>
-          ))}
-        </>
-      ) : (
-        <>
-          {sortItems(userTrucks).map((el: any) => (
-            <div key={el._id}>
-              <ChangeLoadItem {...el} />
-            </div>
-          ))}
-        </>
+      {sortItems(currentUserType === "customer" ? userLoads : userTrucks).map(
+        (el: any) => (
+          <div key={el._id}>
+            <ChangeLoadItem {...el} />
+          </div>
+        )
       )}
     </div>
   );

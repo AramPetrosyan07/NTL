@@ -295,6 +295,8 @@ export const getLoadThunk = createAsyncThunk<any>(
     try {
       const res = await axios.get(`load/get`);
       const data = res.data;
+      console.log(data);
+
       return data;
     } catch (error) {
       console.error("Error fetching truck data:", error);

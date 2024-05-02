@@ -119,11 +119,11 @@ export default function AddItems() {
           handleSubmit(onSubmit);
         }}
       >
-        <div className="space-y-12">
+        <div className="addItem bg-[#f1f5f9] dark:bg-black text-black dark:text-[#f1f5f9]  placeholder:text-red-400 placeholder-gray-500">
           <div className="border-b border-gray-900/10 pb-12">
             <div className="mt-10 grid grid-cols-1 gap-x-6 md:gap-y-4 gap-y-2 sm:grid-cols-6">
               <div className="sm:col-span-3">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Բարձում
                 </label>
                 <div className="mt-2">
@@ -132,7 +132,7 @@ export default function AddItems() {
               </div>
 
               <div className="sm:col-span-3">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   {user.userType === "customer" ||
                   user.userType === "subCustomer"
                     ? "Բեռնաթափում"
@@ -144,7 +144,7 @@ export default function AddItems() {
               </div>
 
               <div className="sm:col-span-3">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Բարձման օր
                 </label>
                 <div className="mt-2">
@@ -152,7 +152,7 @@ export default function AddItems() {
                     type="date"
                     id="date"
                     autoComplete="given-name"
-                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900 shadow-sm  focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
+                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5  shadow-sm  focus:ring-0  placeholder-gray-500  sm:text-sm sm:leading-6"
                     {...register("date")}
                   />
                   {errors.date && (
@@ -164,14 +164,14 @@ export default function AddItems() {
               </div>
 
               <div className="sm:col-span-3">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Բեռնատարի տեսակ
                 </label>
                 <div className="mt-2 relative">
                   <select
                     id="truck-type"
                     autoComplete="country-name"
-                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-[6px] text-gray-900  focus:ring-gray-300 placeholder:text-gray-400   sm:text-sm sm:leading-6 appearance-none"
+                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-[6px]   focus:ring-gray-300    sm:text-sm sm:leading-6 appearance-none"
                     {...register("truckType")}
                   >
                     <option value={"ռեֆ"}>ռեֆ</option>
@@ -190,7 +190,7 @@ export default function AddItems() {
                 </div>
               </div>
               <div className="sm:col-span-3">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   {currentUserType === "customer"
                     ? " Բեռի ծավալ մ³"
                     : " Բեռնատարի ծավալ մ³"}
@@ -201,14 +201,14 @@ export default function AddItems() {
                     id="length"
                     autoComplete="family-name"
                     placeholder="օր. 86"
-                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900  focus:ring-gray-300 placeholder:text-gray-400   sm:text-sm sm:leading-6"
+                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5   focus:ring-gray-300    sm:text-sm sm:leading-6"
                     {...register("length")}
                   />
                 </div>
               </div>
 
               <div className="sm:col-span-3">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   {currentUserType === "customer"
                     ? "Բեռի քաշ կգ"
                     : "Նախընտրելի քաշ կգ"}
@@ -219,20 +219,20 @@ export default function AddItems() {
                     id="weight"
                     placeholder="օր. 22000"
                     autoComplete="family-name"
-                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900 focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
+                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5  focus:ring-0    sm:text-sm sm:leading-6"
                     {...register("weight")}
                   />
                 </div>
               </div>
 
               <div className="sm:col-span-3">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Ամբողջական/հավաքական
                 </label>
                 <div className="mt-2 relative">
                   <select
                     id="type"
-                    className=" p-4  block w-full rounded-md border-[1px] border-slate-400 py-[6px] text-gray-900  focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6 appearance-none"
+                    className=" p-4  block w-full rounded-md border-[1px] border-slate-400 py-[6px]   focus:ring-0    sm:text-sm sm:leading-6 appearance-none"
                     {...register("type")}
                   >
                     <option value={"ամբողջական"}>ամբողջական</option>
@@ -249,7 +249,7 @@ export default function AddItems() {
                 </div>
               </div>
               <div className="sm:col-span-3">
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Գին
                 </label>
                 <div className="mt-2">
@@ -262,14 +262,14 @@ export default function AddItems() {
                         ? `նվազագույն գումարը ${fuelPrice}$`
                         : "օր. 3400"
                     }
-                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900  focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
+                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5   focus:ring-0    sm:text-sm sm:leading-6"
                     {...register("rate")}
                   />
                 </div>
               </div>
               {currentUserType === "customer" && (
                 <div className="sm:col-span-3 ">
-                  <label className="block text-sm font-medium leading-6 text-gray-900">
+                  <label className="block text-sm font-medium leading-6 ">
                     Ապրանքի տեսակ
                   </label>
                   <div className="mt-2">
@@ -278,7 +278,7 @@ export default function AddItems() {
                       id="commodity"
                       autoComplete="given-commodity"
                       placeholder="օր. գինի"
-                      className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900  focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
+                      className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5   focus:ring-0    sm:text-sm sm:leading-6"
                       {...register("commodity")}
                     />
                   </div>
@@ -292,7 +292,7 @@ export default function AddItems() {
                     : "sm:col-span-6"
                 } `}
               >
-                <label className="block text-sm font-medium leading-6 text-gray-900">
+                <label className="block text-sm font-medium leading-6 ">
                   Հավելյալ ինֆումացիա
                 </label>
                 <div className="mt-2">
@@ -301,7 +301,7 @@ export default function AddItems() {
                     id="comment"
                     autoComplete="comment"
                     placeholder="Նշեք հավելյալ ինֆումացիա` ըստ անհրաժեշտության"
-                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900  focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6"
+                    className="p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5   focus:ring-0    sm:text-sm sm:leading-6"
                     {...register("comment")}
                   />
                 </div>
@@ -313,7 +313,7 @@ export default function AddItems() {
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <button
             type="button"
-            className="rounded-md bg-inherit border-[1px] hover:bg-gray-400 px-3 py-2 text-sm text-gray-900 border-gray-400  hover:text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all"
+            className="rounded-md bg-inherit border-[1px] hover:bg-gray-400 px-3 py-2 text-sm  border-gray-400  hover:text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all"
             onClick={() => reset()}
           >
             Չեղարկել

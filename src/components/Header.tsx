@@ -6,10 +6,19 @@ import LoginBtn from "./LoginBtn";
 import ModeSwitcher from "./ModeSwitcher";
 import Search from "./Search";
 import { useTypedSelector } from "../hooks/useTypedSelector";
+import { useTranslation } from "react-i18next";
 
 export default function Header({ isDarkMode }: any) {
   const { user } = useTypedSelector((state) => state.user);
   const [changedMode, setIsChangedMode] = useState<boolean>(false);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguageHandler = (e: any) => {
+    console.log(e);
+
+    i18n.changeLanguage(e);
+  };
+  console.log(i18n.language);
 
   return (
     <header className="bg-gray-300 dark:bg-[#0E192D] h-16 md:px-4 px-2 flex relative">
@@ -33,8 +42,22 @@ export default function Header({ isDarkMode }: any) {
         <ModeSwitcher setIsChangedMode={setIsChangedMode} />
         <div>
           <ul className="flex  gap-2 dark:text-white font-bold text-sm">
-            <li className="active cursor-pointer">Հայ</li>
-            <li className="cursor-pointer ">Рус</li>
+            <li
+              className={`${
+                i18n.language === "am" ? "active" : ""
+              }  cursor-pointer`}
+              onClick={() => changeLanguageHandler("am")}
+            >
+              Հայ
+            </li>
+            <li
+              className={`${
+                i18n.language === "ru" ? "active" : ""
+              } cursor-pointer`}
+              onClick={() => changeLanguageHandler("ru")}
+            >
+              Рус
+            </li>
           </ul>
         </div>
         {user?.firstName?.length ? (

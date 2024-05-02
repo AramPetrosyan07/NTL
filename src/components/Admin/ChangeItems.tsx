@@ -125,24 +125,23 @@ const ChangeItems = ({
   const checkStatus = (status: string) => {
     switch (status) {
       case "open":
-        return "bg-slate-300";
+        return "bg-slate-300 dark:bg-slate-300";
       case "onRoad":
-        return "bg-green-200";
+        return "bg-green-200 dark:bg-green-200";
       case "delivered":
-        return "bg-blue-300";
+        return "bg-blue-300 dark:bg-opacity-80";
       case "paid":
-        return "bg-green-400";
+        return "bg-green-400 dark:bg-green-400";
     }
   };
 
+  // ${checkStatus(status)}
   return (
     <>
       <div
         ref={ref}
-        className={`w-full min-h-[50px] ${checkStatus(
-          status
-        )}  px-4 flex py-2 lg:py-4 flex-wrap lg:flex-nowrap justify-between items-center lg:gap-4 gap-y-[8px] 
-            text-sm`}
+        className="changeItem w-full min-h-[50px] px-4 flex py-2 lg:py-4 flex-wrap lg:flex-nowrap justify-between items-center lg:gap-4 gap-y-[8px]
+        text-sm"
       >
         <div className="date w-full sm:w-[48%] lg:w-[200px]  h-[40px]  flex items-center mb-[1px] md:mb-0">
           <input
@@ -161,9 +160,8 @@ const ChangeItems = ({
                 id="change-truck-type"
                 disabled={isDisabled}
                 autoComplete="country-name"
-                className={`${
-                  isDisabled ? "bg-[#D7DDE4]" : "bg-white"
-                } p-2 block w-full rounded-md border-0 py-[8px] text-gray-900  focus:ring-gray-300 placeholder:text-gray-400   sm:text-sm sm:leading-6 appearance-none`}
+                className={`p-2 block w-full rounded-md border-0 py-[8px] text-gray-900  focus:ring-gray-300   sm:text-sm sm:leading-6 appearance-none
+                bg-transparent`}
                 {...register("truckType")}
               >
                 <option value={"ռեֆ"} selected={truckType === "ռեֆ"}>
@@ -296,7 +294,7 @@ const ChangeItems = ({
         </div>
       </div>
       {!isDisabled && (
-        <div className="w-full lg:h-24 h-[120px] bg-slate-300 flex flex-col md:flex-row px-4 md:px-0 gap-y-2">
+        <div className="additionalInput w-full lg:h-24 h-[120px]  dark:bg-transparent flex flex-col md:flex-row px-4 md:px-0 gap-y-2">
           <div className="md:w-1/2 w-full h-full  md:p-4 md:pt-0 p-0">
             <p>մեկնաբանել</p>
             <input
@@ -308,7 +306,7 @@ const ChangeItems = ({
               {...register("comment")}
             />
           </div>
-          <div className="md:w-1/2 w-full h-full   md:p-4 md:pt-0 lg:pr-24 md:pr-4 pr-0">
+          <div className="md:w-1/2 w-full h-full md:p-4 md:pt-0 lg:pr-24 md:pr-4 pr-0">
             <p>ապրանք</p>
             <input
               type="text"
@@ -327,7 +325,7 @@ const ChangeItems = ({
         isVisible={isVisible}
         setIsVisible={setIsVisible}
       /> */}
-      <div className="btns-mobile  w-full h-full flex items-end justify-end pr-4 gap-6 bg-slate-300 border-b-[5px] border-white lg:py-0 py-4">
+      <div className="btns-mobile  w-full h-full flex items-end justify-end pr-4 gap-6 bg-gray-900 dark:bg-gray-900 border-b-[5px] border-white lg:py-0 py-4">
         <div
           className={`px-4 py-2 bg-blue-500 text-white rounded-md ${
             isDisabled ? "block lg:hidden" : "hidden"

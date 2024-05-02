@@ -145,12 +145,12 @@ const Profile = () => {
 
         <div className="h-full md:px-10 px-2 pb-3 flex flex-col gap-6 ">
           <div className="avatar relative">
-            <div className="w-full h-36 border-2 border-slate-300 rounded-xl flex flex-col justify-evenly items-center banner">
+            <div className="w-full h-36 border-2 border-slate-300 rounded-xl flex flex-col justify-evenly items-center banner dark:bannerDark">
               <div className="z-1 pointer-events-none">
                 <Avatar />
               </div>
 
-              <p className="md:text-[30px] text-[24px] font-bold">
+              <p className="md:text-[30px] text-[24px] font-bold dark:text-black">
                 {isSub ? user?.parent?.companyName : user?.companyName}
               </p>
               <div className="absolute right-4 top-4">

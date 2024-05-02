@@ -11,6 +11,7 @@ import { motion as m } from "framer-motion";
 import DetectCurrentUserType from "../../utils/detectUserType";
 import UILoader from "../../UI/UILoader";
 import ModeSwitcher from "../ModeSwitcher";
+import { useTranslation } from "react-i18next";
 
 const staggerChildren = 0.5;
 const baseDuration = 0.3;
@@ -24,6 +25,13 @@ const AdminHeader = () => {
   const { pathname } = useLocation();
   const userType = DetectCurrentUserType();
   // const [changedMode, setIsChangedMode] = useState<boolean>(false);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguageHandler = (e: any) => {
+    console.log(e);
+
+    i18n.changeLanguage(e);
+  };
 
   const handleNav = () => {
     if (userType === "customer") {
@@ -111,10 +119,20 @@ const AdminHeader = () => {
             colorMoon={"text-white"}
           />
           <div className=" font-bold text-sm">
-            <ul className="flex  gap-2">
-              <li className="active cursor-pointer">Հայ</li>
-              <li className="cursor-pointer">Рус</li>
-            </ul>
+            <div className="flex  gap-2">
+              <div
+                className="active cursor-pointer"
+                onClick={() => changeLanguageHandler("am")}
+              >
+                Հայ
+              </div>
+              <div
+                className="cursor-pointer"
+                onClick={() => changeLanguageHandler("ru")}
+              >
+                Рус
+              </div>
+            </div>
           </div>
           <div className=" flex justify-center items-center gap-8 lg:gap-6">
             <Link

@@ -181,7 +181,7 @@ const Notification = ({ notification }: { notification: INotification }) => {
 
   return (
     <div
-      className="border-2 border-gray-200 shadow-lg  rounded-xl"
+      className="border-2 border-gray-200 dark:border-none shadow-lg  rounded-xl dark:bg-neutral-800"
       onClick={(e) => {
         setOpenNot((prev) => !prev);
         isShown();
@@ -201,7 +201,7 @@ const Notification = ({ notification }: { notification: INotification }) => {
           <div
             className={`w-full lg:w-[70%] h-full ${
               notification.opened ? "font-normal" : "font-semibold"
-            }   flex flex-col justify-start pl-4`}
+            }   flex flex-col justify-start pl-4 dark:text-white`}
           >
             <h4>{getTitle()}</h4>
           </div>
@@ -244,7 +244,7 @@ const Notification = ({ notification }: { notification: INotification }) => {
         </div>
       </div>
       {openNot && (
-        <div className="text-gray-600 text-sm leading-6 font-semibold py-4 px-2">
+        <div className="text-black dark:text-white text-sm leading-6 font-semibold py-4 px-2">
           {getDescription()}
         </div>
       )}

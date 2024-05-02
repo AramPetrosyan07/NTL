@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { testload } from "../data/testload";
 import { testTrucks } from "../data/testTrucks";
 import { LoadProps } from "../interfaces/LoadProps";
-import Loader from "./Loader";
 import { TruckProps } from "../interfaces/TruckProps";
 import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
 import { useLocation } from "react-router-dom";
@@ -45,11 +44,7 @@ const ItemMobile = ({ boardType }: any) => {
 
   return (
     <div>
-      {isLoading ? (
-        <div className="w-full h-[calc(100vh-110px)]  flex justify-center items-center">
-          <Loader />
-        </div>
-      ) : isEmpty ? (
+      {isEmpty ? (
         <p className="w-full h-[calc(100vh-110px)]  flex justify-center items-center">
           Բեռներ չի գտնվել
         </p>

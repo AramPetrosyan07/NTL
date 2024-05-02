@@ -3,11 +3,14 @@ import { RxUpdate } from "react-icons/rx";
 import { getLoadThunk, getTruckThunk } from "../store/asyncThunk";
 import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ItemTitle = ({ boardType }: any) => {
   const [isUpdated, setIsUpdated] = useState(false);
   const { pathname } = useLocation();
   const dispatch = useTypedDispatch();
+  const { t } = useTranslation();
+
   const handleUpdateData = () => {
     setIsUpdated(true);
     if (pathname === "/") {
@@ -32,6 +35,7 @@ const ItemTitle = ({ boardType }: any) => {
         <div className=" flex justify-start items-center  w-[50px]">
           <div className="flex justify-start items-center" title={"բարձման օր"}>
             օր
+            {t("dashboard.or")}
           </div>
         </div>
         <div className=" flex justify-start items-center  w-[50px]">

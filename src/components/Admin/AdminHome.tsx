@@ -40,31 +40,38 @@ const Home = () => {
     }
   };
 
+  let subClass = user.userType.includes("sub") ? "subClass" : "";
+
   return (
     <>
       {statLoading ? (
         <div>loading</div>
       ) : (
         <div className="home bg-[#f1f5f9] dark:bg-black dark:text-slate-200">
-          <div className="box box1 ">
-            <TopBox workers={statistic.workers} />
-          </div>
-          <div className="box box2">
-            <ChartBox
-              {...chartBoxGen({
-                color: "#8884d8",
-                title: "Աշխատակիցներ",
-                number: statistic?.user?.at(-1)?.users,
-                dataKey: "users",
-                percentage: percent(
-                  statistic?.user?.at(-1)?.users as number,
-                  statistic?.user?.at(0)?.users as number
-                ),
-                chartData: statistic?.user,
-              })}
-            />
-          </div>
-          <div className="box box3">
+          {!user.userType.includes("sub") ? (
+            <div className="box box1 ">
+              <TopBox workers={statistic.workers} />
+            </div>
+          ) : null}
+          {!user.userType.includes("sub") ? (
+            <div className="box box2">
+              <ChartBox
+                {...chartBoxGen({
+                  color: "#8884d8",
+                  title: "Աշխատակիցներ",
+                  number: statistic?.user?.at(-1)?.users,
+                  dataKey: "users",
+                  percentage: percent(
+                    statistic?.user?.at(-1)?.users as number,
+                    statistic?.user?.at(0)?.users as number
+                  ),
+                  chartData: statistic?.user,
+                })}
+              />
+            </div>
+          ) : null}
+
+          <div className={`box box3 ${subClass}`}>
             <ChartBox
               {...chartBoxGen({
                 color: "skyblue",
@@ -79,10 +86,10 @@ const Home = () => {
               })}
             />
           </div>
-          <div className="box box4">
+          <div className={`box box4 ${subClass}`}>
             <PieChartBox {...statistic?.loadStatistic} />
           </div>
-          <div className="box box5">
+          <div className={`box box5 ${subClass}`}>
             <ChartBox
               {...chartBoxGen({
                 color: "gold",
@@ -94,7 +101,7 @@ const Home = () => {
               })}
             />
           </div>
-          <div className="box box6">
+          <div className={`box box6 ${subClass}`}>
             <ChartBox
               {...chartBoxGen({
                 color: "teal",

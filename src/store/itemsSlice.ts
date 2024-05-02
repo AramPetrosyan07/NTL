@@ -79,6 +79,7 @@ let initialState: any = {
   isLoading: true,
   isEmpty: false,
   previewItem: {},
+  message: "",
 };
 
 const itemSlice = createSlice({
@@ -177,11 +178,15 @@ const itemSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getLoadThunk.fulfilled, (state, { payload }) => {
-      state.load = payload;
-      if (!payload?.length) {
-        state.isEmpty = true;
+      if (payload === "Բեռ չի գտնվել") {
+        state.message = payload;
+      } else {
+        state.load = payload;
+        if (!payload?.length) {
+          state.isEmpty = true;
+        }
+        state.isLoading = false;
       }
-      state.isLoading = false;
     });
     builder.addCase(getLoadThunk.pending, (state, { payload }) => {
       state.isLoading = true;
