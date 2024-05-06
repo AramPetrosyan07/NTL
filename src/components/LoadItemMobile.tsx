@@ -190,7 +190,7 @@ const LoadItemMobile = ({
               </div>
               {boardType === "load" && (
                 <div className="info w-full  flex items-center  font-bold">
-                  Վճարում : <p className="font-normal"></p>
+                  {/* Վճարում : <p className="font-normal"></p> */}
                 </div>
               )}
             </m.div>

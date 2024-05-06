@@ -33,9 +33,7 @@ export default function Header({ isDarkMode }: any) {
         </span>
       </div>
       <div className="title md:w-full w-0 flex justify-center items-center">
-        <p className="text-xl font-bold text-gray-600 md:block hidden dark:text-white">
-          NTL LOAD BOARD
-        </p>
+        <p className="text-xl font-bold text-gray-600 md:block hidden dark:text-white"></p>
       </div>
       <div className="snack md:w-1/2 w-full  flex justify-end items-center md:gap-4 gap-[12px]">
         <Search />

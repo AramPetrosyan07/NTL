@@ -12,6 +12,7 @@ import DetectCurrentUserType from "../../utils/detectUserType";
 import UILoader from "../../UI/UILoader";
 import ModeSwitcher from "../ModeSwitcher";
 import { useTranslation } from "react-i18next";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const staggerChildren = 0.5;
 const baseDuration = 0.3;
@@ -26,6 +27,7 @@ const AdminHeader = () => {
   const userType = DetectCurrentUserType();
   // const [changedMode, setIsChangedMode] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
+  const { notifications } = useTypedSelector((state) => state.user);
 
   const changeLanguageHandler = (e: any) => {
     console.log(e);
@@ -44,9 +46,14 @@ const AdminHeader = () => {
       setLoading(true);
     }
   };
-
   const getNotificationCount = () => {
-    return notificationsData.filter((el: any) => el.isOpened === false).length;
+    let count = 0;
+    notifications.forEach((el: any) => {
+      if (!el.opened) {
+        count += 1;
+      }
+    });
+    return count;
   };
 
   const handlePath = (path: string, to: string) => {

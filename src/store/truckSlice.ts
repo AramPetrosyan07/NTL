@@ -130,7 +130,7 @@ const truckSlice = createSlice({
               .toLowerCase()
               ?.includes(payload.pickUp.toLowerCase())) &&
           (!payload.type || item.type === payload.type.name) && // Modified line
-          (payload.length === "" || item.length === payload.length) &&
+          (payload.length === "" || item.length === +payload.length) &&
           (payload.weight === "" || item.weight === +payload.weight) &&
           (payload.rate === "" || item.rate === +payload.rate)
         ) {

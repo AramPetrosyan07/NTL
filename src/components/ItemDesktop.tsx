@@ -15,8 +15,6 @@ export default function ItemDesktop({ boardType }: any) {
   const { truck, filteredTrucks } = useTypedSelector((state) => state.truck);
   const { pathname } = useLocation();
 
-  console.log(load);
-
   const chechFilteredLoads = () => {
     if (filteredLoads.length != 0) {
       return filteredLoads;
@@ -55,7 +53,6 @@ export default function ItemDesktop({ boardType }: any) {
               chechFilteredLoads()
                 ?.slice(0, next)
                 ?.map((el: any, i: any) => {
-                  console.log(el);
                   return (
                     <div key={i} className="pb-[2px]">
                       <AccordionItemDesktop

@@ -32,7 +32,7 @@ const Preview = () => {
   return (
     <>
       <div className="desktop w-full h-screen flex flex-col-reverse relative">
-        <div className="w-[300px] h-[350px] bg-[#fff] absolute top-4 left-4 z-50 rounded-2xl opacity-[80%] lg:block hidden">
+        <div className="w-[300px] h-[350px] bg-[#fff] absolute top-4 left-4 z-50 rounded-2xl opacity-[90%] lg:block hidden">
           <div className="w-[400px] h-full flex flex-col justify-between">
             <div className="w-full h-full  flex justify-center items-center">
               <div className="h-[300px] w-40  flex flex-col justify-between items-center ">

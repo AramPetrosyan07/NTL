@@ -70,7 +70,7 @@ const InputPlaces: React.FC<IInputPlaces> = ({
                 placeholder: isFrom ? "Բարձման վայրը" : "Բեռնաթափման վայրը",
                 className: pathname.includes("changeitems")
                   ? "w-full h-full px-2 py-[12px] rounded-md border-none focus:outline-none focus:bg-blue-100 placeholder:text-black"
-                  : "p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900  ring-0 focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6",
+                  : "p-4 block w-full rounded-md border-[1px] border-slate-400 py-1.5 text-gray-900  ring-0 focus:ring-0 placeholder:text-gray-400   sm:text-sm sm:leading-6 bg-[#f1f5f9] dark:bg-black text-black dark:text-[#f1f5f9]",
               })}
             />
           </div>

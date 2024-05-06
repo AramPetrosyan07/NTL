@@ -160,7 +160,7 @@ const AdminAside: React.FC = () => {
                   <Link
                     to={el.to}
                     onClick={() => toggleMenu()}
-                    className={`flex items-center gap-4 h-16 pl-4  ${
+                    className={`flex items-center gap-4 h-16 pl-4 text-white  ${
                       pathname === el.to ? "active-link" : ""
                     }`}
                     key={el.id}

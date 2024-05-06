@@ -53,6 +53,7 @@ const AccordionItemDesktop = ({
   const handleClick = () => {
     setClicked(true);
   };
+
   useEffect(() => {
     const interval = setInterval(() => {
       const age = calculateFormattedPostAge(mydate);
@@ -232,7 +233,7 @@ const AccordionItemDesktop = ({
 
               {boardType === "load" && (
                 <div className="text-[12px] flex items-center gap-2">
-                  <h4 className="font-bold">Վճարում `</h4> <p>{"7 աշխ. օր"}</p>
+                  {/* <h4 className="font-bold">Վճարում `</h4> <p>{"7 աշխ. օր"}</p> */}
                 </div>
               )}
             </div>

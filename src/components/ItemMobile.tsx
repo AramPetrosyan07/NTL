@@ -1,74 +1,83 @@
-import LoadItemMobile from "./LoadItemMobile";
 import { useEffect, useState } from "react";
-import { testload } from "../data/testload";
-import { testTrucks } from "../data/testTrucks";
-import { LoadProps } from "../interfaces/LoadProps";
-import { TruckProps } from "../interfaces/TruckProps";
+import AccordionItemDesktop from "./AccordionItemDesktop";
+import { getLoadThunk, getTruckThunk } from "../store/asyncThunk";
 import { useTypedDispatch, useTypedSelector } from "../hooks/useTypedSelector";
 import { useLocation } from "react-router-dom";
-import { getLoadThunk, getTruckThunk } from "../store/asyncThunk";
+import LoadItemMobile from "./LoadItemMobile";
 
-const ItemMobile = ({ boardType }: any) => {
+export default function ItemMobile({ boardType }: any) {
   const itemsPerRow = 50;
   const [next, setNext] = useState<number>(itemsPerRow);
-  const [loadData, setLoadData] = useState<LoadProps[] | TruckProps[]>([]);
+  // const [loadData, setLoadData] = useState<LoadProps[] | TruckProps[]>([]);
   const dispatch = useTypedDispatch();
-  const { load, isLoading, isEmpty } = useTypedSelector((state) => state.load);
-  const { truck, isLoadingTruck, isEmptyTruck } = useTypedSelector(
-    (state) => state.truck
+  const { load, filteredLoads, isLoading, isEmpty, message } = useTypedSelector(
+    (state) => state.load
   );
-
+  const { truck, filteredTrucks } = useTypedSelector((state) => state.truck);
   const { pathname } = useLocation();
 
-  const detectBoardType = async () => {
-    if (boardType === "load") {
-      setLoadData(load);
-      return;
+  console.log(load);
+
+  const chechFilteredLoads = () => {
+    if (filteredLoads.length != 0) {
+      return filteredLoads;
     } else {
-      setLoadData(truck);
+      return load;
     }
   };
 
-  useEffect(() => {
-    detectBoardType();
-  }, [load, truck]);
+  const chechFilteredTrucks = () => {
+    if (filteredTrucks.length != 0) {
+      return filteredTrucks;
+    } else {
+      return truck;
+    }
+  };
+
+  const handleMoreLoads = () => {
+    setNext(next + 50);
+  };
 
   useEffect(() => {
     dispatch(getLoadThunk());
     dispatch(getTruckThunk());
   }, []);
 
-  const handleMoreLoads = () => {
-    setNext(next + 50);
-  };
-
   return (
-    <div>
-      {isEmpty ? (
-        <p className="w-full h-[calc(100vh-110px)]  flex justify-center items-center">
-          Բեռներ չի գտնվել
-        </p>
-      ) : (
-        <>
-          {pathname === "/" ? (
-            load.slice(0, next)?.map((el: any) => (
-              <div key={el._id}>
-                <LoadItemMobile {...el} boardType={boardType} />
-              </div>
-            ))
-          ) : pathname.includes("/trucks") ? (
-            truck.slice(0, next)?.map((el: any) => (
-              <div key={el._id}>
-                <LoadItemMobile {...el} boardType={boardType} />
-              </div>
-            ))
-          ) : (
-            <></>
-          )}
-        </>
-      )}
-      <>
-        {next < testload?.length && (
+    <>
+      <div>
+        {message ? (
+          <p className="w-full h-[calc(100vh-110px)]  flex justify-center items-center">
+            Բեռներ չի գտնվել
+          </p>
+        ) : (
+          <>
+            {pathname === "/" ? (
+              chechFilteredLoads()
+                ?.slice(0, next)
+                ?.map((el: any, i: any) => {
+                  return (
+                    <div key={i} className="pb-[2px]">
+                      <LoadItemMobile {...el} i={i} boardType={boardType} />
+                    </div>
+                  );
+                })
+            ) : pathname.includes("/trucks") ? (
+              chechFilteredTrucks()
+                .slice(0, next)
+                ?.map((el: any, i: any) => (
+                  <div key={i} className="pb-[2px]">
+                    <LoadItemMobile {...el} i={i} boardType={boardType} />
+                  </div>
+                ))
+            ) : (
+              <></>
+            )}
+          </>
+        )}
+        {next <
+          (boardType === "load" ? chechFilteredLoads() : chechFilteredTrucks())
+            ?.length && (
           <div className="w-full flex justify-center py-4 ">
             <button
               onClick={handleMoreLoads}
@@ -78,9 +87,7 @@ const ItemMobile = ({ boardType }: any) => {
             </button>
           </div>
         )}
-      </>
-    </div>
+      </div>
+    </>
   );
-};
-
-export default ItemMobile;
+}

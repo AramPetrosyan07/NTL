@@ -235,8 +235,8 @@ const customerSlice = createSlice({
         state.statLoading = false;
       })
       .addCase(getNotification.fulfilled, (state, { payload }) => {
-        let pin = payload.filter((item: any) => item.pin);
-        let unpin = payload.filter((item: any) => !item.pin);
+        let pin = payload?.filter((item: any) => item.pin);
+        let unpin = payload?.filter((item: any) => !item.pin);
 
         state.notifications = [...pin, ...unpin];
       });

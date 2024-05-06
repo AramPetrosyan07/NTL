@@ -34,6 +34,17 @@ interface ILoad {
   comment?: string;
 }
 
+enum SortType {
+  updatedAt = "updatedAt",
+  weight = "weight",
+  rate = "rate",
+}
+
+interface ISort {
+  type: SortType;
+  direction: "up" | "down";
+}
+
 let initialState: any = {
   load: [
     // {
@@ -80,6 +91,10 @@ let initialState: any = {
   isEmpty: false,
   previewItem: {},
   message: "",
+  sort: {
+    type: "updatedAt",
+    direction: "up",
+  } as ISort,
 };
 
 const itemSlice = createSlice({
@@ -167,13 +182,39 @@ const itemSlice = createSlice({
               .toLowerCase()
               ?.includes(payload.pickUp.toLowerCase())) &&
           (!payload.type || item.type === payload.type.name) && // Modified line
-          (payload.length === "" || item.length === payload.length) &&
+          (payload.length === "" || item.length === +payload.length) &&
           (payload.weight === "" || item.weight === +payload.weight) &&
           (payload.rate === "" || item.rate === +payload.rate)
         ) {
           return item;
         }
       });
+    },
+    sortLoad: (state, { payload }) => {
+      const sortBy = (a: any, b: any) => {
+        const directionFactor = state.sort.direction === "up" ? 1 : -1;
+        let aValue, bValue;
+
+        switch (payload.type) {
+          case "updatedAt":
+            aValue = new Date(a.updatedAt).getTime();
+            bValue = new Date(b.updatedAt).getTime();
+            break;
+          case "weight":
+          case "rate":
+            aValue = a[payload.type];
+            bValue = b[payload.type];
+            break;
+          default:
+            return 0;
+        }
+
+        return (aValue - bValue) * directionFactor;
+      };
+      console.log(payload);
+
+      state.load = state.load.toSorted(sortBy);
+      state.sort = payload;
     },
   },
   extraReducers: (builder) => {
@@ -224,6 +265,7 @@ export const {
   updatePreviewItem,
   loadInitialPosition,
   filterLoad,
+  sortLoad,
 } = itemSlice.actions;
 
 export default itemSlice.reducer;

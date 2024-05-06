@@ -14,7 +14,7 @@ import {
   useTypedSelector,
 } from "../../hooks/useTypedSelector";
 import { useEffect } from "react";
-import { allStatistic } from "../../store/asyncThunk";
+import { allStatistic, getNotification } from "../../store/asyncThunk";
 import { chartBoxGen } from "../../utils/Tools";
 // import { chartBoxGen } from "../../utils/Tools";
 
@@ -29,6 +29,7 @@ const Home = () => {
   useEffect(() => {
     if (user.userType) {
       dispatch(allStatistic({ userType: user.userType }));
+      dispatch(getNotification());
     }
   }, [user.userType]);
 

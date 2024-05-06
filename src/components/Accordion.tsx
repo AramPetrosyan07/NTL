@@ -139,7 +139,7 @@ const Accordion = ({
                 </div>
                 {boardType === "load" && (
                   <div className="info w-[400px] h-full  flex items-center p-2  font-bold">
-                    Վճարում : <p className="font-normal pl-2"></p>
+                    {/* Վճարում : <p className="font-normal pl-2"></p> */}
                   </div>
                 )}
               </div>
