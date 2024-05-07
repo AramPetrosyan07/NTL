@@ -1,3 +1,110 @@
 {
-    "or":"день"
+    "dashboard":{
+        "or":"день",
+        "tm":"т/с",
+        "ah":"п/к",
+        "pickup":"подбор",
+        "delivery":"доставка",
+        "carrier":"перевозчик",
+        "distance":"расстояние",
+        "company":"компания",
+        "contact":"контакт",
+        "volume":"объем",
+        "weight":"вес",
+        "price":"цена",
+
+        "Delivery_day":"День доставки",
+        "TM":"Время/Расстояние",
+        "Pickup":"Подбор",
+        "Delivery":"Доставка",
+        "AH":"До/После полудня",
+        "volumeM":"Объем м³",
+        "weightKG":"Вес кг",
+        "Prive":"Цена",
+        "burden":"Груз",
+        "comment":"Комментарий",
+        "Payment":"Оплата",
+
+        "search":"Поиск",
+
+        "new":"новый",
+
+        "founded_load":"найденные грузы",
+        "founded_trucks":"найденные грузовики",
+
+        "predified_direction":"предпочтительное направление",
+
+        "my_page":"Моя страница",
+        "Feedback":"Обратная связь",
+        "go_out":"Выйти"
+    },
+    "admin":{
+        "main":"Главная",
+        "add_load":"Добавить грузы",
+        "change_load":"Изменить грузы",
+        "settings":"Настройки",
+
+        "hello":"Привет",
+        "General_load":"Общие грузы",
+        "onRoad":"В пути",
+        "Empty":"Пустой",
+        "paid":"Оплачен",
+
+        "workers":"Работники",
+        "Sold_loads":"Проданные грузы",
+        "Total_cargo_price":"Общая стоимость грузов",
+        "Income:":"Доход",
+        "Cargo_statistics":"Статистика грузов"
+    },
+    "add_item":{
+        "truck_type":"Тип грузовика",
+        "Pickup":"Подбор",
+        "Delivery":"Доставка",
+        "burden_vloumeM":"Объем груза м³",
+        "burden_weight_kg":"Вес груза кг",
+        "Complete_collective":"Полный/частичный",
+        "burden_type":"Тип груза",
+        "Additional_information":"Дополнительная информация",
+
+        "cancel":"Отмена",
+        "add":"Добавить"
+    },
+    "settings":{
+        "my_page":"Моя страница",
+        "notification":"Уведомления",
+        "workers":"Работники",
+        "security":"Безопасность",
+        "company_name":"Название компании",
+        "email":"Эл. почта",
+        "address":"Адрес",
+        "user_type":"Тип пользователя",
+        "web_site":"Веб-сайт",
+        "phone":"Телефон",
+        
+        "payment_system":"Платежная система",
+        "payment_way":"Способ оплаты",
+        "delay":"Задержка",
+
+        "about_company":"О компании",
+
+        "pay_load":"Груз оплачен",
+        "worker":"Работник",
+        "Direction":"Направление",
+        "burden_type":"Тип груза",
+        "Shipping_price":"Цена доставки",
+
+        "team_member_count":"Количество членов команды",
+        "name":"имя",
+        "surname":"фамилия",
+        "delete":"удалить",
+
+        "change_pass":"Изменить пароль",
+        "current_pass":"Текущий пароль",
+        "new_pass":"Новый пароль",
+        "repeat_pass":"Повторите пароль",
+
+        "cancel":"Отмена",
+        "save":"Сохранить"
+    }
+
 }

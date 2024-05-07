@@ -34,7 +34,6 @@ const ItemTitle = ({ boardType }: any) => {
         </div>
         <div className=" flex justify-start items-center  w-[50px]">
           <div className="flex justify-start items-center" title={"բարձման օր"}>
-            օր
             {t("dashboard.or")}
           </div>
         </div>
@@ -43,7 +42,7 @@ const ItemTitle = ({ boardType }: any) => {
             className=" flex justify-start items-center"
             title={"տրանսպորտային միջոցի տեսակը"}
           >
-            տ/մ
+            {t("dashboard.tm")}
           </div>
         </div>
         <div className=" flex justify-start items-center  w-[40px]">
@@ -51,38 +50,44 @@ const ItemTitle = ({ boardType }: any) => {
             className=" flex justify-start items-center"
             title={"ամբողջական/հավաքական"}
           >
-            ա/հ
+            {t("dashboard.ah")}
           </div>
         </div>
 
         <div className=" flex justify-start items-center  w-[150px]">
-          <div title={"բարձման վայր"}>բարձում</div>
+          <div title={"բարձման վայր"}>{t("dashboard.pickup")}</div>
         </div>
         <div className=" flex justify-start items-center  w-[35px]">
           <div></div>
         </div>
         <div className="flex justify-start items-center  w-[150px]">
           <div title={"բերնաթափման վայր"}>
-            {boardType === "load" ? "բեռնաթափում" : "նախընտրելի ուղղ."}{" "}
+            {boardType === "load"
+              ? t("dashboard.delivery")
+              : "նախընտրելի ուղղ."}{" "}
           </div>
         </div>
         <div className="flex justify-start items-center  w-[70px]">
-          <div title={"հեռավորություն"}>հեռավ.</div>
+          <div title={"հեռավորություն"}>{t("dashboard.pickup")}</div>
         </div>
         <div className="flex justify-start items-center  w-[170px]">
-          <div>{boardType === "load" ? "պատվիրատու" : "փոխադրող"} </div>
+          <div>
+            {boardType === "load"
+              ? t("dashboard.company")
+              : t("dashboard.carrier")}{" "}
+          </div>
         </div>
         <div className=" flex justify-start items-center  w-[170px]">
-          <div>կոնտակտ</div>
+          <div>{t("dashboard.contact")}</div>
         </div>
         <div className=" flex justify-start items-center w-[50px]">
-          <div>ծավալ</div>
+          <div>{t("dashboard.volume")}</div>
         </div>
         <div className=" flex justify-start items-center  w-[80px]">
-          <div>քաշ</div>
+          <div>{t("dashboard.weight")}</div>
         </div>
         <div className=" flex justify-start items-center  w-[70px]">
-          <div>գին</div>
+          <div>{t("dashboard.price")}</div>
         </div>
         {boardType === "load" && (
           <div className="flex justify-start items-center w-[30px]"></div>

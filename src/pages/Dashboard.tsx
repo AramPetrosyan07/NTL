@@ -10,6 +10,7 @@ import ItemDesktop from "../components/ItemDesktop";
 import ItemMobile from "../components/ItemMobile";
 import Loader from "../components/Loader";
 import { allStatistic } from "../store/asyncThunk";
+import { useTranslation } from "react-i18next";
 
 const Dashboard: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -17,6 +18,7 @@ const Dashboard: React.FC = () => {
   const { load } = useTypedSelector((state) => state.load);
   const { user } = useTypedSelector((state) => state.user);
   const dispatch = useTypedDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (user.userType) {
@@ -45,7 +47,9 @@ const Dashboard: React.FC = () => {
           <Header />
 
           <div className="w-full h-10 bg-[#eaeaea] flex items-center justify-between pl-4 pr-4 border-t-[1px] dark:border-t-0 dark:bg-[#0b1c2f] dark:text-white">
-            <p className="text-[14px]">{load.length} գտնված բեռներ</p>
+            <p className="text-[14px]">
+              {load.length} {t("dashboard.founded_load")}
+            </p>
             <div className="h-full flex items-center gap-4 relative -z-1">
               <SortLoads />
               <div
