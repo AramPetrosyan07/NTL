@@ -7,11 +7,13 @@ import ModeSwitcher from "./ModeSwitcher";
 import Search from "./Search";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function Header({ isDarkMode }: any) {
   const { user } = useTypedSelector((state) => state.user);
   const [changedMode, setIsChangedMode] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const changeLanguageHandler = (e: any) => {
     console.log(e);
@@ -22,7 +24,10 @@ export default function Header({ isDarkMode }: any) {
 
   return (
     <header className="bg-gray-300 dark:bg-[#0E192D] h-16 md:px-4 px-2 flex relative">
-      <div className="logo1 md:w-1/2 w-1/4 flex justify-start items-center overflow-hidden -ml-1 relative">
+      <div
+        className="logo1 md:w-1/2 w-1/4 flex justify-start items-center overflow-hidden -ml-1 relative"
+        onClick={() => navigate("/")}
+      >
         <img
           src={changedMode ? LogoWhite : Logo}
           alt="logo"

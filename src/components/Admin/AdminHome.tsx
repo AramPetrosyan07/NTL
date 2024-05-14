@@ -46,9 +46,11 @@ const Home = () => {
   return (
     <>
       {statLoading ? (
-        <div>loading</div>
+        <div className="w-full h-auto flex justify-center items-center mt-20 ">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
       ) : (
-        <div className="home bg-[#f1f5f9] dark:bg-black dark:text-slate-200">
+        <div className="home h-auto bg-[#f1f5f9] dark:bg-black dark:text-slate-200">
           {!user.userType.includes("sub") ? (
             <div className="box box1 ">
               <TopBox workers={statistic.workers} />

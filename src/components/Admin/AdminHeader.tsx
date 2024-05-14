@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Avatar from "../Avatar";
 import Logo from "../../assets/mainlogowhite.svg";
 import { MdNotificationsNone } from "react-icons/md";
@@ -28,6 +28,7 @@ const AdminHeader = () => {
   // const [changedMode, setIsChangedMode] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
   const { notifications } = useTypedSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const changeLanguageHandler = (e: any) => {
     console.log(e);
@@ -71,7 +72,7 @@ const AdminHeader = () => {
     <header className="w-full h-16 bg-black  text-white mx-auto md:px-10 px-4 border-b-[0.3px] border-b-slate-500">
       <div className="z-50 relative w-full h-full flex justify-between items-center">
         <m.div
-          className=" h-ful flex justify-center items-center font-bold text-xl gap-4 overflow-hidden"
+          className=" h-ful flex justify-center items-center font-bold text-xl gap-4 overflow-hidden cursor-pointer"
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{
@@ -80,6 +81,7 @@ const AdminHeader = () => {
             staggerChildren,
             type: "spring",
           }}
+          onClick={() => navigate("/")}
         >
           <img src={Logo} alt="logo" className="w-[90px] logo -mt-[6px]" />
         </m.div>
